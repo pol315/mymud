@@ -1,0 +1,8 @@
+{
+    "beginner's ticket": {
+        "description": "A thin paper ticket. It reads \"Exchange me for freedom!\"",
+		"unique": "true",
+		"sellprice": "nfs",
+		"weight": 0.1
+    }
+}

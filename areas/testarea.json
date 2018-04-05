@@ -1,0 +1,72 @@
+{
+    "Hall of Beginnings": {
+        "description": "Large marble columns tower over you, bearing the weight of a vast stone ceiling. An ornate stone archway covers the north area of the room, containing a shimmering, purple portal. A lady garbed in a white dress stands in front of the portal, barring entry to those she sees fit.",
+		"furni": {
+			"portal": {
+				"description": "Attempting to peer around the woman standing in front, you can make out tall buildings, and cobbled pathways."				
+			}
+		},
+		"items": {},
+        "exits": {"east": "Hallway of Knowledge", "west": "Testing Chambers"}
+    },
+    "Hallway of Knowledge": {
+        "description": "The hallway is fairly long and along the walls are stone pedestals, holding large tablets with engraved writing.",
+		"furni": {
+			"help tablet": {
+				"description": "The tablet reads: \"HELP\""				
+			}
+		},
+		"items": {},
+        "exits": {"west": "Hall of Beginnings"}
+    },
+	"Testing Chambers": {
+        "description": "This room is much smaller than the hall. Along the walls are racks of basic weapons and armor, fit for all kinds of adventurers. A single chest lies in the middle of the room. A man stands next to the chest waiting for adventurers to approach.",
+		"furni": {
+			"sword rack": {
+				"description": "The rack holds seemingly unending amounts of swords. Try TAKE TRAINING SWORD FROM SWORD RACK.",
+				"container": "yes",
+				"openable": "no",
+				"holds": "training sword"
+			},
+			"staff rack": {
+				"description": "The rack holds seemingly unending amounts of staves. Try TAKE TRAINING STAFF FROM STAFF RACK.",
+				"container": "yes",
+				"openable": "no",
+				"holds": "training staff"
+			},
+			"bow rack": {
+				"description": "The rack holds seemingly unending amounts of bows. Try TAKE TRAINING BOW FROM BOW RACK.",
+				"container": "yes",
+				"openable": "no",
+				"holds": "training bow"
+			},
+			"plate rack": {
+				"description": "The rack holds seemingly unending amounts of platebodies. Try TAKE TRAINING PLATE FROM PLATE RACK.",
+				"container": "yes",
+				"openable": "no",
+				"holds": "training plate"
+			},
+			"leather rack": {
+				"description": "The rack holds seemingly unending amounts of leather bodices. Try TAKE TRAINING BODICE FROM LEATHER RACK.",
+				"container": "yes",
+				"openable": "no",
+				"holds": "training bodice"
+			},
+			"robe rack": {
+				"description": "The rack holds seemingly unending amounts of cloth robes. Try TAKE TRAINING ROBES FROM ROBE RACK.",
+				"container": "yes",
+				"openable": "no",
+				"holds": "training robes"
+			},
+			"chest": {
+				"description": "Upon the chest lies a heavy brass lock. Once you have the key, try UNLOCK CHEST, then OPEN CHEST, then LOOK IN CHEST.",
+				"container": "yes",
+				"openable": "yes",
+				"locked": "yes",
+				"holds": "beginner's ticket"
+			}
+		},
+		"items": {},
+        "exits": {"east": "Hall of Beginnings"}
+    }
+}

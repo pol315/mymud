@@ -1,0 +1,14 @@
+LOOK
+---------------------------------------------------------------------------------------------------
+
+LOOK on it's own allows you to examine your surroundings. This will give you information such as
+a description of the current room, interactable objects, players, items, and exits.
+
+You can also use LOOK to examine specific things, such as LOOK PORTAL. This will give you further 
+information on the object. You can examine objects, items, NPCs and players.
+
+You can also use just L!
+
+(LOOK IN STUB)
+
+(LOOK N S E W NW NE SW SE U D)

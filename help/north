@@ -1,0 +1,10 @@
+GO
+---------------------------------------------------------------------------------------------------
+
+Use the GO command with a direction. You can go NORTH, SOUTH, EAST, WEST, NORTHWEST, NORTHEAST, SOUTHWEST, SOUTHEAST, UP, and DOWN!
+
+You can also go in these directions by skipping the GO command - such as only typing NORTH.
+
+Furthermore, each direction has a single letter shortcut - N, S, E, W, NW, NE, SW, SE, U and D!
+
+GO try it out!

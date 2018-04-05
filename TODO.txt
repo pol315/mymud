@@ -1,0 +1,14 @@
+date time system - require a watch to know exact time, otherwise need to be outside and tell by sun
+stats - races affect stats
+score
+messages
+map?
+NPCs like objects
+items
+inventory
+weight and max capacity
+trading
+combat
+hunger
+thirst
+guild

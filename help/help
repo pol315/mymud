@@ -1,0 +1,10 @@
+HELP
+---------------------------------------------------------------------------------------------------
+
+Boy, you're really lost, huh.
+
+You can use the HELP command to search for help topics such as "HELP SAY". If a help topic exists 
+with that name, you will be shown it, otherwise, a search will be performed on all help topics for 
+the word "SAY" and send you back a list of all topics that include that word.
+
+Good luck out there!
