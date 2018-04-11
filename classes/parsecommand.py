@@ -13,6 +13,7 @@ from commands.help 			import Help
 from commands.look 			import Look
 from commands.playtime		import Playtime
 from commands.say 			import Say
+from commands.skills		import Skills
 from commands.tell 			import Tell
 from commands.quit 			import Quit
 
@@ -94,6 +95,9 @@ def ParseCommand(id, command, params, players, rooms, cursor, conn, mud):
 
 	elif command == "playtime":
 		Playtime(id, players, mud)
+		
+	elif command == "skills":
+		Skills(id, params, players, mud)
 
 	# MOVEMENT
 	elif command == "go":

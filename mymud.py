@@ -17,16 +17,6 @@ from classes.utilities		import PlacePlayerInGame
 from classes.player   		import _Player
 from classes.server 		import _Server
 
-from commands.description	import Description
-from commands.emote			import Emote
-from commands.go 			import Go
-from commands.help 			import Help
-from commands.look 			import Look
-from commands.playtime		import Playtime
-from commands.say 			import Say
-from commands.tell 			import Tell
-from commands.quit 			import Quit
-
 from configparser 	  		import SafeConfigParser
 
 import psycopg2

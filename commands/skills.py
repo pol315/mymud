@@ -1,0 +1,11 @@
+def Skills(id, params, players, mud):
+	mud.send_message(id, "================================================", mud._BOLD, mud._BLUE)
+	mud.send_message(id, "|| Strength:   {}        Mining:          {}    ||".format(players[id].strength, players[id].mining), mud._BOLD, mud._BLUE)
+	mud.send_message(id, "|| Dexterity:  {}        Fishing:         {}    ||".format(players[id].dexterity, players[id].fishing), mud._BOLD, mud._BLUE)
+	mud.send_message(id, "|| Wisdom:     {}        Foresting:       {}    ||".format(players[id].wisdom, players[id].foresting), mud._BOLD, mud._BLUE)
+	mud.send_message(id, "|| Defence:    {}        Cooking:         {}    ||".format(players[id].defence, players[id].cooking), mud._BOLD, mud._BLUE)
+	mud.send_message(id, "|| Endurance:  {}        Blacksmithing:   {}    ||".format(players[id].endurance, players[id].blacksmithing), mud._BOLD, mud._BLUE)
+	mud.send_message(id, "|| Clarity:    {}        Rangership:      {}    ||".format(players[id].clarity, players[id].rangership), mud._BOLD, mud._BLUE)
+	mud.send_message(id, "||                      Energycraft:     {}    ||".format(players[id].energycraft), mud._BOLD, mud._BLUE)
+	mud.send_message(id, "================================================", mud._BOLD, mud._BLUE)
+	mud.send_message(id, "")
