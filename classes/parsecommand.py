@@ -10,10 +10,12 @@ from commands.description	import Description
 from commands.emote			import Emote
 from commands.go 			import Go
 from commands.help 			import Help
+from commands.inventory		import Inventory
 from commands.look 			import Look
 from commands.playtime		import Playtime
 from commands.say 			import Say
 from commands.skills		import Skills
+from commands.take 			import Take
 from commands.tell 			import Tell
 from commands.quit 			import Quit
 
@@ -23,7 +25,7 @@ import psycopg2
 import json
 import time
 
-def ParseCommand(id, command, params, players, rooms, cursor, conn, mud):
+def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, mud):
 	
 	if (command != "") and (command != "r"):
 		players[id].last_command = command
@@ -91,13 +93,19 @@ def ParseCommand(id, command, params, players, rooms, cursor, conn, mud):
 		Description(id, params, players, cursor, conn, mud)
 
 	elif (command == "look") or (command == "l"):
-		Look(id, params, players, rooms, mud)
+		Look(id, params, players, rooms, gameitems, mud)
 
 	elif command == "playtime":
 		Playtime(id, players, mud)
 		
 	elif command == "skills":
 		Skills(id, params, players, mud)
+		
+	elif command == "take":
+		Take(id, params, players, rooms, gameitems, cursor, conn, mud)
+		
+	elif (command == "inventory") or (command == "inv"):
+		Inventory(id, params, players, mud)
 
 	# MOVEMENT
 	elif command == "go":

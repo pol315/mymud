@@ -16,7 +16,9 @@
 				"description": "The tablet reads: \"HELP\""				
 			}
 		},
-		"items": {},
+		"items": {
+			"silly string": ""
+		},
         "exits": {"west": "Hall of Beginnings"}
     },
 	"Testing Chambers": {
@@ -26,44 +28,44 @@
 				"description": "The rack holds seemingly unending amounts of swords. Try TAKE TRAINING SWORD FROM SWORD RACK.",
 				"container": "yes",
 				"openable": "no",
-				"holds": "training sword"
+				"items": "training sword"
 			},
 			"staff rack": {
 				"description": "The rack holds seemingly unending amounts of staves. Try TAKE TRAINING STAFF FROM STAFF RACK.",
 				"container": "yes",
 				"openable": "no",
-				"holds": "training staff"
+				"items": "training staff"
 			},
 			"bow rack": {
 				"description": "The rack holds seemingly unending amounts of bows. Try TAKE TRAINING BOW FROM BOW RACK.",
 				"container": "yes",
 				"openable": "no",
-				"holds": "training bow"
+				"items": "training bow"
 			},
 			"plate rack": {
 				"description": "The rack holds seemingly unending amounts of platebodies. Try TAKE TRAINING PLATE FROM PLATE RACK.",
 				"container": "yes",
 				"openable": "no",
-				"holds": "training plate"
+				"items": "training plate"
 			},
 			"leather rack": {
 				"description": "The rack holds seemingly unending amounts of leather bodices. Try TAKE TRAINING BODICE FROM LEATHER RACK.",
 				"container": "yes",
 				"openable": "no",
-				"holds": "training bodice"
+				"items": "training bodice"
 			},
 			"robe rack": {
 				"description": "The rack holds seemingly unending amounts of cloth robes. Try TAKE TRAINING ROBES FROM ROBE RACK.",
 				"container": "yes",
 				"openable": "no",
-				"holds": "training robes"
+				"items": "training robes"
 			},
 			"chest": {
 				"description": "Upon the chest lies a heavy brass lock. Once you have the key, try UNLOCK CHEST, then OPEN CHEST, then LOOK IN CHEST.",
 				"container": "yes",
 				"openable": "yes",
 				"locked": "yes",
-				"holds": "beginner's ticket"
+				"items": "beginner's ticket"
 			}
 		},
 		"items": {},

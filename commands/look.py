@@ -1,4 +1,4 @@
-def Look(id, params, players, rooms, mud):
+def Look(id, params, players, rooms, gameitems, mud):
 	rm = rooms[players[id].room]																						# store the player's current room
 			
 	if not params:																										# if not looking at anything specific
@@ -12,7 +12,15 @@ def Look(id, params, players, rooms, mud):
 				playershere.append(players[pid].name)																# add their name to the list
 		
 		if playershere:
-			mud.send_message(id, "Players here: {}".format(", ".join(playershere)), mud._BOLD, mud._CYAN)		# send player a message containing the list of players in the room				
+			mud.send_message(id, "Players here: {}".format(", ".join(playershere)), mud._BOLD, mud._CYAN)		# send player a message containing the list of players in the room
+
+		itemshere = []	
+			
+		for key in rm["items"]:
+			itemshere.append(key)
+			
+		if itemshere:
+			mud.send_message(id, "On the ground you see: {}".format(", ".join(itemshere)), mud._BOLD, mud._BLUE)
 			
 		mud.send_message(id, "Exits are: {}".format(", ".join(rm["exits"])), mud._BOLD, mud._YELLOW)			# send player a message containing the list of exits from this room
 	
@@ -22,7 +30,10 @@ def Look(id, params, players, rooms, mud):
 			mud.send_message(id, "{} is a(n) {} {}. {} {}".format(players[id].name, players[id].race, players[id].gender, players[id].name, players[id].description))
 		
 		elif params.lower() in rm["furni"]:
-			mud.send_message(id, "{}".format(rm["furni"][params.lower()]["description"]))				
+			mud.send_message(id, "{}".format(rm["furni"][params.lower()]["description"]))	
+
+		elif params.lower() in rm["items"]:
+			mud.send_message(id, "{}".format(gameitems[params.lower()]["description"]))
 		
 		else:
 			examined = False
@@ -35,3 +46,5 @@ def Look(id, params, players, rooms, mud):
 		
 			if examined == False:
 				mud.send_message(id, "You do not see \"{}\" here.".format(params))
+				
+	mud.send_message(id, "")

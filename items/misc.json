@@ -1,0 +1,8 @@
+{
+    "silly string": {
+        "description": "Shoot it at people to annoy them!",
+		"unique": "false",
+		"sellprice": "500",
+		"weight": 0.1
+    }
+}

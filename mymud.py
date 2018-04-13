@@ -33,6 +33,7 @@ conn = psycopg2.connect(conn_string)
 cursor = conn.cursor()
 
 rooms = json.load(open("areas/testarea.json"))				# structure defining the rooms in the game - loaded from a json file
+gameitems = json.load(open("items/misc.json"))
 players = {}												# stores the players in the game
 ticks = 0													# stores how many ticks have gone by since server start
 
@@ -73,6 +74,6 @@ while True:													# main game loop. We loop forever (i.e. until the progra
 		if id not in players:								# if for any reason the player isn't in the player map, skip them and move on to the next one
 			continue
 		
-		ParseCommand(id, command.lower(), params, players, rooms, cursor, conn, mud)
+		ParseCommand(id, command.lower(), params.strip(), players, rooms, gameitems, cursor, conn, mud)
 		
 			
