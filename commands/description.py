@@ -11,7 +11,7 @@ def Description(id, params, players, cursor, conn, mud):
 			
 		description = description.replace('\'', '\'\'')
 		
-		cursor.execute("""UPDATE player SET description = '{0}' WHERE username = '{1}';""".format(description, players[id].name))
+		cursor.execute("UPDATE player SET description = %s WHERE username = %s;", (description, players[id].name))
 		if cursor.rowcount == 1:
 			conn.commit()
 			players[id].description = description

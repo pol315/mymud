@@ -9,7 +9,7 @@ def Quit(id, players, cursor, conn, mud):
 	sessiontime = d2 - d1
 	totaltime = preplaytime + sessiontime
 	
-	cursor.execute("""UPDATE player SET play_time = '{0}' WHERE username = '{1}';""".format(totaltime, players[id].name))
+	cursor.execute("UPDATE player SET play_time = %s WHERE username = %s;", (totaltime, players[id].name))
 	if cursor.rowcount == 1:
 		conn.commit()	
 	else:

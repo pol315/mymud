@@ -1,9 +1,9 @@
-def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
+def Take(id, params, players, rooms, cursor, conn, mud):
 	if params:
 		
 		if " from " not in params.lower(): 	# the player is taking an item directly from the ground of the current room
 			if params.lower() in rooms[players[id].room]["items"]:		# the item has to be in the room
-				del rooms[players[id].room]["items"][params.lower()]
+				rooms[players[id].room]["items"].remove(params.lower())
 				players[id].inventory.append(params.lower())
 				mud.send_message(id, "You pick up: {}".format(params.lower()))
 				

@@ -17,7 +17,7 @@ def ValidateName(id, command, players, cursor, mud):
 		players[id].name = command.capitalize()
 		
 		# search db for username - if not exist create new user, if exist prompt for password
-		cursor.execute("""SELECT * FROM player WHERE username = '{}'""".format(players[id].name))
+		cursor.execute("SELECT * FROM player WHERE username = %s;", (players[id].name,))
 		rows = cursor.fetchall()
 		
 		if len(rows) == 1:
@@ -35,7 +35,7 @@ def ValidateName(id, command, players, cursor, mud):
 		mud.send_message(id, "Username must start with a capital letter, consist of only letters and must be between 3 and 12 characters. Try again!")
 		
 def LogPlayerIn(id, command, players, rooms, cursor, conn, mud):
-	cursor.execute("""SELECT password, salt, last_login, last_room, description, gender, race FROM player WHERE username = '{}'""".format(players[id].name))
+	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race FROM player WHERE username = %s;", (players[id].name,))
 	rows = cursor.fetchall()						
 	
 	if IsValidPass(command,str(rows[0][1]),str(rows[0][0])):
@@ -58,7 +58,7 @@ def LogPlayerIn(id, command, players, rooms, cursor, conn, mud):
 		
 		timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 		
-		cursor.execute("""UPDATE player SET last_login = '{0}' WHERE username = '{1}';""".format(timestamp, players[id].name))
+		cursor.execute("UPDATE player SET last_login = %s WHERE username = %s;", (timestamp, players[id].name))
 		if cursor.rowcount == 1:
 			conn.commit()	
 		else:
@@ -77,7 +77,7 @@ def CreateNewUser(id, command, players, rooms, cursor, conn, mud):
 		passw = HashPass(command, salt)
 		timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 		
-		cursor.execute("""INSERT INTO player (username, password, created_on, last_login, salt, last_room) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}') RETURNING user_id""".format(players[id].name, passw, timestamp, timestamp, salt, "Hall of Beginnings"))
+		cursor.execute("INSERT INTO player (username, password, created_on, last_login, salt, last_room) VALUES (%s, %s, %s, %s, %s, %s) RETURNING user_id", (players[id].name, passw, timestamp, timestamp, salt, "Hall of Beginnings"))
 		dbid = cursor.fetchone()[0]
 		if dbid:
 			conn.commit()

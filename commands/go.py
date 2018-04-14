@@ -10,7 +10,7 @@ def Go(id, params, rooms, players, cursor, conn, mud):
 		players[id].room = rm["exits"][ex]														# update the player's current room to the one the exit leads to
 		rm = rooms[players[id].room]
 		
-		cursor.execute("""UPDATE player SET last_room = '{0}' WHERE username = '{1}';""".format(players[id].room.replace('\'', '\'\''), players[id].name))
+		cursor.execute("UPDATE player SET last_room = %s WHERE username = %s;", (players[id].room.replace('\'', '\'\''), players[id].name))
 		if cursor.rowcount == 1:
 			conn.commit()	
 		else:

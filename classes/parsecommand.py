@@ -7,6 +7,7 @@ from classes.player   		import _Player
 from classes.server 		import _Server
 
 from commands.description	import Description
+from commands.drop			import Drop
 from commands.emote			import Emote
 from commands.go 			import Go
 from commands.help 			import Help
@@ -46,7 +47,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, m
 
 	elif players[id].name and players[id].exist and players[id].authenticated and players[id].gender is None:	# The player just created an account and needs to decide gender
 		if (command == "male") or (command == "female"):
-			cursor.execute("""UPDATE player SET gender = '{0}' WHERE username = '{1}';""".format(command, players[id].name))
+			cursor.execute("UPDATE player SET gender = %s WHERE username = %s;", (command, players[id].name))
 			if cursor.rowcount == 1:
 				conn.commit()
 				players[id].gender = command
@@ -65,7 +66,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, m
 
 	elif players[id].name and players[id].exist and players[id].authenticated and players[id].gender and players[id].race is None:	# The player just created an account and needs to decide race
 		if (command == "human") or (command == "marduk") or (command == "avine") or (command == "enerkin") or (command == "geblit"):
-			cursor.execute("""UPDATE player SET race = '{0}' WHERE username = '{1}';""".format(command, players[id].name))
+			cursor.execute("UPDATE player SET race = %s WHERE username = %s;", (command, players[id].name))
 			if cursor.rowcount == 1:
 				conn.commit()
 				players[id].race = command
@@ -102,7 +103,10 @@ def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, m
 		Skills(id, params, players, mud)
 		
 	elif command == "take":
-		Take(id, params, players, rooms, gameitems, cursor, conn, mud)
+		Take(id, params, players, rooms, cursor, conn, mud)
+		
+	elif command == "drop":
+		Drop(id, params, players, rooms, cursor, conn, mud)
 		
 	elif (command == "inventory") or (command == "inv"):
 		Inventory(id, params, players, mud)
