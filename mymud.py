@@ -33,7 +33,7 @@ conn = psycopg2.connect(conn_string)
 cursor = conn.cursor()
 
 rooms = json.load(open("areas/testarea.json"))				# structure defining the rooms in the game - loaded from a json file
-gameitems = json.load(open("items/misc.json"))
+gameitems = json.load(open("items/items.json"))
 players = {}												# stores the players in the game
 ticks = 0													# stores how many ticks have gone by since server start
 

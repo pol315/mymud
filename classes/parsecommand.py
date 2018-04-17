@@ -103,10 +103,10 @@ def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, m
 		Skills(id, params, players, mud)
 		
 	elif command == "take":
-		Take(id, params, players, rooms, cursor, conn, mud)
+		Take(id, params, players, rooms, gameitems, cursor, conn, mud)
 		
 	elif command == "drop":
-		Drop(id, params, players, rooms, cursor, conn, mud)
+		Drop(id, params, players, rooms, gameitems, cursor, conn, mud)
 		
 	elif (command == "inventory") or (command == "inv"):
 		Inventory(id, params, players, mud)

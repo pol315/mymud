@@ -52,5 +52,17 @@
         "unique": "true",
 		"sellprice": 1,
 		"weight": 5
+    },
+	"silly string": {
+        "description": "Shoot it at people to annoy them!",
+		"unique": "false",
+		"sellprice": "500",
+		"weight": 0.1
+    },
+	"beginner's ticket": {
+        "description": "A thin paper ticket. It reads \"Exchange me for freedom!\"",
+		"unique": "true",
+		"sellprice": "nfs",
+		"weight": 0.1
     }
 }

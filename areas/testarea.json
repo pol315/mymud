@@ -3,7 +3,8 @@
         "description": "Large marble columns tower over you, bearing the weight of a vast stone ceiling. An ornate stone archway covers the north area of the room, containing a shimmering, purple portal. A lady garbed in a white dress stands in front of the portal, barring entry to those she sees fit.",
 		"furni": {
 			"portal": {
-				"description": "Attempting to peer around the woman standing in front, you can make out tall buildings, and cobbled pathways."				
+				"description": "Attempting to peer around the woman standing in front, you can make out tall buildings, and cobbled pathways.",
+				"container": "false"
 			}
 		},
 		"items": [],
@@ -13,7 +14,8 @@
         "description": "The hallway is fairly long and along the walls are stone pedestals, holding large tablets with engraved writing.",
 		"furni": {
 			"help tablet": {
-				"description": "The tablet reads: \"HELP\""				
+				"description": "The tablet reads: \"HELP\"",
+				"container": "false"
 			}
 		},
 		"items": ["silly string"],
@@ -24,46 +26,46 @@
 		"furni": {
 			"sword rack": {
 				"description": "The rack holds seemingly unending amounts of swords. Try TAKE TRAINING SWORD FROM SWORD RACK.",
-				"container": "yes",
-				"openable": "no",
-				"items": "training sword"
+				"container": "true",
+				"openable": "false",
+				"items": ["training sword"]
 			},
 			"staff rack": {
 				"description": "The rack holds seemingly unending amounts of staves. Try TAKE TRAINING STAFF FROM STAFF RACK.",
-				"container": "yes",
-				"openable": "no",
-				"items": "training staff"
+				"container": "true",
+				"openable": "false",
+				"items": ["training staff"]
 			},
 			"bow rack": {
 				"description": "The rack holds seemingly unending amounts of bows. Try TAKE TRAINING BOW FROM BOW RACK.",
-				"container": "yes",
-				"openable": "no",
-				"items": "training bow"
+				"container": "true",
+				"openable": "false",
+				"items": ["training bow"]
 			},
 			"plate rack": {
 				"description": "The rack holds seemingly unending amounts of platebodies. Try TAKE TRAINING PLATE FROM PLATE RACK.",
-				"container": "yes",
-				"openable": "no",
-				"items": "training plate"
+				"container": "true",
+				"openable": "false",
+				"items": ["training plate"]
 			},
 			"leather rack": {
 				"description": "The rack holds seemingly unending amounts of leather bodices. Try TAKE TRAINING BODICE FROM LEATHER RACK.",
-				"container": "yes",
-				"openable": "no",
-				"items": "training bodice"
+				"container": "true",
+				"openable": "false",
+				"items": ["training bodice"]
 			},
 			"robe rack": {
 				"description": "The rack holds seemingly unending amounts of cloth robes. Try TAKE TRAINING ROBES FROM ROBE RACK.",
-				"container": "yes",
-				"openable": "no",
-				"items": "training robes"
+				"container": "true",
+				"openable": "false",
+				"items": ["training robes"]
 			},
 			"chest": {
 				"description": "Upon the chest lies a heavy brass lock. Once you have the key, try UNLOCK CHEST, then OPEN CHEST, then LOOK IN CHEST.",
-				"container": "yes",
-				"openable": "yes",
+				"container": "true",
+				"openable": "true",
 				"locked": "yes",
-				"items": "beginner's ticket"
+				"items": ["beginner's ticket"]
 			}
 		},
 		"items": [],

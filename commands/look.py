@@ -30,9 +30,14 @@ def Look(id, params, players, rooms, gameitems, mud):
 			mud.send_message(id, "{} is a(n) {} {}. {} {}".format(players[id].name, players[id].race, players[id].gender, players[id].name, players[id].description))
 		
 		elif params.lower() in rm["furni"]:
-			mud.send_message(id, "{}".format(rm["furni"][params.lower()]["description"]))	
+			mud.send_message(id, "{}".format(rm["furni"][params.lower()]["description"]))
+			if rm["furni"][params.lower()]["items"]:
+				mud.send_message(id, "In the {}, you see: {}".format(params.lower(), ", ".join(rm["furni"][params.lower()]["items"])), mud._BOLD, mud._BLUE)
 
 		elif params.lower() in rm["items"]:
+			mud.send_message(id, "{}".format(gameitems[params.lower()]["description"]))
+			
+		elif params.lower() in players[id].inventory:
 			mud.send_message(id, "{}".format(gameitems[params.lower()]["description"]))
 		
 		else:
