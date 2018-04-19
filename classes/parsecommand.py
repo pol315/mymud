@@ -19,6 +19,7 @@ from commands.say 			import Say
 from commands.skills		import Skills
 from commands.take 			import Take
 from commands.tell 			import Tell
+from commands.unequip		import Unequip
 from commands.quit 			import Quit
 
 from configparser 	  		import SafeConfigParser
@@ -114,6 +115,9 @@ def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, m
 		
 	elif (command == "equip") or (command == "wear"):
 		Equip(id, params, players, gameitems, cursor, conn, mud)
+		
+	elif (command == "unequip") or (command == "remove"):
+		Unequip(id, params, players, cursor, conn, mud)
 
 	# MOVEMENT
 	elif command == "go":

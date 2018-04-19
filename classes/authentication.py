@@ -35,37 +35,51 @@ def ValidateName(id, command, players, cursor, mud):
 		mud.send_message(id, "Username must start with a capital letter, consist of only letters and must be between 3 and 12 characters. Try again!")
 		
 def LogPlayerIn(id, command, players, rooms, cursor, conn, mud):
-	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race FROM player WHERE username = %s;", (players[id].name,))
+	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race, inventory, chest, helmet, legs, boots, gloves, cloak, necklace, ring, weapon1, weapon2 FROM player WHERE username = %s;", (players[id].name,))
 	rows = cursor.fetchall()						
 	
 	if IsValidPass(command,str(rows[0][1]),str(rows[0][0])):
-	
-		players[id].last_login = rows[0][2]
-		players[id].room = rows[0][3]
-		
-		if rows[0][4] is not None:
-			players[id].description = rows[0][4]					
-		
-		players[id].gender = rows[0][5]
-		players[id].race = rows[0][6]
-		
-		
-		mud.send_message(id, "\r\n\r\nYou last logged in at: {}".format(players[id].last_login))
-		#TODO user already authenticated?
-	
-		players[id].authenticated = True
-		mud.show_input(id)
-		
-		timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-		
-		cursor.execute("UPDATE player SET last_login = %s WHERE username = %s;", (timestamp, players[id].name))
-		if cursor.rowcount == 1:
-			conn.commit()	
-		else:
-			mud.send_message(id, "Could not update timestamp.")
+		if any(((pl.name == players[id].name) and (pl.gender)) for pl in players.values()):
+			mud.send_message(id, "\r\nYou are already logged into the game!")								
 			mud.terminate_connection(id)
 		
-		PlacePlayerInGame(id, players, rooms, mud)
+		else:
+			players[id].last_login = rows[0][2]
+			players[id].room = rows[0][3]
+			
+			if rows[0][4] is not None:
+				players[id].description = rows[0][4]					
+			
+			players[id].gender = rows[0][5]
+			players[id].race = rows[0][6]
+			players[id].inventory = rows[0][7]
+			players[id].chest = rows[0][8]
+			players[id].helmet = rows[0][9]
+			players[id].legs = rows[0][10]
+			players[id].boots = rows[0][11]
+			players[id].gloves = rows[0][12]
+			players[id].cloak = rows[0][13]
+			players[id].necklace = rows[0][14]
+			players[id].ring = rows[0][15]
+			players[id].weapon1 = rows[0][16]
+			players[id].weapon2 = rows[0][17]
+			
+			
+			mud.send_message(id, "\r\n\r\nYou last logged in at: {}".format(players[id].last_login))
+		
+			players[id].authenticated = True
+			mud.show_input(id)
+			
+			timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+			
+			cursor.execute("UPDATE player SET last_login = %s WHERE username = %s;", (timestamp, players[id].name))
+			if cursor.rowcount == 1:
+				conn.commit()	
+			else:
+				mud.send_message(id, "Could not update timestamp.")
+				mud.terminate_connection(id)
+			
+			PlacePlayerInGame(id, players, rooms, mud)
 		
 	else:
 		mud.send_message(id, "\r\nIncorrect password.")								
