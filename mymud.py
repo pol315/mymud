@@ -28,7 +28,7 @@ config.read('config.ini')
 dbpass = config.get('Database', 'Password')
 
 # connect to the database
-conn_string = "host='localhost' port='9989' dbname='mymud_db' user='postgres' password='" + dbpass + "'"
+conn_string = "host='jasonhiggins.ca' port='9989' dbname='mymud_db' user='postgres' password='" + dbpass + "'"
 conn = psycopg2.connect(conn_string)
 cursor = conn.cursor()
 
