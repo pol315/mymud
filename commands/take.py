@@ -1,18 +1,24 @@
 def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
-	if params:
-		
+	
+	#TODO FIX DATABASE STUFFS
+	
+	if params:		
 		if " from " not in params.lower(): 	# the player is taking an item directly from the ground of the current room
 			if params.lower() in rooms[players[id].room]["items"]:		# the item has to be in the room
-				rooms[players[id].room]["items"].remove(params.lower())
-				players[id].inventory.append(params.lower())
-				mud.send_message(id, "You pick up: {}".format(params.lower()))
+				if (gameitems[params.lower()]["unique"] == "true") and (params.lower() in players[id].inventory):
+					mud.send_message(id, "You may only have one of that item at a time.")
 				
-				cursor.execute("UPDATE player SET inventory = %s WHERE username = %s;", (players[id].inventory, players[id].name))
-				if cursor.rowcount == 1:
-					conn.commit()	
 				else:
-					mud.send_message(id, "\r\nDidn't work my dude. See ya later.")
-					mud.terminate_connection(id)
+					rooms[players[id].room]["items"].remove(params.lower())
+					players[id].inventory.append(params.lower())
+					mud.send_message(id, "You pick up: {}".format(params.lower()))
+					
+					cursor.execute("UPDATE player SET inventory = %s WHERE username = %s;", (players[id].inventory, players[id].name))
+					if cursor.rowcount == 1:
+						conn.commit()	
+					else:
+						mud.send_message(id, "\r\nDidn't work my dude. See ya later.")
+						mud.terminate_connection(id)
 				
 			else:
 				mud.send_message(id, "You don't see that here.")

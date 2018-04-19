@@ -9,6 +9,7 @@ from classes.server 		import _Server
 from commands.description	import Description
 from commands.drop			import Drop
 from commands.emote			import Emote
+from commands.equip			import Equip
 from commands.go 			import Go
 from commands.help 			import Help
 from commands.inventory		import Inventory
@@ -106,10 +107,13 @@ def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, m
 		Take(id, params, players, rooms, gameitems, cursor, conn, mud)
 		
 	elif command == "drop":
-		Drop(id, params, players, rooms, gameitems, cursor, conn, mud)
+		Drop(id, params, players, rooms, cursor, conn, mud)
 		
 	elif (command == "inventory") or (command == "inv"):
 		Inventory(id, params, players, mud)
+		
+	elif (command == "equip") or (command == "wear"):
+		Equip(id, params, players, gameitems, cursor, conn, mud)
 
 	# MOVEMENT
 	elif command == "go":

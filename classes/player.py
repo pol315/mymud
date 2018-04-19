@@ -52,8 +52,8 @@ class _Player:
 	cloak = 			None
 	necklace = 			None
 	ring = 				None
-	hand1 = 			None
-	hand2 = 			None
+	weapon1 = 			None
+	weapon2 = 			None
 	
 	def __init__(self):
 		pass
