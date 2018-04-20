@@ -35,6 +35,9 @@ def ValidateName(id, command, players, cursor, mud):
 		mud.send_message(id, "Username must start with a capital letter, consist of only letters and must be between 3 and 12 characters. Try again!")
 		
 def LogPlayerIn(id, command, players, rooms, cursor, conn, mud):
+
+	players[id].last_command = ""
+
 	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race, inventory, chest, helmet, legs, boots, gloves, cloak, necklace, ring, weapon1, weapon2 FROM player WHERE username = %s;", (players[id].name,))
 	rows = cursor.fetchall()						
 	
@@ -52,7 +55,10 @@ def LogPlayerIn(id, command, players, rooms, cursor, conn, mud):
 			
 			players[id].gender = rows[0][5]
 			players[id].race = rows[0][6]
-			players[id].inventory = rows[0][7]
+			
+			if rows[0][7] is not None:
+				players[id].inventory = rows[0][7]
+				
 			players[id].chest = rows[0][8]
 			players[id].helmet = rows[0][9]
 			players[id].legs = rows[0][10]

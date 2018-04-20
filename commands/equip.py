@@ -1,7 +1,7 @@
 def Equip(id, params, players, gameitems, cursor, conn, mud):
 
 	if (params.lower() in gameitems) and (params.lower() in players[id].inventory): # the item exists and the player owns it
-		if (gameitems[params.lower()]["type"] == "weapon") or (gameitems[params.lower()]["type"] == "armor"):
+		if ("type" in gameitems[params.lower()]) and ((gameitems[params.lower()]["type"] == "weapon") or (gameitems[params.lower()]["type"] == "armor")):
 			if gameitems[params.lower()]["type"] == "weapon":
 				if (gameitems[params.lower()]["hands"] == 2) and (players[id].weapon1 == None) and (players[id].weapon2 == None):
 					players[id].weapon1 = params.lower()
