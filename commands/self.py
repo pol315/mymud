@@ -1,0 +1,1 @@
+def Self(id, params, players, mud):
