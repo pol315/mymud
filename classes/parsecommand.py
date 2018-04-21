@@ -11,6 +11,7 @@ from commands.drop			import Drop
 from commands.emote			import Emote
 from commands.equip			import Equip
 from commands.go 			import Go
+from commands.greet			import Greet
 from commands.help 			import Help
 from commands.inventory		import Inventory
 from commands.look 			import Look
@@ -28,7 +29,7 @@ import psycopg2
 import json
 import time
 
-def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, mud):
+def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters, cursor, conn, mud):
 	
 	if (command != "") and (command != "r"):
 		players[id].last_command = command
@@ -38,7 +39,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, m
 		ValidateName(id, command, players, cursor, mud)
 
 	elif players[id].name is not None and players[id].exist is True and players[id].authenticated is False:							# The player exists and we are waiting for a password
-		LogPlayerIn(id, command, players, rooms, cursor, conn, mud)
+		LogPlayerIn(id, command, players, rooms, gameitems, npcs, monsters, cursor, conn, mud)
 
 	elif players[id].name is not None and players[id].exist is False and players[id].authenticated is False and players[id].pw1 is None:		# The player doesn't exist and we are setting a new password
 		players[id].pw1 = command
@@ -72,7 +73,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, m
 			if cursor.rowcount == 1:
 				conn.commit()
 				players[id].race = command
-				PlacePlayerInGame(id, players, rooms, mud)
+				PlacePlayerInGame(id, players, rooms, gameitems, npcs, monsters, mud)
 			else:
 				mud.send_message(id, "Could not update race.")
 				mud.terminate_connection(id)
@@ -96,7 +97,10 @@ def ParseCommand(id, command, params, players, rooms, gameitems, cursor, conn, m
 		Description(id, params, players, cursor, conn, mud)
 
 	elif (command == "look") or (command == "l"):
-		Look(id, params, players, rooms, gameitems, mud)
+		Look(id, params, players, rooms, gameitems, npcs, monsters, mud)
+
+	elif command == "greet":
+		Greet(id, params, players, rooms, npcs, mud)
 
 	elif command == "playtime":
 		Playtime(id, players, mud)

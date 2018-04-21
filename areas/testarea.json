@@ -7,7 +7,7 @@
 				"container": "false"
 			}
 		},
-		"items": [],
+		"npcs": ["glorifa"],
         "exits": {"east": "Hallway of Knowledge", "west": "Testing Chambers"}
     },
     "Hallway of Knowledge": {
@@ -19,6 +19,7 @@
 			}
 		},
 		"items": ["silly string"],
+		"npcs": ["shamus, the wise"],
         "exits": {"west": "Hall of Beginnings"}
     },
 	"Testing Chambers": {
@@ -26,49 +27,44 @@
 		"furni": {
 			"sword rack": {
 				"description": "The rack holds seemingly unending amounts of swords. Try TAKE TRAINING SWORD FROM SWORD RACK.",
-				"container": "true",
-				"openable": "false",
+				"container": "true",				
 				"items": ["training sword"]
 			},
 			"staff rack": {
 				"description": "The rack holds seemingly unending amounts of staves. Try TAKE TRAINING STAFF FROM STAFF RACK.",
 				"container": "true",
-				"openable": "false",
 				"items": ["training staff"]
 			},
 			"bow rack": {
 				"description": "The rack holds seemingly unending amounts of bows. Try TAKE TRAINING BOW FROM BOW RACK.",
 				"container": "true",
-				"openable": "false",
 				"items": ["training bow"]
 			},
 			"plate rack": {
 				"description": "The rack holds seemingly unending amounts of platebodies. Try TAKE TRAINING PLATE FROM PLATE RACK.",
 				"container": "true",
-				"openable": "false",
 				"items": ["training plate"]
 			},
 			"leather rack": {
 				"description": "The rack holds seemingly unending amounts of leather bodices. Try TAKE TRAINING BODICE FROM LEATHER RACK.",
 				"container": "true",
-				"openable": "false",
 				"items": ["training bodice"]
 			},
 			"robe rack": {
 				"description": "The rack holds seemingly unending amounts of cloth robes. Try TAKE TRAINING ROBES FROM ROBE RACK.",
 				"container": "true",
-				"openable": "false",
 				"items": ["training robes"]
 			},
 			"chest": {
 				"description": "Upon the chest lies a heavy brass lock. Once you have the key, try UNLOCK CHEST, then OPEN CHEST, then LOOK IN CHEST.",
 				"container": "true",
-				"openable": "true",
+				"open": "false",
 				"locked": "yes",
 				"items": ["beginner's ticket"]
 			}
 		},
-		"items": [],
+		"npcs": ["martin, the weaponsmaster"],
+		"monsters": ["Scrawny Rat"],
         "exits": {"east": "Hall of Beginnings"}
     }
 }

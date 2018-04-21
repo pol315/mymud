@@ -1,0 +1,16 @@
+{
+    "scrawny rat": {
+        "description": "Larger than a normal rat, but still seems pretty weak. It's dashing around the room with a silver key in it's mouth.",
+		"aggressive": "false",
+		"hp": 20,
+		"stats": { "strength": 1, "dexterity": 0, "wisdom": 0, "defence": 1 },			
+        "drops": "silver key"		
+    },
+    "martin, destroyer of worlds": {
+        "description": "Martin stands roughly 8 feet tall and is ripped af. His giant dong swings side to side as he stomps around the room.",
+		"aggressive": "true",
+		"hp": 9001,
+		"stats": { "strength": 666, "dexterity": 666, "wisdom": 0, "defence": 666 },			
+        "drops": ""
+    }
+}

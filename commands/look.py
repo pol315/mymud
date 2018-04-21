@@ -1,4 +1,4 @@
-def Look(id, params, players, rooms, gameitems, mud):
+def Look(id, params, players, rooms, gameitems, npcs, monsters, mud):
 	rm = rooms[players[id].room]																						# store the player's current room
 			
 	if not params:																										# if not looking at anything specific
@@ -12,30 +12,38 @@ def Look(id, params, players, rooms, gameitems, mud):
 				playershere.append(players[pid].name)																# add their name to the list
 		
 		if playershere:
-			mud.send_message(id, "Players here: {}".format(", ".join(playershere)), mud._BOLD, mud._CYAN)		# send player a message containing the list of players in the room
+			mud.send_message(id, "Adventurers here: {}".format(", ".join(playershere)), mud._BOLD, mud._CYAN)		# send player a message containing the list of players in the room
 
-		itemshere = []	
-			
-		for key in rm["items"]:
-			itemshere.append(key)
-			
-		if itemshere:
-			mud.send_message(id, "On the ground you see: {}".format(", ".join(itemshere)), mud._BOLD, mud._BLUE)
-			
-		mud.send_message(id, "Exits are: {}".format(", ".join(rm["exits"])), mud._BOLD, mud._YELLOW)			# send player a message containing the list of exits from this room
+		if "npcs" in rm:
+			mud.send_message(id, "Citizens here: {}".format(", ".join(rm["npcs"])).title(), mud._BOLD, mud._GREEN)
+
+		if "monsters" in rm:
+			mud.send_message(id, "Monsters here: {}".format(", ".join(rm["monsters"])).title(), mud._BOLD, mud._RED)
+
+		if "items" in rm:
+			mud.send_message(id, "On the ground you see: {}".format(", ".join(rm["items"])), mud._BOLD, mud._BLUE)
+		
+		if "exits" in rm:	
+			mud.send_message(id, "Exits are: {}".format(", ".join(rm["exits"])), mud._BOLD, mud._YELLOW)			# send player a message containing the list of exits from this room
 	
 	else:																												# else player wants to examine something in the room
 	
 		if params.lower() == "me":
 			mud.send_message(id, "{} is a(n) {} {}. {} {}".format(players[id].name, players[id].race, players[id].gender, players[id].name, players[id].description))
 		
-		elif params.lower() in rm["furni"]:
+		elif ("furni" in rm) and (params.lower() in rm["furni"]):
 			mud.send_message(id, "{}".format(rm["furni"][params.lower()]["description"]))
 			if "items" in rm["furni"][params.lower()]:
 				mud.send_message(id, "In the {}, you see: {}".format(params.lower(), ", ".join(rm["furni"][params.lower()]["items"])), mud._BOLD, mud._BLUE)
 
-		elif params.lower() in rm["items"]:
+		elif ("items" in rm) and (params.lower() in rm["items"]):
 			mud.send_message(id, "{}".format(gameitems[params.lower()]["description"]))
+
+		elif ("npcs" in rm) and (params.lower() in npcs):
+			mud.send_message(id, "{}".format(npcs[params.lower()]["description"]))
+
+		elif ("monsters" in rm) and (params.lower() in monsters):
+			mud.send_message(id, "{}".format(monsters[params.lower()]["description"]))
 			
 		elif params.lower() in players[id].inventory:
 			mud.send_message(id, "{}".format(gameitems[params.lower()]["description"]))
