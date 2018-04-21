@@ -15,10 +15,10 @@ def Look(id, params, players, rooms, gameitems, npcs, monsters, mud):
 			mud.send_message(id, "Adventurers here: {}".format(", ".join(playershere)), mud._BOLD, mud._CYAN)		# send player a message containing the list of players in the room
 
 		if "npcs" in rm:
-			mud.send_message(id, "Citizens here: {}".format(", ".join(rm["npcs"])).title(), mud._BOLD, mud._GREEN)
+			mud.send_message(id, "Citizens here: " + "{}".format(", ".join(rm["npcs"])).title(), mud._BOLD, mud._GREEN)
 
 		if "monsters" in rm:
-			mud.send_message(id, "Monsters here: {}".format(", ".join(rm["monsters"])).title(), mud._BOLD, mud._RED)
+			mud.send_message(id, "Monsters here: " + "{}".format(", ".join(rm["monsters"])).title(), mud._BOLD, mud._RED)
 
 		if "items" in rm:
 			mud.send_message(id, "On the ground you see: {}".format(", ".join(rm["items"])), mud._BOLD, mud._BLUE)
