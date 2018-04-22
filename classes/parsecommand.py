@@ -171,6 +171,9 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 	elif command == "r":
 		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, cursor, conn, mud)
 
+	elif command == "self":
+		ParseCommand(id, params, players, mud)
+
 	elif command == "":
 		pass																	# don't do anything, user wants to make some space
 
