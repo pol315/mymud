@@ -13,9 +13,18 @@ from classes.authentication import LogPlayerIn
 from classes.authentication import ValidateName
 from classes.parsecommand	import ParseCommand
 from classes.utilities		import PlacePlayerInGame
+from classes.utilities		import ParseRooms
+from classes.utilities		import ParseGameItems
+from classes.utilities		import ParseNPCs
+from classes.utilities		import ParseMonsters
 
 from classes.player   		import _Player
 from classes.server 		import _Server
+from classes.room	 		import _Room
+from classes.roomitem 		import _RoomItem
+from classes.gameitem 		import _GameItem
+from classes.npc	 		import _NPC
+from classes.monster 		import _Monster
 
 from configparser 	  		import SafeConfigParser
 

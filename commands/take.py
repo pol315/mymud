@@ -28,9 +28,9 @@ def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 			container = params.lower().split(" from ")[1]
 			item = params.lower().split(" from ")[0]
 			
-			if container in rooms[players[id].room]["furni"]:
-				if rooms[players[id].room]["furni"][container]["container"] == "true":
-					if item in rooms[players[id].room]["furni"][container]["items"]:
+			if container in rooms[players[id].room]["roomitems"]:
+				if rooms[players[id].room]["roomitems"][container]["container"] == "true":
+					if item in rooms[players[id].room]["roomitems"][container]["items"]:
 						if item in gameitems:
 							if (gameitems[item]["unique"] == "true") and (item in players[id].inventory):
 								mud.send_message(id, "You may only have one of that item at a time.")
@@ -40,7 +40,7 @@ def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 								mud.send_message(id, "You take a {} from the {}.".format(item, container))
 
 							else:	
-								rooms[players[id].room]["furni"][container]["items"].remove(item)
+								rooms[players[id].room]["roomitems"][container]["items"].remove(item)
 								players[id].inventory.append(item)
 								mud.send_message(id, "You take a {} from the {}.".format(item, container))
 							
