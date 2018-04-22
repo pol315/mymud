@@ -3,6 +3,8 @@ from commands.look		import Look
 from classes.room	 		import _Room
 from classes.roomitem 		import _RoomItem
 from classes.gameitem 		import _GameItem
+from classes.gameitem 		import _Weapon
+from classes.gameitem 		import _Armor
 from classes.npc	 		import _NPC
 from classes.monster 		import _Monster
 
@@ -35,7 +37,7 @@ def AdvertiseToRoom(id, message, selfmessage, players, mud):
 		if (pid != id) and (players[pid].room == players[id].room):
 			mud.send_message(pid, message)
 
-def StringToBool(strv):
+def StringToBool(v):
 	return str(v).lower() in ("yes", "true", "t", "1")
 
 def ParseRoomItems(itemsdict):

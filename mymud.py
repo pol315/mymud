@@ -23,6 +23,8 @@ from classes.server 		import _Server
 from classes.room	 		import _Room
 from classes.roomitem 		import _RoomItem
 from classes.gameitem 		import _GameItem
+from classes.gameitem 		import _Weapon
+from classes.gameitem 		import _Armor
 from classes.npc	 		import _NPC
 from classes.monster 		import _Monster
 
