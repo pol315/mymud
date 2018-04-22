@@ -91,7 +91,7 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, monsters, cursor, 
 		mud.send_message(id, "\r\nIncorrect password.")								
 		mud.terminate_connection(id)
 		
-def CreateNewUser(id, command, players, rooms, cursor, conn, mud):
+def CreateNewUser(id, command, players, cursor, conn, mud):
 	if command == players[id].pw1:
 		salt = str(randint(1000000,9999999)				)
 		passw = HashPass(command, salt)

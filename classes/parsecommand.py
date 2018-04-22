@@ -47,7 +47,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 		mud.send_message(id, "\r\nPlease type your password again:", nr=False)
 
 	elif players[id].name and players[id].exist is False and players[id].authenticated is False and players[id].pw1:	# The player has typed their password a second time
-		CreateNewUser(id, command, players, rooms, cursor, conn, mud)
+		CreateNewUser(id, command, players, cursor, conn, mud)
 
 	elif players[id].name and players[id].exist and players[id].authenticated and players[id].gender is None:	# The player just created an account and needs to decide gender
 		if (command == "male") or (command == "female"):

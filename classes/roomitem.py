@@ -5,7 +5,7 @@ class _RoomItem:
 	open = False
 	locked = False
 	key = ""
-	items = list()		# of _GameItem
+	items = list() 		# list of _GameItem
 
 	def __init__(self):
 		pass

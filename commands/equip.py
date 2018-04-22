@@ -1,9 +1,9 @@
 def Equip(id, params, players, gameitems, cursor, conn, mud):
 
 	if (params.lower() in gameitems) and (params.lower() in players[id].inventory): # the item exists and the player owns it
-		if ("type" in gameitems[params.lower()]) and ((gameitems[params.lower()]["type"] == "weapon") or (gameitems[params.lower()]["type"] == "armor")):
-			if gameitems[params.lower()]["type"] == "weapon":
-				if (gameitems[params.lower()]["hands"] == 2) and (players[id].weapon1 == None) and (players[id].weapon2 == None):
+		if (gameitems[params.lower()].__class__.__name__ == "_Weapon") or (gameitems[params.lower()].__class__.__name__ == "_Armor"):
+			if gameitems[params.lower()].__class__.__name__ == "_Weapon":
+				if (gameitems[params.lower()].hands == 2) and (players[id].weapon1 == None) and (players[id].weapon2 == None):
 					players[id].weapon1 = params.lower()
 					players[id].inventory.remove(params.lower())
 					mud.send_message(id, "You equip the {} in both hands.".format(params.lower()))
@@ -15,7 +15,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
 					
-				elif (gameitems[params.lower()]["hands"] == 1) and ((players[id].weapon1 == None) or (players[id].weapon2 == None)):
+				elif (gameitems[params.lower()].hands == 1) and ((players[id].weapon1 == None) or (players[id].weapon2 == None)):
 					if players[id].weapon1 == None:
 						players[id].weapon1 = params.lower()
 						players[id].inventory.remove(params.lower())
@@ -43,8 +43,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 				else:
 					mud.send_message(id, "Your hands are already full.")								
 			
-			elif gameitems[params.lower()]["type"] == "armor":
-				if (gameitems[params.lower()]["slot"] == "chest") and (players[id].chest == None):
+			elif gameitems[params.lower()].__class__.__name__ == "_Armor":
+				if (gameitems[params.lower()].slot == "chest") and (players[id].chest == None):
 					players[id].chest = params.lower()
 					players[id].inventory.remove(params.lower())
 					mud.send_message(id, "You wear the {} on your chest.".format(params.lower()))
@@ -56,7 +56,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
 					
-				elif (gameitems[params.lower()]["slot"] == "helmet") and (players[id].helmet == None):
+				elif (gameitems[params.lower()].slot == "helmet") and (players[id].helmet == None):
 					players[id].helmet = params.lower()
 					players[id].inventory.remove(params.lower())
 					mud.send_message(id, "You wear the {} on your head.".format(params.lower()))
@@ -68,7 +68,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
 			
-				elif (gameitems[params.lower()]["slot"] == "legs") and (players[id].legs == None):
+				elif (gameitems[params.lower()].slot == "legs") and (players[id].legs == None):
 					players[id].legs = params.lower()
 					players[id].inventory.remove(params.lower())
 					mud.send_message(id, "You wear the {} on your legs.".format(params.lower()))
@@ -80,7 +80,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
 					
-				elif (gameitems[params.lower()]["slot"] == "gloves") and (players[id].gloves == None):
+				elif (gameitems[params.lower()].slot == "gloves") and (players[id].gloves == None):
 					players[id].gloves = params.lower()
 					players[id].inventory.remove(params.lower())
 					mud.send_message(id, "You wear the {} on your hands.".format(params.lower()))
@@ -92,7 +92,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
 					
-				elif (gameitems[params.lower()]["slot"] == "boots") and (players[id].boots == None):
+				elif (gameitems[params.lower()].slot == "boots") and (players[id].boots == None):
 					players[id].boots = params.lower()
 					players[id].inventory.remove(params.lower())
 					mud.send_message(id, "You wear the {} on your feet.".format(params.lower()))
@@ -104,7 +104,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
 					
-				elif (gameitems[params.lower()]["slot"] == "cloak") and (players[id].cloak == None):
+				elif (gameitems[params.lower()].slot == "cloak") and (players[id].cloak == None):
 					players[id].cloak = params.lower()
 					players[id].inventory.remove(params.lower())
 					mud.send_message(id, "You wear the {} on your back.".format(params.lower()))
@@ -116,7 +116,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
 					
-				elif (gameitems[params.lower()]["slot"] == "necklace") and (players[id].necklace == None):
+				elif (gameitems[params.lower()].slot == "necklace") and (players[id].necklace == None):
 					players[id].necklace = params.lower()
 					players[id].inventory.remove(params.lower())
 					mud.send_message(id, "You wear the {} around your neck.".format(params.lower()))
@@ -128,7 +128,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
 					
-				elif (gameitems[params.lower()]["slot"] == "ring") and (players[id].ring == None):
+				elif (gameitems[params.lower()].slot == "ring") and (players[id].ring == None):
 					players[id].ring = params.lower()
 					players[id].inventory.remove(params.lower())
 					mud.send_message(id, "You wear the {} on your finger.".format(params.lower()))
@@ -141,7 +141,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						mud.terminate_connection(id)
 					
 				else:
-					mud.send_message(id, "You're already wearing a {}.".format(gameitems[params.lower()]["slot"]))				
+					mud.send_message(id, "You're already wearing a {}.".format(gameitems[params.lower()].slot))				
 		
 		else:
 			mud.send_message(id, "You cannot equip that.")

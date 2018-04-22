@@ -41,7 +41,7 @@ def StringToBool(v):
 	return str(v).lower() in ("yes", "true", "t", "1")
 
 def ParseRoomItems(itemsdict):
-	roomitems = list()
+	roomitems = {}
 
 	for key in itemsdict:
 		currItem = _RoomItem()
@@ -63,12 +63,12 @@ def ParseRoomItems(itemsdict):
 		if "items" in itemsdict[key]:
 			currItem.items = itemsdict[key]["items"]
 
-		roomitems.append(currItem)
+		roomitems[key] = currItem
 
 	return roomitems
 
 def ParseRooms(roomdict):
-	rooms = list()
+	rooms = {}
 
 	for key in roomdict:
 		currRoom = _Room()
@@ -87,12 +87,15 @@ def ParseRooms(roomdict):
 		if "monsters" in roomdict[key]:
 			currRoom.monsters = roomdict[key]["monsters"]
 
-		rooms.append(currRoom)
+		if "exits" in roomdict[key]:
+			currRoom.exits = roomdict[key]["exits"]
+
+		rooms[key] = currRoom
 		
 	return rooms
 
 def ParseGameItems(itemsdict):
-	gameitems = list()
+	gameitems = {}
 
 	for key in itemsdict:
 		currItem = None
@@ -164,12 +167,12 @@ def ParseGameItems(itemsdict):
 		if "weight" in itemsdict[key]:
 			currItem.weight = itemsdict[key]["weight"]
 
-		gameitems.append(currItem)
+		gameitems[key] = currItem
 
 	return gameitems
 
 def ParseNPCs(npcdict):
-	npcs = list()
+	npcs = {}
 
 	for key in npcdict:
 		currNPC = _NPC()
@@ -185,12 +188,12 @@ def ParseNPCs(npcdict):
 		if "result" in npcdict[key]:
 			currNPC.result = npcdict[key]["result"]
 
-		npcs.append(currNPC)
+		npcs[key] = currNPC
 
 	return npcs
 
 def ParseMonsters(monsterdict):
-	monsters = list()
+	monsters = {}
 
 	for key in monsterdict:
 		currMonster = _Monster()
@@ -228,7 +231,7 @@ def ParseMonsters(monsterdict):
 				if "magicd" in monsterdict[key]["stats"]:
 					currMonster.magicd = monsterdict[key]["stats"]["magicd"]
 
-		monsters.append(currMonster)
+		monsters[key] = currMonster
 
 	return monsters
 		

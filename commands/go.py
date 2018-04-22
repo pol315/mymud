@@ -2,12 +2,12 @@ def Go(id, params, rooms, players, cursor, conn, mud):
 	ex = params.lower()																				# store the exit name
 	rm = rooms[players[id].room]																	# store the player's current room
 				
-	if ex in rm["exits"]:																			# if the specified exit is found in the room's exits list
+	if ex in rm.exits:																			# if the specified exit is found in the room's exits list
 		for pid, pl in players.items():																# go through all the players in the game
 			if players[pid].room == players[id].room and pid != id:							# if player is in the same room and isn't the player sending the command
 				mud.send_message(pid, "{} left, going {}".format(players[id].name, ex))			# send them a message telling them that the player left the room
 					
-		players[id].room = rm["exits"][ex]														# update the player's current room to the one the exit leads to
+		players[id].room = rm.exits[ex]														# update the player's current room to the one the exit leads to
 		rm = rooms[players[id].room]
 		
 		cursor.execute("UPDATE player SET last_room = %s WHERE username = %s;", (players[id].room.replace('\'', '\'\''), players[id].name))

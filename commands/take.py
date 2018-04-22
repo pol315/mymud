@@ -1,15 +1,13 @@
 def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 	
-	#TODO FIX DATABASE STUFFS
-	
 	if params:		
 		if " from " not in params.lower(): 	# the player is taking an item directly from the ground of the current room
-			if params.lower() in rooms[players[id].room]["items"]:		# the item has to be in the room
-				if (gameitems[params.lower()]["unique"] == "true") and (params.lower() in players[id].inventory):
+			if params.lower() in rooms[players[id].room].items:		# the item has to be in the room
+				if (gameitems[params.lower()].unique) and (params.lower() in players[id].inventory):
 					mud.send_message(id, "You may only have one of that item at a time.")
 				
 				else:
-					rooms[players[id].room]["items"].remove(params.lower())
+					rooms[players[id].room].items.remove(params.lower())
 					players[id].inventory.append(params.lower())
 					mud.send_message(id, "You pick up: {}".format(params.lower()))
 					
@@ -28,19 +26,19 @@ def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 			container = params.lower().split(" from ")[1]
 			item = params.lower().split(" from ")[0]
 			
-			if container in rooms[players[id].room]["roomitems"]:
-				if rooms[players[id].room]["roomitems"][container]["container"] == "true":
-					if item in rooms[players[id].room]["roomitems"][container]["items"]:
+			if container in rooms[players[id].room].roomitems:
+				if rooms[players[id].room].roomitems[container].container:
+					if item in rooms[players[id].room].roomitems[container].items:
 						if item in gameitems:
-							if (gameitems[item]["unique"] == "true") and (item in players[id].inventory):
+							if (gameitems[item].unique) and (item in players[id].inventory):
 								mud.send_message(id, "You may only have one of that item at a time.")
 							
-							elif gameitems[item]["unique"] == "true":
+							elif gameitems[item].unique:
 								players[id].inventory.append(item)
 								mud.send_message(id, "You take a {} from the {}.".format(item, container))
 
 							else:	
-								rooms[players[id].room]["roomitems"][container]["items"].remove(item)
+								rooms[players[id].room].roomitems[container].items.remove(item)
 								players[id].inventory.append(item)
 								mud.send_message(id, "You take a {} from the {}.".format(item, container))
 							
