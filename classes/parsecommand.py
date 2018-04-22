@@ -169,7 +169,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 		Quit(id, players, cursor, conn, mud)
 		
 	elif command == "r":
-		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, cursor, conn, mud)
+		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, npcs, monsters, cursor, conn, mud)
 
 	elif command == "self":
 		ParseCommand(id, params, players, mud)
