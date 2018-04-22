@@ -44,6 +44,7 @@ class _Player:
 	energycraftxp =		0												
 	inventory = 		list()
 	bank = 				list()
+	gold = 				0
 	helmet =			None
 	chest = 			None
 	legs = 				None

@@ -17,6 +17,7 @@ from commands.inventory		import Inventory
 from commands.look 			import Look
 from commands.playtime		import Playtime
 from commands.say 			import Say
+from commands.self 			import Self
 from commands.skills		import Skills
 from commands.take 			import Take
 from commands.tell 			import Tell
@@ -172,7 +173,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, npcs, monsters, cursor, conn, mud)
 
 	elif command == "self":
-		ParseCommand(id, params, players, mud)
+		Self(id, params, players, mud)
 
 	elif command == "":
 		pass																	# don't do anything, user wants to make some space
