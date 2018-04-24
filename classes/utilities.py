@@ -210,6 +210,9 @@ def ParseMonsters(monsterdict):
 		if "attack" in monsterdict[key]:
 			currMonster.attack = monsterdict[key]["attack"]
 
+		if "attack_speed" in monsterdict[key]:
+			currMonster.attack_speed = monsterdict[key]["attack_speed"]
+
 		if "drops" in monsterdict[key]:
 			currMonster.drops = monsterdict[key]["drops"]
 

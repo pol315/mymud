@@ -12,7 +12,11 @@ class _Monster:
 	magicd = 0
 	drops = None		# TODO change this to a list of _GameItem, perhaps a tuple with drop percentages
 
+	balance = True
 	combat_target = None
+	attack_speed = 20	# number of ticks
+	fight_tick = 0
+
 
 	def __init__(self):
 		pass

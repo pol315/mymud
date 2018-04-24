@@ -59,6 +59,7 @@ class _Player:
 	meleed = 			0
 	ranged = 			0
 	magicd = 			0
+	hp =				30
 	
 	def __init__(self):
 		pass

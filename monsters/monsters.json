@@ -4,7 +4,8 @@
 		"aggressive": "false",
 		"hp": 20,
         "stats": { "strength": 1, "dexterity": 0, "wisdom": 0, "meleed": 1, "ranged": 1, "magicd": 1 },
-        "attack": "melee",			
+        "attack": "melee",
+        "attack_speed": 20,			
         "drops": "silver key"		
     },
     "martin, destroyer of worlds": {
@@ -12,7 +13,8 @@
 		"aggressive": "true",
 		"hp": 9001,
         "stats": { "strength": 666, "dexterity": 666, "wisdom": 0, "meleed": 666, "ranged": 666, "magicd": 666 },        
-        "attack": "melee",						
+        "attack": "melee",
+        "attack_speed": 10,							
         "drops": ""
     }
 }

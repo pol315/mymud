@@ -10,6 +10,9 @@ def Fight(id, params, players, rooms, gameitems, monsters, ticks, mud):
 			players[id].balance = False
 			players[id].fight_tick = ticks
 
+			rooms[players[id].room].monsters[params.lower()].combat_target = players[id].name
+			rooms[players[id].room].monsters[params.lower()].fight_tick = ticks
+
 			attackpower = 0
 			awith = "fists"
 			mdefence = 0
@@ -58,7 +61,7 @@ def Fight(id, params, players, rooms, gameitems, monsters, ticks, mud):
 				
 
 			mud.send_message(id, "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), mud._BOLD, mud._YELLOW)
-			mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._RED)
+			mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._BLUE)
 
 			rooms[players[id].room].monsters[params.lower()].hp -= damage
 

@@ -12,6 +12,7 @@ from classes.authentication import CreateNewUser
 from classes.authentication import LogPlayerIn
 from classes.authentication import ValidateName
 from classes.combat			import RegainBalance
+from classes.combat			import MonsterAttacks
 from classes.parsecommand	import ParseCommand
 from classes.utilities		import PlacePlayerInGame
 from classes.utilities		import ParseRooms
@@ -63,7 +64,8 @@ while True:													# main game loop. We loop forever (i.e. until the progra
 	ticks = ticks + 1
 	mud.update()											# 'update' must be called in the loop to keep the game running and give us up-to-date information
 
-	RegainBalance(players, ticks, mud)
+	RegainBalance(players, rooms, ticks, mud)
+	MonsterAttacks(players, rooms, ticks, mud)
 
 	for id in mud.get_new_players():						# go through any newly connected players
 
