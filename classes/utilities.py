@@ -235,4 +235,11 @@ def ParseMonsters(monsterdict):
 		monsters[key] = currMonster
 
 	return monsters
+
+def PlaceMonstersInRooms(rooms, monsters):
+	for room in rooms:
+		if rooms[room].monsters:
+			for key in rooms[room].monsters:
+				rooms[room].monsters[key] = monsters[key]
+
 		

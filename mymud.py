@@ -18,6 +18,7 @@ from classes.utilities		import ParseRooms
 from classes.utilities		import ParseGameItems
 from classes.utilities		import ParseNPCs
 from classes.utilities		import ParseMonsters
+from classes.utilities		import PlaceMonstersInRooms
 
 from classes.player   		import _Player
 from classes.server 		import _Server
@@ -48,6 +49,7 @@ rooms = ParseRooms(json.load(open("areas/testarea.json")))				# structure defini
 gameitems = ParseGameItems(json.load(open("items/items.json")))
 npcs = ParseNPCs(json.load(open("npcs/npcs.json")))
 monsters = ParseMonsters(json.load(open("monsters/monsters.json")))
+PlaceMonstersInRooms(rooms, monsters)
 players = {}												# stores the players in the game
 ticks = 0													# stores how many ticks have gone by since server start
 

@@ -55,9 +55,20 @@ def Fight(id, params, players, rooms, gameitems, monsters, ticks, mud):
 			damage = random.randint(attackpower, (attackpower * 2))		# think of rolling x number of d2s
 			damage = damage - mdefence
 
+				
+
 			mud.send_message(id, "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), mud._BOLD, mud._YELLOW)
-			mud.send_message(id, "You deal {} damage.".format(str(damage)))
-	
+			mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._RED)
+
+			rooms[players[id].room].monsters[params.lower()].hp -= damage
+
+			if rooms[players[id].room].monsters[params.lower()].hp <= 0:
+				mud.send_message(id, "You kill the {}.".format(params.lower()))
+				del rooms[players[id].room].monsters[params.lower()]
+
+				#TODO push attack power calculation into separate method
+				#TODO push monster hp calculation into separate method
+				#TODO monster drops
 
 		else:
 			mud.send_message(id, "You need to regain your balance first!")

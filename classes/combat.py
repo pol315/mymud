@@ -7,4 +7,5 @@ def RegainBalance(players, ticks, mud):
 		if (players[pl].balance is False) and (ticks >= (players[pl].fight_tick + BALANCE_TICKS)):
 			players[pl].balance = True
 			mud.send_message(pl, "You regain your balance.", mud._BOLD, mud._CYAN)
+			mud.send_message(pl, "")
 			
