@@ -221,10 +221,7 @@ def ParseMonsters(monsterdict):
 					currMonster.dexterity = monsterdict[key]["stats"]["dexterity"]
 
 				if "wisdom" in monsterdict[key]["stats"]:
-					currMonster.wisdom = monsterdict[key]["stats"]["wisdom"]
-
-				if "defence" in monsterdict[key]["stats"]:
-					currMonster.defence = monsterdict[key]["stats"]["defence"]
+					currMonster.wisdom = monsterdict[key]["stats"]["wisdom"]				
 
 				if "meleed" in monsterdict[key]["stats"]:
 					currMonster.meleed = monsterdict[key]["stats"]["meleed"]

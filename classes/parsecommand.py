@@ -127,7 +127,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 
 	# COMBAT
 	elif command == "fight":
-		Fight(id, params, players, rooms, gameitems, ticks, mud)
+		Fight(id, params, players, rooms, gameitems, monsters, ticks, mud)
 
 	# MOVEMENT
 	elif command == "go":

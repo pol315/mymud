@@ -7,7 +7,6 @@ class _Monster:
 	strength = 1
 	dexterity = 1
 	wisdom = 1
-	defence = 1
 	meleed = 0
 	ranged = 0
 	magicd = 0

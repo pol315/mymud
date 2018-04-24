@@ -18,8 +18,7 @@ class _Player:
 	last_params = 		None
 	strength = 			1												# melee damage
 	dexterity = 		1												# ranged damage
-	wisdom = 			1												# magic damage	
-	defence = 			1												# gateway to wearing armor
+	wisdom = 			1												# magic damage
 	endurance =			1												# determines HP
 	clarity = 			1												# determines MP
 	mining = 			1
@@ -32,7 +31,6 @@ class _Player:
 	strengthxp =		0												
 	dexterityxp = 		0												
 	wisdomxp = 			0												
-	defencexp = 		0												
 	endurancexp =		0												
 	clarityxp =			0												
 	miningxp = 			0
@@ -58,6 +56,9 @@ class _Player:
 	in_combat = 		False
 	balance = 			True
 	fight_tick =		None
+	meleed = 			0
+	ranged = 			0
+	magicd = 			0
 	
 	def __init__(self):
 		pass
