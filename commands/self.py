@@ -12,7 +12,7 @@ def Self(id, params, players, mud):
 	mud.send_message(id, "|| Defence:    {}         Cooking:         {}    ||".format(players[id].defence, players[id].cooking))
 	mud.send_message(id, "|| Endurance:  {}         Blacksmithing:   {}    ||".format(players[id].endurance, players[id].blacksmithing))
 	mud.send_message(id, "|| Clarity:    {}         Rangership:      {}    ||".format(players[id].clarity, players[id].rangership))
-	mud.send_message(id, "|| Dick Size:  {}          Energycraft:     {}    ||".format(players[id].energycraft))
+	mud.send_message(id, "||  			             Energycraft:     {}    ||".format(players[id].energycraft))
 	mud.send_message(id, "||----------------------------------------------||")
 	mud.send_message(id, "|| Main:       {}		   Off-hand:		{}    ||".format(players[id].weapon1, players[id].weapon2))
 	mud.send_message(id, "|| Helmet: 	 {}		   Cloak:			{}    ||".format(players[id].helmet, players[id].cloak))
