@@ -103,6 +103,7 @@ def ParseGameItems(itemsdict):
 		if ("type" in itemsdict[key]) and (itemsdict[key]["type"] == "weapon"):
 			currItem = _Weapon()
 			currItem.hands = itemsdict[key]["hands"]
+			currItem.attack = itemsdict[key]["attack"]
 
 			if "stats" in itemsdict[key]:
 				if "strength" in itemsdict[key]["stats"]:
@@ -205,6 +206,9 @@ def ParseMonsters(monsterdict):
 
 		if "hp" in monsterdict[key]:
 			currMonster.hp = monsterdict[key]["hp"]
+
+		if "attack" in monsterdict[key]:
+			currMonster.attack = monsterdict[key]["attack"]
 
 		if "drops" in monsterdict[key]:
 			currMonster.drops = monsterdict[key]["drops"]

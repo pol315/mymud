@@ -55,6 +55,9 @@ class _Player:
 	ring = 				None
 	weapon1 = 			None
 	weapon2 = 			None
+	in_combat = 		False
+	balance = 			True
+	fight_tick =		None
 	
 	def __init__(self):
 		pass

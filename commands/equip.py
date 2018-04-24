@@ -19,7 +19,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					if players[id].weapon1 == None:
 						players[id].weapon1 = params.lower()
 						players[id].inventory.remove(params.lower())
-						mud.send_message(id, "You equip the {} in your right hand.".format(params.lower()))
+						mud.send_message(id, "You equip the {} in your main hand.".format(params.lower()))
 						
 						cursor.execute("UPDATE player SET weapon1 = %s, inventory = %s WHERE username = %s;", (params.lower(), players[id].inventory, players[id].name))
 						if cursor.rowcount == 1:
@@ -31,7 +31,7 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					else:
 						players[id].weapon2 = params.lower()
 						players[id].inventory.remove(params.lower())
-						mud.send_message(id, "You equip the {} in your left hand.".format(params.lower()))
+						mud.send_message(id, "You equip the {} in your off hand.".format(params.lower()))
 						
 						cursor.execute("UPDATE player SET weapon2 = %s, inventory = %s WHERE username = %s;", (params.lower(), players[id].inventory, players[id].name))
 						if cursor.rowcount == 1:

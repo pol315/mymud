@@ -10,6 +10,7 @@ class _GameItem:
 
 class _Weapon(_GameItem):
 	hands = 1
+	attack = "melee"
 	strength = 0
 	dexterity = 0
 	wisdom = 0

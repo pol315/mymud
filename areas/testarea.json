@@ -64,7 +64,7 @@
 			}
 		},
 		"npcs": ["martin, the weaponsmaster"],
-		"monsters": ["Scrawny Rat"],
+		"monsters": ["scrawny rat"],
         "exits": {"east": "Hall of Beginnings"}
     }
 }

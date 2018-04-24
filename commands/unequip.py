@@ -98,7 +98,7 @@ def Unequip(id, params, players, cursor, conn, mud):
 	elif players[id].weapon1 == params.lower():
 		players[id].inventory.append(players[id].weapon1)
 		players[id].weapon1 = None
-		mud.send_message(id, "You unequip \"{}\".".format(params.lower()))
+		mud.send_message(id, "You unequip \"{}\" from your main hand.".format(params.lower()))
 		
 		cursor.execute("UPDATE player SET weapon1 = %s, inventory = %s WHERE username = %s;", (None, players[id].inventory, players[id].name))
 		if cursor.rowcount == 1:
@@ -110,7 +110,7 @@ def Unequip(id, params, players, cursor, conn, mud):
 	elif players[id].weapon2 == params.lower():
 		players[id].inventory.append(players[id].weapon2)
 		players[id].weapon2 = None
-		mud.send_message(id, "You unequip \"{}\".".format(params.lower()))
+		mud.send_message(id, "You unequip \"{}\" from your off hand.".format(params.lower()))
 		
 		cursor.execute("UPDATE player SET weapon2 = %s, inventory = %s WHERE username = %s;", (None, players[id].inventory, players[id].name))
 		if cursor.rowcount == 1:

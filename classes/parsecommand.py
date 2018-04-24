@@ -10,6 +10,7 @@ from commands.description	import Description
 from commands.drop			import Drop
 from commands.emote			import Emote
 from commands.equip			import Equip
+from commands.fight			import Fight
 from commands.go 			import Go
 from commands.greet			import Greet
 from commands.help 			import Help
@@ -30,7 +31,7 @@ import psycopg2
 import json
 import time
 
-def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters, cursor, conn, mud):
+def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters, ticks, cursor, conn, mud):
 	
 	if (command != "") and (command != "r"):
 		players[id].last_command = command
@@ -124,6 +125,10 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 	elif (command == "unequip") or (command == "remove"):
 		Unequip(id, params, players, cursor, conn, mud)
 
+	# COMBAT
+	elif command == "fight":
+		Fight(id, params, players, rooms, gameitems, ticks, mud)
+
 	# MOVEMENT
 	elif command == "go":
 		Go(id, params, rooms, players, cursor, conn, mud)
@@ -170,7 +175,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 		Quit(id, players, cursor, conn, mud)
 		
 	elif command == "r":
-		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, npcs, monsters, cursor, conn, mud)
+		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, npcs, monsters, ticks, cursor, conn, mud)
 
 	elif command == "self":
 		Self(id, params, players, mud)
