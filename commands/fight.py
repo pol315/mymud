@@ -13,6 +13,8 @@ def Fight(id, params, players, rooms, gameitems, monsters, ticks, mud):
 			rooms[players[id].room].monsters[params.lower()].combat_target = players[id].name
 			rooms[players[id].room].monsters[params.lower()].fight_tick = ticks
 
+			#TODO monsters should forget their combat target when a player dies or when a player has been away for a while
+
 			attackpower = 0
 			awith = "fists"
 			mdefence = 0

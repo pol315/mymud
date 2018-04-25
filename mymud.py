@@ -20,6 +20,7 @@ from classes.utilities		import ParseGameItems
 from classes.utilities		import ParseNPCs
 from classes.utilities		import ParseMonsters
 from classes.utilities		import PlaceMonstersInRooms
+from classes.utilities		import CleanUpDeadPlayers
 
 from classes.player   		import _Player
 from classes.server 		import _Server
@@ -66,6 +67,7 @@ while True:													# main game loop. We loop forever (i.e. until the progra
 
 	RegainBalance(players, rooms, ticks, mud)
 	MonsterAttacks(players, rooms, ticks, mud)
+	CleanUpDeadPlayers(players, gameitems, rooms, cursor, conn, mud)
 
 	for id in mud.get_new_players():						# go through any newly connected players
 

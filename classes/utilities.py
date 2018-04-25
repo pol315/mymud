@@ -341,6 +341,74 @@ def CalculateTotalStats(id, players, gameitems, cursor, conn, mud):
 		mud.send_message(id, "Could not update stats.")
 		mud.terminate_connection(id)
 
+
+def CleanUpDeadPlayers(players, gameitems, rooms, cursor, conn, mud):
+	for pl in players:
+		if players[pl].hp <= 0:
+			mud.send_message(pl, "You have died. Your inventory and what you were wearing have been dropped where you died.")
+			mud.send_message(pl, "You have respawned at the Hall of Beginnings.")
+
+			rooms[players[pl].room].items = rooms[players[pl].room].items + players[pl].inventory
+			players[pl].inventory = list()
+
+			if players[pl].weapon1:
+				rooms[players[pl].room].items.append(players[pl].weapon1)
+				players[pl].weapon1 = None
+
+			if players[pl].weapon2:
+				rooms[players[pl].room].items.append(players[pl].weapon2)
+				players[pl].weapon2 = None
+
+			if players[pl].helmet:
+				rooms[players[pl].room].items.append(players[pl].helmet)
+				players[pl].helmet = None
+
+			if players[pl].chest:
+				rooms[players[pl].room].items.append(players[pl].chest)
+				players[pl].chest = None
+
+			if players[pl].legs:
+				rooms[players[pl].room].items.append(players[pl].legs)
+				players[pl].legs = None
+
+			if players[pl].gloves:
+				rooms[players[pl].room].items.append(players[pl].gloves)
+				players[pl].gloves = None
+
+			if players[pl].boots:
+				rooms[players[pl].room].items.append(players[pl].boots)
+				players[pl].boots = None
+
+			if players[pl].cloak:
+				rooms[players[pl].room].items.append(players[pl].cloak)
+				players[pl].cloak = None
+
+			if players[pl].necklace:
+				rooms[players[pl].room].items.append(players[pl].necklace)
+				players[pl].necklace = None
+
+			if players[pl].ring:
+				rooms[players[pl].room].items.append(players[pl].ring)
+				players[pl].ring = None
+
+			CalculateTotalStats(pl, players, gameitems, cursor, conn, mud)
+
+			players[pl].room = "Hall of Beginnings"
+			players[pl].hp = 30
+
+			#TODO set player back to their standard max HP
+
+			cursor.execute("UPDATE player SET weapon1 = %s, weapon2 = %s, helmet = %s, chest = %s, legs = %s, gloves = %s, boots = %s, cloak = %s, necklace = %s, ring = %s, last_room = %s WHERE username = %s;", (None, None, None, None, None, None, None, None, None, None, "Hall of Beginnings", players[pl].name))
+			if cursor.rowcount == 1:
+				conn.commit()	
+			else:
+				mud.send_message(id, "Could not update stats.")
+				mud.terminate_connection(id)
+
+
+			
+
+
 	
 
 
