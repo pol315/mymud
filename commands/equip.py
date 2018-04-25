@@ -1,3 +1,5 @@
+from classes.utilities		import CalculateTotalStats
+
 def Equip(id, params, players, gameitems, cursor, conn, mud):
 
 	if (params.lower() in gameitems) and (params.lower() in players[id].inventory): # the item exists and the player owns it
@@ -14,6 +16,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					else:
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
+
+					CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 					
 				elif (gameitems[params.lower()].hands == 1) and ((players[id].weapon1 == None) or (players[id].weapon2 == None)):
 					if players[id].weapon1 == None:
@@ -27,6 +31,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						else:
 							mud.send_message(id, "Could not update equipment.")
 							mud.terminate_connection(id)
+
+						CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 						
 					else:
 						players[id].weapon2 = params.lower()
@@ -39,6 +45,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 						else:
 							mud.send_message(id, "Could not update equipment.")
 							mud.terminate_connection(id)
+
+						CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 						
 				else:
 					mud.send_message(id, "Your hands are already full.")								
@@ -55,6 +63,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					else:
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
+
+					CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 					
 				elif (gameitems[params.lower()].slot == "helmet") and (players[id].helmet == None):
 					players[id].helmet = params.lower()
@@ -67,6 +77,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					else:
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
+
+					CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 			
 				elif (gameitems[params.lower()].slot == "legs") and (players[id].legs == None):
 					players[id].legs = params.lower()
@@ -79,6 +91,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					else:
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
+
+					CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 					
 				elif (gameitems[params.lower()].slot == "gloves") and (players[id].gloves == None):
 					players[id].gloves = params.lower()
@@ -91,6 +105,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					else:
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
+
+					CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 					
 				elif (gameitems[params.lower()].slot == "boots") and (players[id].boots == None):
 					players[id].boots = params.lower()
@@ -103,6 +119,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					else:
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
+
+					CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 					
 				elif (gameitems[params.lower()].slot == "cloak") and (players[id].cloak == None):
 					players[id].cloak = params.lower()
@@ -115,6 +133,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					else:
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
+
+					CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 					
 				elif (gameitems[params.lower()].slot == "necklace") and (players[id].necklace == None):
 					players[id].necklace = params.lower()
@@ -127,6 +147,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					else:
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
+
+					CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 					
 				elif (gameitems[params.lower()].slot == "ring") and (players[id].ring == None):
 					players[id].ring = params.lower()
@@ -139,6 +161,8 @@ def Equip(id, params, players, gameitems, cursor, conn, mud):
 					else:
 						mud.send_message(id, "Could not update equipment.")
 						mud.terminate_connection(id)
+
+					CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 					
 				else:
 					mud.send_message(id, "You're already wearing a {}.".format(gameitems[params.lower()].slot))				

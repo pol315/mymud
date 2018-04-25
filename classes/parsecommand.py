@@ -123,7 +123,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 		Equip(id, params, players, gameitems, cursor, conn, mud)
 		
 	elif (command == "unequip") or (command == "remove"):
-		Unequip(id, params, players, cursor, conn, mud)
+		Unequip(id, params, players, gameitems, cursor, conn, mud)
 
 	# COMBAT
 	elif command == "fight":

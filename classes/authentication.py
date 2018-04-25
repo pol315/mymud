@@ -38,7 +38,7 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, monsters, cursor, 
 
 	players[id].last_command = ""
 
-	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race, inventory, chest, helmet, legs, boots, gloves, cloak, necklace, ring, weapon1, weapon2 FROM player WHERE username = %s;", (players[id].name,))
+	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race, inventory, chest, helmet, legs, boots, gloves, cloak, necklace, ring, weapon1, weapon2, totalstr, totaldex, totalwis, meleed, ranged, magicd FROM player WHERE username = %s;", (players[id].name,))
 	rows = cursor.fetchall()						
 	
 	if IsValidPass(command,str(rows[0][1]),str(rows[0][0])):
@@ -69,6 +69,13 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, monsters, cursor, 
 			players[id].ring = rows[0][15]
 			players[id].weapon1 = rows[0][16]
 			players[id].weapon2 = rows[0][17]
+
+			players[id].totalstr = int(rows[0][18])
+			players[id].totaldex = int(rows[0][19])
+			players[id].totalwis = int(rows[0][20])
+			players[id].meleed = int(rows[0][21])
+			players[id].ranged = int(rows[0][22])
+			players[id].magicd = int(rows[0][23])
 			
 			
 			mud.send_message(id, "\r\n\r\nYou last logged in at: {}".format(players[id].last_login))

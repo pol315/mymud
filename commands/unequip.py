@@ -1,4 +1,6 @@
-def Unequip(id, params, players, cursor, conn, mud):
+from classes.utilities		import CalculateTotalStats
+
+def Unequip(id, params, players, gameitems, cursor, conn, mud):
 	if players[id].chest == params.lower():
 		players[id].inventory.append(players[id].chest)
 		players[id].chest = None
@@ -10,6 +12,8 @@ def Unequip(id, params, players, cursor, conn, mud):
 		else:
 			mud.send_message(id, "Could not update equipment.")
 			mud.terminate_connection(id)
+
+		CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 			
 	elif players[id].helmet == params.lower():
 		players[id].inventory.append(players[id].helmet)
@@ -22,6 +26,8 @@ def Unequip(id, params, players, cursor, conn, mud):
 		else:
 			mud.send_message(id, "Could not update equipment.")
 			mud.terminate_connection(id)
+
+		CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 			
 	elif players[id].legs == params.lower():
 		players[id].inventory.append(players[id].legs)
@@ -34,6 +40,8 @@ def Unequip(id, params, players, cursor, conn, mud):
 		else:
 			mud.send_message(id, "Could not update equipment.")
 			mud.terminate_connection(id)
+
+		CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 			
 	elif players[id].boots == params.lower():
 		players[id].inventory.append(players[id].boots)
@@ -46,6 +54,8 @@ def Unequip(id, params, players, cursor, conn, mud):
 		else:
 			mud.send_message(id, "Could not update equipment.")
 			mud.terminate_connection(id)
+
+		CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 			
 	elif players[id].gloves == params.lower():
 		players[id].inventory.append(players[id].gloves)
@@ -58,6 +68,8 @@ def Unequip(id, params, players, cursor, conn, mud):
 		else:
 			mud.send_message(id, "Could not update equipment.")
 			mud.terminate_connection(id)
+
+		CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 			
 	elif players[id].cloak == params.lower():
 		players[id].inventory.append(players[id].cloak)
@@ -70,6 +82,8 @@ def Unequip(id, params, players, cursor, conn, mud):
 		else:
 			mud.send_message(id, "Could not update equipment.")
 			mud.terminate_connection(id)
+
+		CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 			
 	elif players[id].necklace == params.lower():
 		players[id].inventory.append(players[id].necklace)
@@ -82,6 +96,8 @@ def Unequip(id, params, players, cursor, conn, mud):
 		else:
 			mud.send_message(id, "Could not update equipment.")
 			mud.terminate_connection(id)
+
+		CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 			
 	elif players[id].ring == params.lower():
 		players[id].inventory.append(players[id].ring)
@@ -94,7 +110,23 @@ def Unequip(id, params, players, cursor, conn, mud):
 		else:
 			mud.send_message(id, "Could not update equipment.")
 			mud.terminate_connection(id)
-			
+
+		CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
+
+	elif players[id].weapon2 == params.lower():							# if offhand is same as mainhand, remove offhand first
+		players[id].inventory.append(players[id].weapon2)
+		players[id].weapon2 = None
+		mud.send_message(id, "You unequip \"{}\" from your off hand.".format(params.lower()))
+		
+		cursor.execute("UPDATE player SET weapon2 = %s, inventory = %s WHERE username = %s;", (None, players[id].inventory, players[id].name))
+		if cursor.rowcount == 1:
+			conn.commit()	
+		else:
+			mud.send_message(id, "Could not update equipment.")
+			mud.terminate_connection(id)
+
+		CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
+
 	elif players[id].weapon1 == params.lower():
 		players[id].inventory.append(players[id].weapon1)
 		players[id].weapon1 = None
@@ -106,18 +138,8 @@ def Unequip(id, params, players, cursor, conn, mud):
 		else:
 			mud.send_message(id, "Could not update equipment.")
 			mud.terminate_connection(id)
-			
-	elif players[id].weapon2 == params.lower():
-		players[id].inventory.append(players[id].weapon2)
-		players[id].weapon2 = None
-		mud.send_message(id, "You unequip \"{}\" from your off hand.".format(params.lower()))
-		
-		cursor.execute("UPDATE player SET weapon2 = %s, inventory = %s WHERE username = %s;", (None, players[id].inventory, players[id].name))
-		if cursor.rowcount == 1:
-			conn.commit()	
-		else:
-			mud.send_message(id, "Could not update equipment.")
-			mud.terminate_connection(id)
+
+		CalculateTotalStats(id, players, gameitems, cursor, conn, mud)
 			
 	else:
 		mud.send_message(id, "You aren't wearing anything with that name.")

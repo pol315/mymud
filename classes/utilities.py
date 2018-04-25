@@ -115,9 +115,6 @@ def ParseGameItems(itemsdict):
 				if "wisdom" in itemsdict[key]["stats"]:
 					currItem.wisdom = itemsdict[key]["stats"]["wisdom"]
 
-				if "defence" in itemsdict[key]["stats"]:
-					currItem.defence = itemsdict[key]["stats"]["defence"]
-
 				if "meleed" in itemsdict[key]["stats"]:
 					currItem.meleed = itemsdict[key]["stats"]["meleed"]
 
@@ -140,9 +137,6 @@ def ParseGameItems(itemsdict):
 
 				if "wisdom" in itemsdict[key]["stats"]:
 					currItem.wisdom = itemsdict[key]["stats"]["wisdom"]
-
-				if "defence" in itemsdict[key]["stats"]:
-					currItem.defence = itemsdict[key]["stats"]["defence"]
 
 				if "meleed" in itemsdict[key]["stats"]:
 					currItem.meleed = itemsdict[key]["stats"]["meleed"]
@@ -244,5 +238,110 @@ def PlaceMonstersInRooms(rooms, monsters):
 		if rooms[room].monsters:
 			for key in rooms[room].monsters:
 				rooms[room].monsters[key] = monsters[key]
+
+def CalculateTotalStats(id, players, gameitems, cursor, conn, mud):
+	total_strength = players[id].strength	# base stats
+	total_dexterity = players[id].dexterity
+	total_wisdom = players[id].wisdom
+	total_meleed = 0						# defence comes from gear only
+	total_ranged = 0
+	total_magicd = 0
+
+	if players[id].weapon1:
+		total_strength += gameitems[players[id].weapon1].strength
+		total_dexterity += gameitems[players[id].weapon1].dexterity
+		total_wisdom += gameitems[players[id].weapon1].wisdom
+		total_meleed += gameitems[players[id].weapon1].meleed
+		total_ranged += gameitems[players[id].weapon1].ranged
+		total_magicd += gameitems[players[id].weapon1].magicd
+
+	if players[id].weapon2:
+		total_strength += gameitems[players[id].weapon2].strength
+		total_dexterity += gameitems[players[id].weapon2].dexterity
+		total_wisdom += gameitems[players[id].weapon2].wisdom
+		total_meleed += gameitems[players[id].weapon2].meleed
+		total_ranged += gameitems[players[id].weapon2].ranged
+		total_magicd += gameitems[players[id].weapon2].magicd
+
+	if players[id].helmet:
+		total_strength += gameitems[players[id].helmet].strength
+		total_dexterity += gameitems[players[id].helmet].dexterity
+		total_wisdom += gameitems[players[id].helmet].wisdom
+		total_meleed += gameitems[players[id].helmet].meleed
+		total_ranged += gameitems[players[id].helmet].ranged
+		total_magicd += gameitems[players[id].helmet].magicd
+
+	if players[id].chest:
+		total_strength += gameitems[players[id].chest].strength
+		total_dexterity += gameitems[players[id].chest].dexterity
+		total_wisdom += gameitems[players[id].chest].wisdom
+		total_meleed += gameitems[players[id].chest].meleed
+		total_ranged += gameitems[players[id].chest].ranged
+		total_magicd += gameitems[players[id].chest].magicd
+
+	if players[id].legs:
+		total_strength += gameitems[players[id].legs].strength
+		total_dexterity += gameitems[players[id].legs].dexterity
+		total_wisdom += gameitems[players[id].legs].wisdom
+		total_meleed += gameitems[players[id].legs].meleed
+		total_ranged += gameitems[players[id].legs].ranged
+		total_magicd += gameitems[players[id].legs].magicd
+
+	if players[id].gloves:
+		total_strength += gameitems[players[id].gloves].strength
+		total_dexterity += gameitems[players[id].gloves].dexterity
+		total_wisdom += gameitems[players[id].gloves].wisdom
+		total_meleed += gameitems[players[id].gloves].meleed
+		total_ranged += gameitems[players[id].gloves].ranged
+		total_magicd += gameitems[players[id].gloves].magicd
+
+	if players[id].boots:
+		total_strength += gameitems[players[id].boots].strength
+		total_dexterity += gameitems[players[id].boots].dexterity
+		total_wisdom += gameitems[players[id].boots].wisdom
+		total_meleed += gameitems[players[id].boots].meleed
+		total_ranged += gameitems[players[id].boots].ranged
+		total_magicd += gameitems[players[id].boots].magicd
+
+	if players[id].cloak:
+		total_strength += gameitems[players[id].cloak].strength
+		total_dexterity += gameitems[players[id].cloak].dexterity
+		total_wisdom += gameitems[players[id].cloak].wisdom
+		total_meleed += gameitems[players[id].cloak].meleed
+		total_ranged += gameitems[players[id].cloak].ranged
+		total_magicd += gameitems[players[id].cloak].magicd
+
+	if players[id].necklace:
+		total_strength += gameitems[players[id].necklace].strength
+		total_dexterity += gameitems[players[id].necklace].dexterity
+		total_wisdom += gameitems[players[id].necklace].wisdom
+		total_meleed += gameitems[players[id].necklace].meleed
+		total_ranged += gameitems[players[id].necklace].ranged
+		total_magicd += gameitems[players[id].necklace].magicd
+
+	if players[id].ring:
+		total_strength += gameitems[players[id].ring].strength
+		total_dexterity += gameitems[players[id].ring].dexterity
+		total_wisdom += gameitems[players[id].ring].wisdom
+		total_meleed += gameitems[players[id].ring].meleed
+		total_ranged += gameitems[players[id].ring].ranged
+		total_magicd += gameitems[players[id].ring].magicd
+
+	players[id].totalstr = total_strength
+	players[id].totaldex = total_dexterity
+	players[id].totalwis = total_wisdom
+	players[id].meleed = total_meleed
+	players[id].ranged = total_ranged
+	players[id].magicd = total_magicd
+
+	cursor.execute("UPDATE player SET totalstr = %s, totaldex = %s, totalwis = %s, meleed = %s, ranged = %s, magicd = %s WHERE username = %s;", (total_strength, total_dexterity, total_wisdom, total_meleed, total_ranged, total_magicd, players[id].name))
+	if cursor.rowcount == 1:
+		conn.commit()	
+	else:
+		mud.send_message(id, "Could not update stats.")
+		mud.terminate_connection(id)
+
+	
+
 
 		

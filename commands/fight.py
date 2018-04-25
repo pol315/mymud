@@ -23,42 +23,25 @@ def Fight(id, params, players, rooms, gameitems, monsters, ticks, mud):
 				awith = players[id].weapon1
 
 				if gameitems[players[id].weapon1].attack == "melee":
-					attackpower = attackpower + players[id].strength
-					attackpower = attackpower + gameitems[players[id].weapon1].strength
-					if players[id].weapon2:
-						attackpower = attackpower + gameitems[players[id].weapon2].strength
-
+					attackpower = players[id].totalstr
 					mdefence = monsters[params.lower()].meleed
-
 					combattext = ["you lash out with your weapon with great might.", "you let loose a flurry of stabs and jabs.", "you bring down your weapon as hard as you can."]
 
 				elif gameitems[players[id].weapon1].attack == "range":
-					attackpower = attackpower + players[id].dexterity
-					attackpower = attackpower + gameitems[players[id].weapon1].dexterity
-					if players[id].weapon2:
-						attackpower = attackpower + gameitems[players[id].weapon2].dexterity
-
+					attackpower = players[id].totaldex
 					mdefence = monsters[params.lower()].ranged
-
 					combattext = ["you pull back on the string as hard as you can and send an arrow flying.", "you let loose an arrow with great precision.", "you grab an arrow from your quiver and deliver it with speed."]
 
 				elif gameitems[players[id].weapon1].attack == "magic":
-					attackpower = attackpower + players[id].wisdom
-					attackpower = attackpower + gameitems[players[id].weapon1].wisdom
-					if players[id].weapon2:
-						attackpower = attackpower + gameitems[players[id].weapon2].wisdom
-
+					attackpower = players[id].totalwis
 					mdefence = monsters[params.lower()].magicd
-
 					combattext = ["you send a group of bolts hurtling at your opponent.", "you channel as much energy as you can into your enemy.", "you let loose a great ball of energy."]
 
 			else:		# only attacking with fists
-				attackpower = attackpower + players[id].strength
+				attackpower = players[id].totalstr
 
 			damage = random.randint(attackpower, (attackpower * 2))		# think of rolling x number of d2s
 			damage = damage - mdefence
-
-				
 
 			mud.send_message(id, "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), mud._BOLD, mud._YELLOW)
 			mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._BLUE)
