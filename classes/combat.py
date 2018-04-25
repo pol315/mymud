@@ -54,6 +54,14 @@ def MonsterAttacks(players, rooms, ticks, mud): # if a monster has a combat targ
 					for pl in players:
 						if (players[pl].name == target) and (players[pl].room == room):
 							MonsterBasicAttack(room, key, pl, players, rooms, ticks, mud)
+
+
+def ForgetTargets(rooms, ticks):	# monsters forget their target after 30 seconds of no fighting action
+	for room in rooms:
+		if rooms[room].monsters:
+			for key in rooms[room].monsters:
+				if (rooms[room].monsters[key].combat_target) and (ticks >= (rooms[room].monsters[key].fight_tick + 150)):
+					rooms[room].monsters[key].combat_target = None
 							
 
 			

@@ -11,6 +11,7 @@ sys.path.append('server')
 from classes.authentication import CreateNewUser
 from classes.authentication import LogPlayerIn
 from classes.authentication import ValidateName
+from classes.combat			import ForgetTargets
 from classes.combat			import RegainBalance
 from classes.combat			import MonsterAttacks
 from classes.parsecommand	import ParseCommand
@@ -68,6 +69,7 @@ while True:													# main game loop. We loop forever (i.e. until the progra
 	RegainBalance(players, rooms, ticks, mud)
 	MonsterAttacks(players, rooms, ticks, mud)
 	CleanUpDeadPlayers(players, gameitems, rooms, cursor, conn, mud)
+	ForgetTargets(rooms, ticks)
 
 	for id in mud.get_new_players():						# go through any newly connected players
 

@@ -405,6 +405,12 @@ def CleanUpDeadPlayers(players, gameitems, rooms, cursor, conn, mud):
 				mud.send_message(id, "Could not update stats.")
 				mud.terminate_connection(id)
 
+			for room in rooms:		# monsters no longer target the player after they have died
+				if rooms[room].monsters:
+					for key in rooms[room].monsters:
+						if rooms[room].monsters[key].combat_target == players[pl].name:
+							rooms[room].monsters[key].combat_target = None
+
 
 			
 
