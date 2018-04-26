@@ -1,4 +1,5 @@
 class _Monster:
+	ID = -1
 	name = ""
 	description = ""
 	aggressive = False
@@ -16,6 +17,8 @@ class _Monster:
 	combat_target = None
 	attack_speed = 20	# number of ticks
 	fight_tick = 0
+
+	room = None
 
 
 	def __init__(self):

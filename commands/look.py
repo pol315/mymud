@@ -1,4 +1,4 @@
-def Look(id, params, players, rooms, gameitems, npcs, monsters, mud):
+def Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud):
 	rm = rooms[players[id].room]																						# store the player's current room
 			
 	if not params:
@@ -18,8 +18,13 @@ def Look(id, params, players, rooms, gameitems, npcs, monsters, mud):
 		if rm.npcs:
 			mud.send_message(id, "Citizens here: " + "{}".format(", ".join(rm.npcs)).title(), mud._BOLD, mud._GREEN)
 
-		if rm.monsters:
-			mud.send_message(id, "Monsters here: " + "{}".format(", ".join(rm.monsters)).title(), mud._BOLD, mud._RED)
+		monstersHere = list()
+		for monster in monsterInstances:
+			if monsterInstances[monster].room == players[id].room:
+				monstersHere.append(monsterInstances[monster].name)
+
+		if len(monstersHere) > 0:
+			mud.send_message(id, "Monsters here: " + "{}".format(", ".join(monstersHere)).title(), mud._BOLD, mud._RED)
 
 		if rm.items:
 			mud.send_message(id, "On the ground you see: {}".format(", ".join(rm.items)), mud._BOLD, mud._BLUE)
@@ -43,8 +48,17 @@ def Look(id, params, players, rooms, gameitems, npcs, monsters, mud):
 		elif (rm.npcs) and (params.lower() in npcs):
 			mud.send_message(id, "{}".format(npcs[params.lower()].description))
 
-		elif (rm.monsters) and (params.lower() in monsters):
-			mud.send_message(id, "{}".format(monsters[params.lower()].description))
+		elif (params.lower() in beastiary):
+			monstersHere = list()
+			for monster in monsterInstances:
+				if monsterInstances[monster].room == players[id].room:
+					monstersHere.append(monsterInstances[monster].name)
+
+			if params.lower() in monstersHere:
+				mud.send_message(id, "{}".format(beastiary[params.lower()].description))
+
+			else:
+				mud.send_message(id, "You do not see \"{}\" here.".format(params))
 			
 		elif params.lower() in players[id].inventory:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))

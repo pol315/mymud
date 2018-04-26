@@ -16,7 +16,7 @@ def MakeProper(message):
 		
 	return message.capitalize()
 	
-def PlacePlayerInGame(id, players, rooms, gameitems, npcs, monsters, mud):
+def PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud):
 
 	if ((players[id].room is None) or (players[id].room is "")):
 		players[id].room = "Hall of Beginnings"
@@ -27,7 +27,7 @@ def PlacePlayerInGame(id, players, rooms, gameitems, npcs, monsters, mud):
 
 	mud.send_message(id, "\r\nWelcome to the game, {}. ".format(players[id].name) + "Type 'help' if you get lost. Have fun!")		# send the new player a welcome message			
 	mud.send_message(id, "")		
-	Look(id, None, players, rooms, gameitems, npcs, monsters, mud)																	# send the new player the description of their current room
+	Look(id, None, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)																	# send the new player the description of their current room
 
 def AdvertiseToRoom(id, message, selfmessage, players, mud):
 	if selfmessage is not None:
@@ -233,11 +233,17 @@ def ParseMonsters(monsterdict):
 
 	return monsters
 
-def PlaceMonstersInRooms(rooms, monsters):
+def PlaceMonstersInRooms(rooms, beastiary, monsterInstances):
+	monsterIDs = 1
+
 	for room in rooms:
 		if rooms[room].monsters:
 			for key in rooms[room].monsters:
-				rooms[room].monsters[key] = monsters[key]
+				currMonster = beastiary[key]
+				currMonster.ID = monsterIDs
+				currMonster.room = room
+				monsterInstances[monsterIDs] = currMonster
+				monsterIDs += 1
 
 def CalculateTotalStats(id, players, gameitems, cursor, conn, mud):
 	total_strength = players[id].strength	# base stats
@@ -342,7 +348,7 @@ def CalculateTotalStats(id, players, gameitems, cursor, conn, mud):
 		mud.terminate_connection(id)
 
 
-def CleanUpDeadPlayers(players, gameitems, rooms, cursor, conn, mud):
+def CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn, mud):
 	for pl in players:
 		if players[pl].hp <= 0:
 			mud.send_message(pl, "You have died. Your inventory and what you were wearing have been dropped where you died.")
@@ -405,11 +411,9 @@ def CleanUpDeadPlayers(players, gameitems, rooms, cursor, conn, mud):
 				mud.send_message(id, "Could not update stats.")
 				mud.terminate_connection(id)
 
-			for room in rooms:		# monsters no longer target the player after they have died
-				if rooms[room].monsters:
-					for key in rooms[room].monsters:
-						if rooms[room].monsters[key].combat_target == players[pl].name:
-							rooms[room].monsters[key].combat_target = None
+			for monster in monsterInstances:
+				if monsterInstances[monster].combat_target == players[pl].name:
+					monsterInstances[monster].combat_target = None
 
 
 			

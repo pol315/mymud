@@ -31,7 +31,7 @@ import psycopg2
 import json
 import time
 
-def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters, ticks, cursor, conn, mud):
+def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary, monsterInstances, ticks, cursor, conn, mud):
 	
 	if (command != "") and (command != "r"):
 		players[id].last_command = command
@@ -41,7 +41,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 		ValidateName(id, command, players, cursor, mud)
 
 	elif players[id].name is not None and players[id].exist is True and players[id].authenticated is False:							# The player exists and we are waiting for a password
-		LogPlayerIn(id, command, players, rooms, gameitems, npcs, monsters, cursor, conn, mud)
+		LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monsterInstances, cursor, conn, mud)
 
 	elif players[id].name is not None and players[id].exist is False and players[id].authenticated is False and players[id].pw1 is None:		# The player doesn't exist and we are setting a new password
 		players[id].pw1 = command
@@ -75,7 +75,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 			if cursor.rowcount == 1:
 				conn.commit()
 				players[id].race = command
-				PlacePlayerInGame(id, players, rooms, gameitems, npcs, monsters, mud)
+				PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, mud)
 			else:
 				mud.send_message(id, "Could not update race.")
 				mud.terminate_connection(id)
@@ -99,7 +99,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 		Description(id, params, players, cursor, conn, mud)
 
 	elif (command == "look") or (command == "l"):
-		Look(id, params, players, rooms, gameitems, npcs, monsters, mud)
+		Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 
 	elif command == "greet":
 		Greet(id, params, players, rooms, npcs, mud)
@@ -127,7 +127,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 
 	# COMBAT
 	elif command == "fight":
-		Fight(id, params, players, rooms, gameitems, monsters, ticks, mud)
+		Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud)
 
 	# MOVEMENT
 	elif command == "go":
@@ -175,7 +175,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, monsters,
 		Quit(id, players, cursor, conn, mud)
 		
 	elif command == "r":
-		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, npcs, monsters, ticks, cursor, conn, mud)
+		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, npcs, beastiary, monsterInstances, ticks, cursor, conn, mud)
 
 	elif command == "self":
 		Self(id, params, players, mud)

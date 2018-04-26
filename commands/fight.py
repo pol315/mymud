@@ -3,18 +3,25 @@
 
 import random
 
-def Fight(id, params, players, rooms, gameitems, monsters, ticks, mud):
+def Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud):
 
-	if params.lower() in rooms[players[id].room].monsters:		# check if monster is here
+	monsterHere = False
+	monsterID = -1
+
+	for monster in monsterInstances:
+		if (monsterInstances[monster].room == players[id].room) and (params.lower() == monsterInstances[monster].name):
+			monsterHere = True
+			monsterID = monster
+			break
+
+	if monsterHere:		# check if monster is here
 		if players[id].balance:
 			players[id].balance = False
 			players[id].fight_tick = ticks
 
-			if rooms[players[id].room].monsters[params.lower()].combat_target is None: # if not already fighting someone
-				rooms[players[id].room].monsters[params.lower()].combat_target = players[id].name
-				rooms[players[id].room].monsters[params.lower()].fight_tick = ticks
-
-			#TODO monsters should forget their combat target when a player dies or when a player has been away for a while
+			if monsterInstances[monsterID].combat_target is None: # if not already fighting someone
+				monsterInstances[monsterID].combat_target = players[id].name
+				monsterInstances[monsterID].fight_tick = ticks
 
 			attackpower = 0
 			awith = "fists"
@@ -27,17 +34,17 @@ def Fight(id, params, players, rooms, gameitems, monsters, ticks, mud):
 
 				if gameitems[players[id].weapon1].attack == "melee":
 					attackpower = players[id].totalstr
-					mdefence = monsters[params.lower()].meleed
+					mdefence = beastiary[params.lower()].meleed
 					combattext = ["you lash out with your weapon with great might.", "you let loose a flurry of stabs and jabs.", "you bring down your weapon as hard as you can."]
 
 				elif gameitems[players[id].weapon1].attack == "range":
 					attackpower = players[id].totaldex
-					mdefence = monsters[params.lower()].ranged
+					mdefence = beastiary[params.lower()].ranged
 					combattext = ["you pull back on the string as hard as you can and send an arrow flying.", "you let loose an arrow with great precision.", "you grab an arrow from your quiver and deliver it with speed."]
 
 				elif gameitems[players[id].weapon1].attack == "magic":
 					attackpower = players[id].totalwis
-					mdefence = monsters[params.lower()].magicd
+					mdefence = beastiary[params.lower()].magicd
 					combattext = ["you send a group of bolts hurtling at your opponent.", "you channel as much energy as you can into your enemy.", "you let loose a great ball of energy."]
 
 			else:		# only attacking with fists
@@ -49,11 +56,11 @@ def Fight(id, params, players, rooms, gameitems, monsters, ticks, mud):
 			mud.send_message(id, "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), mud._BOLD, mud._YELLOW)
 			mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._BLUE)
 
-			rooms[players[id].room].monsters[params.lower()].hp -= damage
+			monsterInstances[monsterID].hp -= damage
 
-			if rooms[players[id].room].monsters[params.lower()].hp <= 0:
-				mud.send_message(id, "You kill the {}.".format(params.lower()))
-				del rooms[players[id].room].monsters[params.lower()]
+			if monsterInstances[monsterID].hp <= 0:
+				mud.send_message(id, "You kill the {}.".format(params.lower()), mud._BOLD, mud._GREEN)
+				del monsterInstances[monsterID]
 
 				#TODO push attack power calculation into separate method
 				#TODO push monster hp calculation into separate method

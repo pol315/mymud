@@ -51,8 +51,9 @@ cursor = conn.cursor()
 rooms = ParseRooms(json.load(open("areas/testarea.json")))				# structure defining the rooms in the game - loaded from a json file
 gameitems = ParseGameItems(json.load(open("items/items.json")))
 npcs = ParseNPCs(json.load(open("npcs/npcs.json")))
-monsters = ParseMonsters(json.load(open("monsters/monsters.json")))
-PlaceMonstersInRooms(rooms, monsters)
+beastiary = ParseMonsters(json.load(open("monsters/monsters.json")))
+monsterInstances = {}
+PlaceMonstersInRooms(rooms, beastiary, monsterInstances)
 players = {}												# stores the players in the game
 ticks = 0													# stores how many ticks have gone by since server start
 
@@ -66,10 +67,10 @@ while True:													# main game loop. We loop forever (i.e. until the progra
 	ticks = ticks + 1
 	mud.update()											# 'update' must be called in the loop to keep the game running and give us up-to-date information
 
-	RegainBalance(players, rooms, ticks, mud)
-	MonsterAttacks(players, rooms, ticks, mud)
-	CleanUpDeadPlayers(players, gameitems, rooms, cursor, conn, mud)
-	ForgetTargets(rooms, ticks)
+	RegainBalance(players, monsterInstances, ticks, mud)
+	MonsterAttacks(players, monsterInstances, ticks, mud)
+	CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn, mud)
+	ForgetTargets(monsterInstances, ticks)
 
 	for id in mud.get_new_players():						# go through any newly connected players
 
@@ -98,6 +99,6 @@ while True:													# main game loop. We loop forever (i.e. until the progra
 		if id not in players:								# if for any reason the player isn't in the player map, skip them and move on to the next one
 			continue
 		
-		ParseCommand(id, command.lower(), params.strip(), players, rooms, gameitems, npcs, monsters, ticks, cursor, conn, mud)
+		ParseCommand(id, command.lower(), params.strip(), players, rooms, gameitems, npcs, beastiary, monsterInstances, ticks, cursor, conn, mud)
 		
 			

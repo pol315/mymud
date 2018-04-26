@@ -34,7 +34,7 @@ def ValidateName(id, command, players, cursor, mud):
 	else:
 		mud.send_message(id, "Username must start with a capital letter, consist of only letters and must be between 3 and 12 characters. Try again!")
 		
-def LogPlayerIn(id, command, players, rooms, gameitems, npcs, monsters, cursor, conn, mud):
+def LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monsterInstances, cursor, conn, mud):
 
 	players[id].last_command = ""
 
@@ -92,7 +92,7 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, monsters, cursor, 
 				mud.send_message(id, "Could not update timestamp.")
 				mud.terminate_connection(id)
 			
-			PlacePlayerInGame(id, players, rooms, gameitems, npcs, monsters, mud)
+			PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 		
 	else:
 		mud.send_message(id, "\r\nIncorrect password.")								
