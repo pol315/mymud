@@ -6,7 +6,7 @@
         "stats": { "strength": 1, "dexterity": 0, "wisdom": 0, "meleed": 1, "ranged": 1, "magicd": 1 },
         "attack": "melee",
         "attack_speed": 20,			
-        "drops": "silver key"		
+        "drops": { "silver key": 100 }
     },
     "martin, destroyer of worlds": {
         "description": "Martin stands roughly 8 feet tall and is ripped af. His giant dong swings side to side as he stomps around the room.",

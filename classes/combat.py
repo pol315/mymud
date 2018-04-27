@@ -64,3 +64,25 @@ def ForgetTargets(monsterInstances, ticks):	# monsters forget their target after
 	for monster in monsterInstances:
 		if (monsterInstances[monster].combat_target) and (ticks >= (monsterInstances[monster].fight_tick + 150)):
 			monsterInstances[monster].combat_target = list()
+
+
+def DamageMonster(players, playerID, damage, monsterInstances, monsterID, beastiary, mud):
+	monsterInstances[monsterID].hp -= damage
+
+	if monsterInstances[monsterID].hp <= 0:
+		mud.send_message(playerID, "You kill the {}.".format(monsterInstances[monsterID].name), mud._BOLD, mud._GREEN)
+
+		itemDrops = list()
+
+		# drops
+		for key in beastiary[monsterInstances[monsterID].name].drops:
+			if ((random.random() + 0.001) * 100 ) < int(beastiary[monsterInstances[monsterID].name].drops[key]):
+				players[playerID].inventory.append(key)
+				itemDrops.append(key)
+
+		if itemDrops:
+			mud.send_message(playerID, "You pick up the following items from your dead opponent: {}".format(", ".join(itemDrops)), mud._BOLD, mud._GREEN)
+
+		del monsterInstances[monsterID]
+
+

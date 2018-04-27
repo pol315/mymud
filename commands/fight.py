@@ -3,6 +3,8 @@
 
 import random
 
+from classes.combat		import DamageMonster
+
 def Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud):
 
 	monsterHere = False
@@ -54,14 +56,7 @@ def Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ti
 			mud.send_message(id, "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), mud._BOLD, mud._YELLOW)
 			mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._BLUE)
 
-			monsterInstances[monsterID].hp -= damage
-
-			if monsterInstances[monsterID].hp <= 0:
-				mud.send_message(id, "You kill the {}.".format(params.lower()), mud._BOLD, mud._GREEN)
-				del monsterInstances[monsterID]
-
-				#TODO push attack power calculation into separate method
-				#TODO monster drops
+			DamageMonster(players, id, damage, monsterInstances, monsterID, beastiary, mud)			
 
 		else:
 			mud.send_message(id, "You need to regain your balance first!")

@@ -67,5 +67,11 @@
 		"unique": "true",
 		"sellprice": "nfs",
 		"weight": 0.1
+    },
+	"silver key": {
+        "description": "This looks like it would unlock a nearby chest!",
+		"unique": "true",
+		"sellprice": "1",
+		"weight": 0.1
     }
 }
