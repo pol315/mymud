@@ -14,14 +14,12 @@ def Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ti
 			monsterID = monster
 			break
 
-	if monsterHere:		# check if monster is here
+	if monsterHere:
 		if players[id].balance:
 			players[id].balance = False
 			players[id].fight_tick = ticks
 
-			if monsterInstances[monsterID].combat_target is None: # if not already fighting someone
-				monsterInstances[monsterID].combat_target = players[id].name
-				monsterInstances[monsterID].fight_tick = ticks
+			monsterInstances[monsterID].combat_target.append(players[id].name)
 
 			attackpower = 0
 			awith = "fists"
@@ -63,7 +61,6 @@ def Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ti
 				del monsterInstances[monsterID]
 
 				#TODO push attack power calculation into separate method
-				#TODO push monster hp calculation into separate method
 				#TODO monster drops
 
 		else:

@@ -45,14 +45,22 @@ def RegainBalance(players, monsterInstances, ticks, mud):	# regain players and m
 def MonsterAttacks(players, monsterInstances, ticks, mud): # if a monster has a combat target and balance, and the target is in the same room, attack
 	for monster in monsterInstances:
 		if monsterInstances[monster].combat_target and monsterInstances[monster].balance:
-			target = monsterInstances[monster].combat_target
+			target = None
+			attacked = False
+			for tg in monsterInstances[monster].combat_target:
+				
+				for pl in players:
+					if (players[pl].name == tg) and (players[pl].room == monsterInstances[monster].room):
+						target = monsterInstances[monster].combat_target
+						attacked = True
+						MonsterBasicAttack(monster, pl, players, monsterInstances, ticks, mud)
+						break
 
-			for pl in players:
-				if (players[pl].name == target) and (players[pl].room == monsterInstances[monster].room):
-					MonsterBasicAttack(monster, pl, players, monsterInstances, ticks, mud)
+				if attacked:
+					break
 
 
-def ForgetTargets(monsterInstances, ticks):	# monsters forget their target after 30 seconds of no fighting action
+def ForgetTargets(monsterInstances, ticks):	# monsters forget their target after 30 seconds of no fighting action	# TODO should monsters "leash" (refill their health when no one has attacked them in a while)
 	for monster in monsterInstances:
 		if (monsterInstances[monster].combat_target) and (ticks >= (monsterInstances[monster].fight_tick + 150)):
-			monsterInstances[monster].combat_target = None
+			monsterInstances[monster].combat_target = list()

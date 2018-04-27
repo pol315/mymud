@@ -412,8 +412,8 @@ def CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn
 				mud.terminate_connection(id)
 
 			for monster in monsterInstances:
-				if monsterInstances[monster].combat_target == players[pl].name:
-					monsterInstances[monster].combat_target = None
+				if players[pl].name in monsterInstances[monster].combat_target:
+					monsterInstances[monster].combat_target.remove(players[pl].name)
 
 
 			
