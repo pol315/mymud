@@ -15,6 +15,38 @@ def MakeProper(message):
 		message = message + "."
 		
 	return message.capitalize()
+
+def DisplayPrompt(id, players, mud):
+	mud.send_message(id, "")
+	mud.send_message(id, "{} ".format(players[id].name), mud._BOLD, mud._GREEN, False)
+	mud.send_message(id, "HP: ", mud._BOLD, mud._WHITE, False)
+
+	hpcolour = mud._GREEN
+	if players[id].hp == (players[id].endurance * 5):
+		pass
+
+	elif players[id].hp >= ((players[id].endurance * 5) / 3):
+		hpcolour = mud._YELLOW
+
+	elif players[id].hp < ((players[id].endurance * 5) / 3):
+		hpcolour = mud._RED
+
+
+	mud.send_message(id, "{}".format(players[id].hp), mud._BOLD, hpcolour, False)
+	mud.send_message(id, "/{} MP: ".format(int((players[id].endurance * 5))), mud._BOLD, mud._WHITE, False)
+
+	mpcolour = mud._GREEN
+	if players[id].mp == (players[id].clarity * 5):
+		pass
+
+	elif players[id].mp >= ((players[id].clarity * 5) / 3):
+		mpcolour = mud._YELLOW
+
+	elif players[id].mp < ((players[id].clarity * 5) / 3):
+		mpcolour = mud._RED
+
+	mud.send_message(id, "{}".format(players[id].mp), mud._BOLD, mpcolour, False)
+	mud.send_message(id, "/{} > ".format(int((players[id].clarity * 5))), mud._BOLD, mud._WHITE, False)
 	
 def PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud):
 
@@ -27,7 +59,8 @@ def PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterIns
 
 	mud.send_message(id, "\r\nWelcome to the game, {}. ".format(players[id].name) + "Type 'help' if you get lost. Have fun!")		# send the new player a welcome message			
 	mud.send_message(id, "")		
-	Look(id, None, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)																	# send the new player the description of their current room
+	Look(id, None, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
+	DisplayPrompt(id, players, mud)																	# send the new player the description of their current room
 
 def AdvertiseToRoom(id, message, selfmessage, players, mud):
 	if selfmessage is not None:
@@ -414,6 +447,8 @@ def CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn
 			for monster in monsterInstances:
 				if players[pl].name in monsterInstances[monster].combat_target:
 					monsterInstances[monster].combat_target.remove(players[pl].name)
+
+	
 
 
 			

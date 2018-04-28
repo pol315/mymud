@@ -1,4 +1,5 @@
 from classes.authentication import CreateNewUser
+from classes.utilities		import DisplayPrompt
 from classes.authentication import LogPlayerIn
 from classes.authentication import ValidateName
 from classes.utilities		import PlacePlayerInGame
@@ -85,90 +86,118 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 
 	elif command == "help":
 		Help(id, params, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "say":
 		Say(id, params, players, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "tell":
 		Tell(id, params, players, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "emote":
 		Emote(id, params, players, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "description":
 		Description(id, params, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif (command == "look") or (command == "l"):
 		Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "greet":
 		Greet(id, params, players, rooms, npcs, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "playtime":
 		Playtime(id, players, mud)
+		DisplayPrompt(id, players, mud)
 		
 	elif command == "skills":
 		Skills(id, params, players, mud)
+		DisplayPrompt(id, players, mud)
 		
 	elif command == "take":
 		Take(id, params, players, rooms, gameitems, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 		
 	elif command == "drop":
 		Drop(id, params, players, rooms, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 		
 	elif (command == "inventory") or (command == "inv"):
 		Inventory(id, params, players, mud)
+		DisplayPrompt(id, players, mud)
 		
 	elif (command == "equip") or (command == "wear"):
 		Equip(id, params, players, gameitems, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 		
 	elif (command == "unequip") or (command == "remove"):
 		Unequip(id, params, players, gameitems, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	# COMBAT
 	elif command == "fight":
 		Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud)
+		DisplayPrompt(id, players, mud)
 
 	# MOVEMENT
 	elif command == "go":
 		Go(id, params, rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif (command == "north") or (command == "south") or (command == "east") or (command == "west") or (command == "northwest") or (command == "northeast") or (command == "southwest") or (command == "southeast") or (command == "up") or (command == "down"):
 		Go(id, command, rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "n":
 		Go(id, "north", rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "s":
 		Go(id, "south", rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "w":
 		Go(id, "west", rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "e":
 		Go(id, "east", rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "nw":
 		Go(id, "northwest", rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "ne":
 		Go(id, "northeast", rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "sw":
 		Go(id, "southwest", rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "se":
 		Go(id, "southeast", rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "u":
 		Go(id, "up", rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "d":
 		Go(id, "down", rooms, players, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
 
 	# ADMIN COMMANDS
 	elif command == "ticks" and players[id].name == "Doomblade":
 		mud.send_message(id, "{}".format(ticks))
+		DisplayPrompt(id, players, mud)
 
 	# MISC
 	elif (command == "quit") or (command == "qq"):
@@ -179,9 +208,11 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 
 	elif command == "self":
 		Self(id, params, players, mud)
+		DisplayPrompt(id, players, mud)
 
 	elif command == "":
-		pass																	# don't do anything, user wants to make some space
+		DisplayPrompt(id, players, mud)
 
 	else:																		# unknown command
 		mud.send_message(id, "Unknown command: '{}'".format(command.upper()))
+		DisplayPrompt(id, players, mud)

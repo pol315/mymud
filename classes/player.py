@@ -25,8 +25,8 @@ class _Player:
 	strength = 			1												# melee damage
 	dexterity = 		1												# ranged damage
 	wisdom = 			1												# magic damage
-	endurance =			1												# determines HP
-	clarity = 			1												# determines MP
+	endurance =			5												# determines HP
+	clarity = 			5												# determines MP
 	mining = 			1
 	fishing = 			1
 	foresting = 		1
@@ -74,8 +74,8 @@ class _Player:
 	meleed = 			0
 	ranged = 			0
 	magicd = 			0
-	hp =				30
-	mp = 				10
+	hp =				25
+	mp = 				25
 
 	
 	def __init__(self):

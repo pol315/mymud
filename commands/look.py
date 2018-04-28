@@ -75,4 +75,3 @@ def Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstance
 			if examined == False:
 				mud.send_message(id, "You do not see \"{}\" here.".format(params))
 				
-	mud.send_message(id, "")
