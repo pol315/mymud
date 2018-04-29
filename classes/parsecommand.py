@@ -17,6 +17,7 @@ from commands.greet			import Greet
 from commands.help 			import Help
 from commands.inventory		import Inventory
 from commands.look 			import Look
+from commands.online		import Online
 from commands.playtime		import Playtime
 from commands.say 			import Say
 from commands.self 			import Self
@@ -208,6 +209,10 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 
 	elif command == "self":
 		Self(id, params, players, mud)
+		DisplayPrompt(id, players, mud)
+
+	elif command == "online":
+		Online(id, players, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "":
