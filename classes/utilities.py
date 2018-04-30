@@ -84,6 +84,9 @@ def ParseRoomItems(itemsdict):
 		if "container" in itemsdict[key]:
 			currItem.container = StringToBool(itemsdict[key]["container"])
 
+		if "infinite" in itemsdict[key]:
+			currItem.infinite = StringToBool(itemsdict[key]["infinite"])
+
 		if "open" in itemsdict[key]:
 			currItem.open = StringToBool(itemsdict[key]["open"])
 

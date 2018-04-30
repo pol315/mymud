@@ -11,8 +11,8 @@ def Drop(id, params, players, rooms, cursor, conn, mud):
 			mud.terminate_connection(id)
 		
 		
-		mud.send_message(id, "You drop: {}".format(params.lower()))
+		mud.send_message(id, "You drop a {}.".format(params.lower()))
 	
 	else:
-		mud.send_message(id, "You do not have \"{}\"".format(params.lower()))
+		mud.send_message(id, "You do not have a {}.".format(params.lower()))
 	

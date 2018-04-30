@@ -27,37 +27,44 @@
 		"roomitems": {
 			"sword rack": {
 				"description": "The rack holds seemingly unending amounts of swords. Try TAKE TRAINING SWORD FROM SWORD RACK.",
-				"container": "true",				
+				"container": "true",
+				"infinite": "true",				
 				"items": ["training sword"]
 			},
 			"staff rack": {
 				"description": "The rack holds seemingly unending amounts of staves. Try TAKE TRAINING STAFF FROM STAFF RACK.",
 				"container": "true",
+				"infinite": "true",
 				"items": ["training staff"]
 			},
 			"bow rack": {
 				"description": "The rack holds seemingly unending amounts of bows. Try TAKE TRAINING BOW FROM BOW RACK.",
 				"container": "true",
+				"infinite": "true",
 				"items": ["training bow"]
 			},
 			"plate rack": {
 				"description": "The rack holds seemingly unending amounts of platebodies. Try TAKE TRAINING PLATE FROM PLATE RACK.",
 				"container": "true",
+				"infinite": "true",
 				"items": ["training plate"]
 			},
 			"leather rack": {
 				"description": "The rack holds seemingly unending amounts of leather bodices. Try TAKE TRAINING BODICE FROM LEATHER RACK.",
 				"container": "true",
+				"infinite": "true",
 				"items": ["training bodice"]
 			},
 			"robe rack": {
 				"description": "The rack holds seemingly unending amounts of cloth robes. Try TAKE TRAINING ROBES FROM ROBE RACK.",
 				"container": "true",
+				"infinite": "true",
 				"items": ["training robes"]
 			},
 			"chest": {
 				"description": "Upon the chest lies a heavy brass lock. Once you have the key, try UNLOCK CHEST, then OPEN CHEST, then LOOK IN CHEST.",
 				"container": "true",
+				"infinite": "true",
 				"open": "false",
 				"locked": "yes",
 				"items": ["beginner's ticket"]

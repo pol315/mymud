@@ -2,11 +2,7 @@ def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 	
 	if params:		
 		if " from " not in params.lower(): 	# the player is taking an item directly from the ground of the current room
-			if params.lower() in rooms[players[id].room].items:		# the item has to be in the room
-				if (gameitems[params.lower()].unique) and (params.lower() in players[id].inventory):
-					mud.send_message(id, "You may only have one of that item at a time.")
-				
-				else:
+			if params.lower() in rooms[players[id].room].items:		# the item has to be in the room			
 					rooms[players[id].room].items.remove(params.lower())
 					players[id].inventory.append(params.lower())
 					mud.send_message(id, "You pick up: {}".format(params.lower()))
@@ -30,19 +26,11 @@ def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 				if rooms[players[id].room].roomitems[container].container:
 					if item in rooms[players[id].room].roomitems[container].items:
 						if item in gameitems:
-							if (gameitems[item].unique) and (item in players[id].inventory):
-								mud.send_message(id, "You may only have one of that item at a time.")
-							
-							elif gameitems[item].unique:
-								players[id].inventory.append(item)
-								mud.send_message(id, "You take a {} from the {}.".format(item, container))
-
-							else:	
+							if rooms[players[id].room].roomitems[container].infinite is False:
 								rooms[players[id].room].roomitems[container].items.remove(item)
-								players[id].inventory.append(item)
-								mud.send_message(id, "You take a {} from the {}.".format(item, container))
-							
-							
+								
+							players[id].inventory.append(item)
+							mud.send_message(id, "You take a {} from the {}.".format(item, container))						
 							
 							cursor.execute("UPDATE player SET inventory = %s WHERE username = %s;", (players[id].inventory, players[id].name))
 							if cursor.rowcount == 1:
