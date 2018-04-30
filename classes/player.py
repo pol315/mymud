@@ -65,7 +65,7 @@ class _Player:
 	weapon2 = 			None
 
 	# COMBAT
-	in_combat = 		False
+	combat_target =		None
 	balance = 			True
 	fight_tick =		None
 	totalstr = 			1

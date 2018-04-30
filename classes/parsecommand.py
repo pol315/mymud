@@ -21,6 +21,7 @@ from commands.online		import Online
 from commands.playtime		import Playtime
 from commands.say 			import Say
 from commands.self 			import Self
+from commands.settarget		import SetTarget
 from commands.skills		import Skills
 from commands.take 			import Take
 from commands.tell 			import Tell
@@ -144,6 +145,10 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 	# COMBAT
 	elif command == "fight":
 		Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud)
+		DisplayPrompt(id, players, mud)
+
+	elif (command == "settarget") or (command == "st"):
+		SetTarget(id, params, players, beastiary, monsterInstances, mud)
 		DisplayPrompt(id, players, mud)
 
 	# MOVEMENT

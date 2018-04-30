@@ -436,7 +436,7 @@ def CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn
 			CalculateTotalStats(pl, players, gameitems, cursor, conn, mud)
 
 			players[pl].room = "Hall of Beginnings"
-			players[pl].hp = 30
+			players[pl].hp = int(players[pl].endurance) * 5
 
 			#TODO set player back to their standard max HP
 

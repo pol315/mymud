@@ -7,62 +7,76 @@ from classes.combat		import DamageMonster
 
 def Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud):
 
-	monsterHere = False
-	monsterID = -1
+	monsterToFight = None
 
-	for monster in monsterInstances:
-		if (monsterInstances[monster].room == players[id].room) and (params.lower() == monsterInstances[monster].name):
-			monsterHere = True
-			monsterID = monster
-			break
+	if params:
+		monsterToFight = params.lower()
 
-	if monsterHere:
-		if players[id].balance:
-			players[id].balance = False
-			players[id].fight_tick = ticks
+	elif players[id].combat_target:
+		monsterToFight = monsterInstances[players[id].combat_target].name
 
-			monsterInstances[monsterID].combat_target.append(players[id].name)
+	if monsterToFight:
 
-			attackpower = 0
-			awith = "fists"
-			mdefence = 0
-			combattext = ["you punch as hard as you can.", "you let loose a flurry of kicks and punches.", "you uppercut your enemy with all your force."]
+		monsterHere = False
+		monsterID = -1
 
-			if players[id].weapon1:	# weapon 1 is the main weapon, this decides the kind of attack we are making (melee, range, magic)
-									# weapon 2 gets its stats added to the attack, but only the relevant stat to the first weapon (ie. a main hand sword and offhand staff, the staff would only contribute if it had a strength stat)
-				awith = players[id].weapon1
+		for monster in monsterInstances:
+			if (monsterInstances[monster].room == players[id].room) and (monsterToFight == monsterInstances[monster].name):
+				monsterHere = True
+				monsterID = monster
+				break
 
-				if gameitems[players[id].weapon1].attack == "melee":
+		if monsterHere:
+			if players[id].balance:
+				players[id].balance = False
+				players[id].fight_tick = ticks
+
+				if (players[id].name in monsterInstances[monsterID].combat_target) is False:
+					monsterInstances[monsterID].combat_target.append(players[id].name)
+
+				attackpower = 0
+				awith = "fists"
+				mdefence = 0
+				combattext = ["you punch as hard as you can.", "you let loose a flurry of kicks and punches.", "you uppercut your enemy with all your force."]
+
+				if players[id].weapon1:	# weapon 1 is the main weapon, this decides the kind of attack we are making (melee, range, magic)
+										# weapon 2 gets its stats added to the attack, but only the relevant stat to the first weapon (ie. a main hand sword and offhand staff, the staff would only contribute if it had a strength stat)
+					awith = players[id].weapon1
+
+					if gameitems[players[id].weapon1].attack == "melee":
+						attackpower = players[id].totalstr
+						mdefence = beastiary[monsterToFight].meleed
+						combattext = ["you lash out with your weapon with great might.", "you let loose a flurry of stabs and jabs.", "you bring down your weapon as hard as you can."]
+
+					elif gameitems[players[id].weapon1].attack == "range":
+						attackpower = players[id].totaldex
+						mdefence = beastiary[monsterToFight].ranged
+						combattext = ["you pull back on the string as hard as you can and send an arrow flying.", "you let loose an arrow with great precision.", "you grab an arrow from your quiver and deliver it with speed."]
+
+					elif gameitems[players[id].weapon1].attack == "magic":
+						attackpower = players[id].totalwis
+						mdefence = beastiary[monsterToFight].magicd
+						combattext = ["you send a group of bolts hurtling at your opponent.", "you channel as much energy as you can into your enemy.", "you let loose a great ball of energy."]
+
+				else:		# only attacking with fists
 					attackpower = players[id].totalstr
-					mdefence = beastiary[params.lower()].meleed
-					combattext = ["you lash out with your weapon with great might.", "you let loose a flurry of stabs and jabs.", "you bring down your weapon as hard as you can."]
 
-				elif gameitems[players[id].weapon1].attack == "range":
-					attackpower = players[id].totaldex
-					mdefence = beastiary[params.lower()].ranged
-					combattext = ["you pull back on the string as hard as you can and send an arrow flying.", "you let loose an arrow with great precision.", "you grab an arrow from your quiver and deliver it with speed."]
+				damage = random.randint(attackpower, (attackpower * 2))		# think of rolling x number of d2s
+				damage = damage - mdefence
 
-				elif gameitems[players[id].weapon1].attack == "magic":
-					attackpower = players[id].totalwis
-					mdefence = beastiary[params.lower()].magicd
-					combattext = ["you send a group of bolts hurtling at your opponent.", "you channel as much energy as you can into your enemy.", "you let loose a great ball of energy."]
+				mud.send_message(id, "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), mud._BOLD, mud._YELLOW)
+				mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._BLUE)
 
-			else:		# only attacking with fists
-				attackpower = players[id].totalstr
+				DamageMonster(players, id, damage, monsterInstances, monsterID, beastiary, mud)			
 
-			damage = random.randint(attackpower, (attackpower * 2))		# think of rolling x number of d2s
-			damage = damage - mdefence
-
-			mud.send_message(id, "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), mud._BOLD, mud._YELLOW)
-			mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._BLUE)
-
-			DamageMonster(players, id, damage, monsterInstances, monsterID, beastiary, mud)			
+			else:
+				mud.send_message(id, "You need to regain your balance first!")
 
 		else:
-			mud.send_message(id, "You need to regain your balance first!")
+			mud.send_message(id, "You don't see that monster here.")
 
 	else:
-		mud.send_message(id, "You don't see that monster here.")
+		mud.send_message(id, "You must specify a monster as a parameter or set a combat target using SETTARGET first.")
 
 			
 		
