@@ -77,7 +77,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 			if cursor.rowcount == 1:
 				conn.commit()
 				players[id].race = command
-				PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, mud)
+				PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 			else:
 				mud.send_message(id, "Could not update race.")
 				mud.terminate_connection(id)
