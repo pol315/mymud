@@ -1,0 +1,10 @@
+{
+	"training plate": {
+        "description": "Two rough wooden slabs, connected by flimsy straps. Might stop an arrow or two!",
+		"type": "armor",
+		"slot": "chest",
+		"stats": { "meleed": 1, "ranged": 2, "magicd": -1 },			
+		"sellprice": 0,
+		"weight": 5
+    }
+}

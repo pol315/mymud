@@ -1,0 +1,11 @@
+{
+    "training sword": {
+        "description": "A light, flimsy sword, barely capable of doing much more damage than your bare hands.",
+		"type": "weapon",
+		"hands": 1,
+		"attack": "melee",
+		"stats": { "strength": 1, "dexterity": 0, "wisdom": 0 },			
+		"sellprice": 0,
+		"weight": 3
+	}
+}

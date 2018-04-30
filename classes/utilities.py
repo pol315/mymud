@@ -1,4 +1,7 @@
-from commands.look		import Look
+import os
+import json
+
+from commands.look			import Look
 
 from classes.room	 		import _Room
 from classes.roomitem 		import _RoomItem
@@ -7,6 +10,11 @@ from classes.gameitem 		import _Weapon
 from classes.gameitem 		import _Armor
 from classes.npc	 		import _NPC
 from classes.monster 		import _Monster
+
+def MergeDicts(x, y):
+	z = x.copy()
+	z.update(y)
+	return z
 
 def MakeProper(message):		
 	if ((message[-1] is '.') or (message[-1] is '?') or (message[-1] is '!')):
@@ -103,7 +111,13 @@ def ParseRoomItems(itemsdict):
 
 	return roomitems
 
-def ParseRooms(roomdict):
+def ParseRooms():
+
+	roomdict = []
+
+	for filename in os.listdir("areas"):
+		roomdict = MergeDicts(json.load(open("areas/{}".format(filename))), roomdict)
+
 	rooms = {}
 
 	for key in roomdict:
@@ -130,7 +144,13 @@ def ParseRooms(roomdict):
 		
 	return rooms
 
-def ParseGameItems(itemsdict):
+def ParseGameItems():
+
+	itemsdict = []
+
+	for filename in os.listdir("items"):
+		itemsdict = MergeDicts(json.load(open("items/{}".format(filename))), itemsdict)
+
 	gameitems = {}
 
 	for key in itemsdict:
@@ -202,7 +222,13 @@ def ParseGameItems(itemsdict):
 
 	return gameitems
 
-def ParseNPCs(npcdict):
+def ParseNPCs():
+
+	npcdict = []
+
+	for filename in os.listdir("npcs"):
+		npcdict = MergeDicts(json.load(open("npcs/{}".format(filename))), npcdict)
+
 	npcs = {}
 
 	for key in npcdict:
@@ -223,7 +249,13 @@ def ParseNPCs(npcdict):
 
 	return npcs
 
-def ParseMonsters(monsterdict):
+def ParseMonsters():
+
+	monsterdict = []
+
+	for filename in os.listdir("monsters"):
+		monsterdict = MergeDicts(json.load(open("monsters/{}".format(filename))), monsterdict)
+
 	monsters = {}
 
 	for key in monsterdict:

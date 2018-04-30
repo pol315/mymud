@@ -1,0 +1,11 @@
+{
+	"martin, destroyer of worlds": {
+        "description": "Martin stands roughly 8 feet tall and is ripped af. His giant dong swings side to side as he stomps around the room.",
+		"aggressive": "true",
+		"hp": 9001,
+        "stats": { "strength": 666, "dexterity": 666, "wisdom": 0, "meleed": 666, "ranged": 666, "magicd": 666 },        
+        "attack": "melee",
+        "attack_speed": 10,							
+        "drops": ""
+    }
+}

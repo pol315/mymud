@@ -1,0 +1,6 @@
+{
+	"richard rich": {
+        "description": "A medium build fellow with luscious blonde, slicked back hair. He looks around the room and twirls a gold coin in his left hand while working on bankind records with his right.",
+		"response": "Greetings friend, Glorifa has already informed me of your arrival. I've taken the liberty of opening an account for you already, so if you want to deposit some items or gold, try: \"DEPOSIT <ITEM>\" or \"DEPOSIT <# OF GOLD>\"."
+    }
+}

@@ -4,7 +4,8 @@ def Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstance
 	if not params:
 		mud.send_message(id, rm.name)																										# if not looking at anything specific
 		mud.send_message(id, rm.description)																			# send the player back the description of their current room				
-		mud.send_message(id, "This room contains: {}".format(", ".join(rm.roomitems)), mud._BOLD, mud._MAGENTA)			# and what is in the room
+		if rm.roomitems:
+			mud.send_message(id, "This room contains: {}".format(", ".join(rm.roomitems)), mud._BOLD, mud._MAGENTA)			# and what is in the room
 
 		playershere = []
 		

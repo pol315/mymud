@@ -48,10 +48,10 @@ conn_string = "host='jasonhiggins.ca' port='9989' dbname='mymud_db' user='postgr
 conn = psycopg2.connect(conn_string)
 cursor = conn.cursor()
 
-rooms = ParseRooms(json.load(open("areas/testarea.json")))				# structure defining the rooms in the game - loaded from a json file
-gameitems = ParseGameItems(json.load(open("items/items.json")))
-npcs = ParseNPCs(json.load(open("npcs/npcs.json")))
-beastiary = ParseMonsters(json.load(open("monsters/monsters.json")))
+rooms = ParseRooms()				# structure defining the rooms in the game - loaded from a json file
+gameitems = ParseGameItems()
+npcs = ParseNPCs()
+beastiary = ParseMonsters()
 monsterInstances = {}
 PlaceMonstersInRooms(rooms, beastiary, monsterInstances)
 players = {}												# stores the players in the game

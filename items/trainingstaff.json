@@ -1,0 +1,11 @@
+{
+	"training staff": {
+        "description": "A branch cut from a tree that barely passes for a staff.",
+		"type": "weapon",
+		"hands": 2,		
+		"attack": "magic",
+		"stats": { "strength": 0, "dexterity": 0, "wisdom": 2 },			
+		"sellprice": 0,
+		"weight": 3
+    }
+}

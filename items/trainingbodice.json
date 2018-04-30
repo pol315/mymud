@@ -1,0 +1,10 @@
+{
+	"training bodice": {
+        "description": "A thin piece of leather hung around the neck.",
+		"type": "armor",
+		"slot": "chest",
+		"stats": { "meleed": -1, "ranged": 1, "magicd": 2 },			
+		"sellprice": 0,
+		"weight": 5
+    }
+}

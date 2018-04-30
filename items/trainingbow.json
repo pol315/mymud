@@ -1,0 +1,11 @@
+{
+	"training bow": {
+        "description": "A light, wooden bow frame, connected by a thin piece of sinew. You ponder if it would be more effective to just throw arrows.",
+		"type": "weapon",
+		"hands": 2,
+		"attack": "range",
+		"stats": { "strength": 0, "dexterity": 2, "wisdom": 0 },			
+		"sellprice": 0,
+		"weight": 3
+    }
+}

@@ -1,0 +1,14 @@
+{
+	"Hallway of Knowledge": {
+        "description": "The hallway is fairly long and along the walls are stone pedestals, holding large tablets with engraved writing.",
+		"roomitems": {
+			"help tablet": {
+				"description": "The tablet reads: \"HELP\"",
+				"container": "false"
+			}
+		},
+		"items": ["silly string", "rusty fork"],
+		"npcs": ["shamus, the wise"],
+        "exits": {"east": "Beginnings Bank", "west": "Hall of Beginnings"}
+    }
+}

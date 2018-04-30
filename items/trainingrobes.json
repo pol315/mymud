@@ -1,0 +1,10 @@
+{
+	"training robes": {
+        "description": "A thin blue robe. At least it's breezy!",
+		"type": "armor",
+		"slot": "chest",
+		"stats": { "meleed": 2, "ranged": -1, "magicd": 1 },			
+		"sellprice": 0,
+		"weight": 5
+    }
+}
