@@ -11,11 +11,13 @@ from classes.gameitem 		import _Armor
 from classes.npc	 		import _NPC
 from classes.monster 		import _Monster
 
+# merge two dictionaries into one
 def MergeDicts(x, y):
 	z = x.copy()
 	z.update(y)
 	return z
 
+# Capitalize, and punctuate a string
 def MakeProper(message):		
 	if ((message[-1] is '.') or (message[-1] is '?') or (message[-1] is '!')):
 		pass
@@ -24,6 +26,7 @@ def MakeProper(message):
 		
 	return message.capitalize()
 
+# Display the players "HUD"
 def DisplayPrompt(id, players, mud):
 	mud.send_message(id, "")
 	mud.send_message(id, "{} ".format(players[id].name), mud._BOLD, mud._GREEN, False)
@@ -55,7 +58,8 @@ def DisplayPrompt(id, players, mud):
 
 	mud.send_message(id, "{}".format(players[id].mp), mud._BOLD, mpcolour, False)
 	mud.send_message(id, "/{} > ".format(int((players[id].clarity * 5))), mud._BOLD, mud._WHITE, False)
-	
+
+# place the player in the room they logged out at, or the starting area if no saved room	
 def PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud):
 
 	if ((players[id].room is None) or (players[id].room is "")):
@@ -68,8 +72,9 @@ def PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterIns
 	mud.send_message(id, "\r\nWelcome to the game, {}. ".format(players[id].name) + "Type 'help' if you get lost. Have fun!")		# send the new player a welcome message			
 	mud.send_message(id, "")		
 	Look(id, None, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
-	DisplayPrompt(id, players, mud)																	# send the new player the description of their current room
+	DisplayPrompt(id, players, mud)
 
+# send a message to all players in the same room
 def AdvertiseToRoom(id, message, selfmessage, players, mud):
 	if selfmessage is not None:
 		mud.send_message(id, selfmessage)
@@ -78,9 +83,11 @@ def AdvertiseToRoom(id, message, selfmessage, players, mud):
 		if (pid != id) and (players[pid].room == players[id].room):
 			mud.send_message(pid, message)
 
+# convert strings to truthy values
 def StringToBool(v):
 	return str(v).lower() in ("yes", "true", "t", "1")
 
+# parse all decorative items that will be in a room
 def ParseRoomItems(itemsdict):
 	roomitems = {}
 
@@ -111,6 +118,7 @@ def ParseRoomItems(itemsdict):
 
 	return roomitems
 
+# parse all room json files
 def ParseRooms():
 
 	roomdict = []
@@ -144,6 +152,7 @@ def ParseRooms():
 		
 	return rooms
 
+# parse all item json files
 def ParseGameItems():
 
 	itemsdict = []
@@ -222,6 +231,7 @@ def ParseGameItems():
 
 	return gameitems
 
+# parse all NPC json files
 def ParseNPCs():
 
 	npcdict = []
@@ -249,6 +259,7 @@ def ParseNPCs():
 
 	return npcs
 
+# parse all monster json files
 def ParseMonsters():
 
 	monsterdict = []
@@ -301,6 +312,7 @@ def ParseMonsters():
 
 	return monsters
 
+# create instances of monsters in rooms
 def PlaceMonstersInRooms(rooms, beastiary, monsterInstances):
 	monsterIDs = 1
 
@@ -313,6 +325,7 @@ def PlaceMonstersInRooms(rooms, beastiary, monsterInstances):
 				monsterInstances[monsterIDs] = currMonster
 				monsterIDs += 1
 
+# when a players stats change, recalculate and save to DB
 def CalculateTotalStats(id, players, gameitems, cursor, conn, mud):
 	total_strength = players[id].strength	# base stats
 	total_dexterity = players[id].dexterity
@@ -415,7 +428,7 @@ def CalculateTotalStats(id, players, gameitems, cursor, conn, mud):
 		mud.send_message(id, "Could not update stats.")
 		mud.terminate_connection(id)
 
-
+# find all players with life <= 0 and kill em
 def CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn, mud):
 	for pl in players:
 		if players[pl].hp <= 0:
@@ -469,8 +482,6 @@ def CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn
 
 			players[pl].room = "Hall of Beginnings"
 			players[pl].hp = int(players[pl].endurance) * 5
-
-			#TODO set player back to their standard max HP
 
 			cursor.execute("UPDATE player SET weapon1 = %s, weapon2 = %s, helmet = %s, chest = %s, legs = %s, gloves = %s, boots = %s, cloak = %s, necklace = %s, ring = %s, last_room = %s WHERE username = %s;", (None, None, None, None, None, None, None, None, None, None, "Hall of Beginnings", players[pl].name))
 			if cursor.rowcount == 1:

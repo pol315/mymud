@@ -1,3 +1,5 @@
+from classes.utilities	import AdvertiseToRoom
+
 def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 	
 	if params:		
@@ -5,7 +7,7 @@ def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 			if params.lower() in rooms[players[id].room].items:		# the item has to be in the room			
 					rooms[players[id].room].items.remove(params.lower())
 					players[id].inventory.append(params.lower())
-					mud.send_message(id, "You pick up: {}".format(params.lower()))
+					AdvertiseToRoom(id, "{} picks up a {} from the ground.".format(players[id].name, params.lower()), "You pick up a {} from the ground.".format(params.lower()), players, mud)
 					
 					cursor.execute("UPDATE player SET inventory = %s WHERE username = %s;", (players[id].inventory, players[id].name))
 					if cursor.rowcount == 1:
@@ -30,7 +32,7 @@ def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 								rooms[players[id].room].roomitems[container].items.remove(item)
 								
 							players[id].inventory.append(item)
-							mud.send_message(id, "You take a {} from the {}.".format(item, container))						
+							AdvertiseToRoom(id, "{} takes a {} from the {}.".format(players[id].name, item, container), "You take a {} from the {}.".format(item, container), players, mud)				
 							
 							cursor.execute("UPDATE player SET inventory = %s WHERE username = %s;", (players[id].inventory, players[id].name))
 							if cursor.rowcount == 1:

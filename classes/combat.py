@@ -1,5 +1,5 @@
 import random
-
+from classes.utilities	import AdvertiseToRoom
 
 BALANCE_TICKS = 20
 
@@ -27,7 +27,8 @@ def MonsterBasicAttack(monsterID, playerID, players, monsterInstances, ticks, mu
 
 	players[playerID].hp -= damage
 
-	mud.send_message(playerID, "{} attacks you and deals {} damage.".format(monsterInstances[monsterID].name.title(), str(damage)), mud._BOLD, mud._RED)
+	# TODO red text again
+	AdvertiseToRoom(playerID, "{} attacks {} and deals {} damage.".format(monsterInstances[monsterID].name.title(), players[playerID].name, str(damage)), "{} attacks you and deals {} damage.".format(monsterInstances[monsterID].name.title(), str(damage)), players, mud)
 
 
 def RegainBalance(players, monsterInstances, ticks, mud):	# regain players and monsters balances
@@ -70,11 +71,13 @@ def DamageMonster(players, playerID, damage, monsterInstances, monsterID, beasti
 	monsterInstances[monsterID].hp -= damage
 
 	if monsterInstances[monsterID].hp <= 0:
-		mud.send_message(playerID, "You kill the {}.".format(monsterInstances[monsterID].name), mud._BOLD, mud._GREEN)
-
-		itemDrops = list()
+		
+		#TODO text green
+		AdvertiseToRoom(playerID, "{} kills the {}.".format(players[playerID].name, monsterInstances[monsterID].name.title()), "You kill the {}.".format(monsterInstances[monsterID].name.title()), players, mud)
 
 		# drops
+		itemDrops = list()
+
 		for key in beastiary[monsterInstances[monsterID].name].drops:
 			if ((random.random() + 0.001) * 100 ) < int(beastiary[monsterInstances[monsterID].name].drops[key]):
 				players[playerID].inventory.append(key)
