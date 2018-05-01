@@ -3,7 +3,7 @@
         "description": "Larger than a normal rat, but still seems pretty weak. It's dashing around the room with a silver key in it's mouth.",
 		"aggressive": "false",
 		"hp": 20,
-        "stats": { "strength": 1, "dexterity": 0, "wisdom": 0, "meleed": 1, "ranged": 1, "magicd": 1 },
+        "stats": { "strength": 2, "dexterity": 0, "wisdom": 0, "meleed": 1, "ranged": 1, "magicd": 1 },
         "attack": "melee",
         "attack_speed": 30,			
         "drops": { "silver key": 100 }

@@ -24,11 +24,13 @@ def MonsterBasicAttack(monsterID, playerID, players, monsterInstances, ticks, mu
 
 	damage = random.randint(attackpower, (attackpower * 2))		# think of rolling x number of d2s
 	damage = damage - pdefence
+	
+	if damage < 0:	# don't want monsters healing players...
+		damage = 0
 
 	players[playerID].hp -= damage
 
-	# TODO red text again
-	AdvertiseToRoom(playerID, "{} attacks {} and deals {} damage.".format(monsterInstances[monsterID].name.title(), players[playerID].name, str(damage)), "{} attacks you and deals {} damage.".format(monsterInstances[monsterID].name.title(), str(damage)), players, mud)
+	AdvertiseToRoom(playerID, "{} attacks {} and deals {} damage.".format(monsterInstances[monsterID].name.title(), players[playerID].name, str(damage)), "{} attacks you and deals {} damage.".format(monsterInstances[monsterID].name.title(), str(damage)), players, mud, mud._BOLD, mud._RED)
 
 
 def RegainBalance(players, monsterInstances, ticks, mud):	# regain players and monsters balances
@@ -72,8 +74,7 @@ def DamageMonster(players, playerID, damage, monsterInstances, monsterID, beasti
 
 	if monsterInstances[monsterID].hp <= 0:
 		
-		#TODO text green
-		AdvertiseToRoom(playerID, "{} kills the {}.".format(players[playerID].name, monsterInstances[monsterID].name.title()), "You kill the {}.".format(monsterInstances[monsterID].name.title()), players, mud)
+		AdvertiseToRoom(playerID, "{} kills the {}.".format(players[playerID].name, monsterInstances[monsterID].name.title()), "You kill the {}.".format(monsterInstances[monsterID].name.title()), players, mud, mud._BOLD, mud._GREEN)
 
 		# drops
 		itemDrops = list()

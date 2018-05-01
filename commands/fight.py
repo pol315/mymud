@@ -65,7 +65,7 @@ def Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ti
 				damage = random.randint(attackpower, (attackpower * 2))		# think of rolling x number of d2s
 				damage = damage - mdefence
 
-				AdvertiseToRoom(id, "{} attacks the {} with their {}, doing {} damage.".format(players[id].name, monsterToFight, awith, str(damage)), "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), players, mud)				
+				AdvertiseToRoom(id, "{} attacks the {} with their {}, doing {} damage.".format(players[id].name, monsterToFight, awith, str(damage)), "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), players, mud, mud._BOLD, mud._YELLOW)				
 				mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._BLUE)
 
 				DamageMonster(players, id, damage, monsterInstances, monsterID, beastiary, mud)			

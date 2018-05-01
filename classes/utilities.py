@@ -75,9 +75,9 @@ def PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterIns
 	DisplayPrompt(id, players, mud)
 
 # send a message to all players in the same room
-def AdvertiseToRoom(id, message, selfmessage, players, mud):
+def AdvertiseToRoom(id, message, selfmessage, players, mud, strformat = "0", strcolour = "37"):
 	if selfmessage is not None:
-		mud.send_message(id, selfmessage)
+		mud.send_message(id, selfmessage, strformat, strcolour)
 
 	for pid, pl in players.items():														
 		if (pid != id) and (players[pid].room == players[id].room):
