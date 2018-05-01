@@ -26,6 +26,7 @@ from commands.skills		import Skills
 from commands.take 			import Take
 from commands.tell 			import Tell
 from commands.unequip		import Unequip
+from commands.unlock		import Unlock
 from commands.quit 			import Quit
 
 from configparser 	  		import SafeConfigParser
@@ -140,6 +141,10 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		
 	elif (command == "unequip") or (command == "remove"):
 		Unequip(id, params, players, gameitems, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
+
+	elif command == "unlock":
+		Unlock(id, params, players, rooms, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	# COMBAT

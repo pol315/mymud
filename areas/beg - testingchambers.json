@@ -39,11 +39,9 @@
 				"items": ["training robes"]
 			},
 			"chest": {
-				"description": "Upon the chest lies a heavy brass lock. Once you have the key, try UNLOCK CHEST, then OPEN CHEST, then LOOK IN CHEST.",
-				"container": "true",
-				"infinite": "true",
-				"open": "false",
+				"description": "Upon the chest lies a heavy brass lock. Once you have the key, try UNLOCK CHEST.",
 				"locked": "yes",
+				"key": "silver key",
 				"items": ["beginner's ticket"]
 			}
 		},

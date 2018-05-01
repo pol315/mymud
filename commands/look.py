@@ -40,7 +40,7 @@ def Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstance
 		
 		elif (rm.roomitems) and (params.lower() in rm.roomitems):
 			mud.send_message(id, "{}".format(rm.roomitems[params.lower()].description))
-			if rm.roomitems[params.lower()].items:
+			if (rm.roomitems[params.lower()].container) and (rm.roomitems[params.lower()].items):
 				mud.send_message(id, "In the {}, you see: {}".format(params.lower(), ", ".join(rm.roomitems[params.lower()].items)), mud._BOLD, mud._BLUE)
 
 		elif (rm.items) and (params.lower() in rm.items):

@@ -102,9 +102,6 @@ def ParseRoomItems(itemsdict):
 		if "infinite" in itemsdict[key]:
 			currItem.infinite = StringToBool(itemsdict[key]["infinite"])
 
-		if "open" in itemsdict[key]:
-			currItem.open = StringToBool(itemsdict[key]["open"])
-
 		if "locked" in itemsdict[key]:
 			currItem.locked = StringToBool(itemsdict[key]["locked"])
 
