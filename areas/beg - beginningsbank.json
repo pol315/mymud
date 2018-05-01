@@ -1,6 +1,7 @@
 {
 	"Beginnings Bank": {
-        "description": "A roomy area that is nicely carpeted. A row of chain-linked poles leads to the teller's window. As you walk in the room the teller leans over the counter and gives you a nod and a grin.",
+        "description": "A roomy area that is nicely carpeted. A row of chain-linked poles leads to the teller's window. As you walk into the room the teller leans over the counter and gives you a nod and a grin.",
+        "roomtype": "bank",
 		"npcs": ["richard rich"],
         "exits": {"west": "Hallway of Knowledge"}
     }

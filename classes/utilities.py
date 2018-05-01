@@ -130,6 +130,9 @@ def ParseRooms():
 		currRoom.name = key
 		currRoom.description = roomdict[key]["description"]
 		
+		if "roomtype" in roomdict[key]:
+			currRoom.roomtype = roomdict[key]["roomtype"]
+
 		if "roomitems" in roomdict[key]:
 			currRoom.roomitems = ParseRoomItems(roomdict[key]["roomitems"])
 

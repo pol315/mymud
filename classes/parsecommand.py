@@ -7,6 +7,8 @@ from classes.utilities		import PlacePlayerInGame
 from classes.player   		import _Player
 from classes.server 		import _Server
 
+from commands.bank			import Bank
+from commands.deposit		import Deposit
 from commands.description	import Description
 from commands.drop			import Drop
 from commands.emote			import Emote
@@ -27,6 +29,7 @@ from commands.take 			import Take
 from commands.tell 			import Tell
 from commands.unequip		import Unequip
 from commands.unlock		import Unlock
+from commands.withdraw		import Withdraw
 from commands.quit 			import Quit
 
 from configparser 	  		import SafeConfigParser
@@ -145,6 +148,19 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 
 	elif command == "unlock":
 		Unlock(id, params, players, rooms, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
+
+	# BANK
+	elif command == "bank":
+		Bank(id, players, rooms, mud)
+		DisplayPrompt(id, players, mud)
+
+	elif command == "deposit":
+		Deposit(id, params, players, rooms, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
+
+	elif command == "withdraw":
+		Withdraw(id, params, players, rooms, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	# COMBAT

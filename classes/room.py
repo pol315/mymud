@@ -1,6 +1,7 @@
 class _Room:
 	name = ""
 	description = ""
+	roomtype = None
 	roomitems = None		# list of _RoomItem
 	items = list()			# list of _GameItem
 	npcs = list()			# list of _NPC

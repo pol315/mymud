@@ -51,6 +51,7 @@ class _Player:
 	inventory = 		list()
 	bank = 				list()
 	gold = 				0
+	bankgold = 			0
 
 	# EQUIPMENT
 	helmet =			None

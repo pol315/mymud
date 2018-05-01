@@ -38,7 +38,7 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monster
 
 	players[id].last_command = ""
 
-	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race, inventory, chest, helmet, legs, boots, gloves, cloak, necklace, ring, weapon1, weapon2, totalstr, totaldex, totalwis, meleed, ranged, magicd FROM player WHERE username = %s;", (players[id].name,))
+	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race, inventory, chest, helmet, legs, boots, gloves, cloak, necklace, ring, weapon1, weapon2, totalstr, totaldex, totalwis, meleed, ranged, magicd, gold, bank, bankgold FROM player WHERE username = %s;", (players[id].name,))
 	rows = cursor.fetchall()						
 	
 	if IsValidPass(command,str(rows[0][1]),str(rows[0][0])):
@@ -51,8 +51,8 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monster
 			players[id].room = rows[0][3]
 			
 			if rows[0][4] is not None:
-				players[id].description = rows[0][4]					
-			
+				players[id].description = rows[0][4]
+
 			players[id].gender = rows[0][5]
 			players[id].race = rows[0][6]
 			
@@ -76,7 +76,12 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monster
 			players[id].meleed = int(rows[0][21])
 			players[id].ranged = int(rows[0][22])
 			players[id].magicd = int(rows[0][23])
+
+			players[id].gold = int(rows[0][24])
+			if rows[0][25] is not None:
+				players[id].bank = rows[0][25]
 			
+			players[id].bankgold = int(rows[0][26])
 			
 			mud.send_message(id, "\r\n\r\nYou last logged in at: {}".format(players[id].last_login))
 		

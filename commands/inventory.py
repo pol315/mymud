@@ -5,3 +5,5 @@ def Inventory(id, params, players, mud):
 		
 	else:
 		mud.send_message(id, "You aren't currently holding anything.")
+
+	mud.send_message(id, "Gold: {}".format(str(players[id].gold)), mud._BOLD, mud._YELLOW)
