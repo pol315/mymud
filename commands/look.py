@@ -63,6 +63,36 @@ def Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstance
 			
 		elif params.lower() in players[id].inventory:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+
+		elif params.lower() == players[id].weapon1:
+			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+		
+		elif params.lower() == players[id].weapon2:
+			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+		
+		elif params.lower() == players[id].helmet:
+			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+		
+		elif params.lower() == players[id].chest:
+			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+		
+		elif params.lower() == players[id].legs:
+			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+		
+		elif params.lower() == players[id].gloves:
+			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+		
+		elif params.lower() == players[id].boots:
+			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+		
+		elif params.lower() == players[id].cloak:
+			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+		
+		elif params.lower() == players[id].ring:
+			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+		
+		elif params.lower() == players[id].necklace:
+			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
 		
 		else:
 			examined = False

@@ -3,6 +3,7 @@ from classes.utilities		import DisplayPrompt
 from classes.authentication import LogPlayerIn
 from classes.authentication import ValidateName
 from classes.utilities		import PlacePlayerInGame
+from classes.utilities		import ParseAlias
 
 from classes.player   		import _Player
 from classes.server 		import _Server
@@ -111,11 +112,13 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		DisplayPrompt(id, players, mud)
 
 	elif (command == "look") or (command == "l"):
-		Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
+		lookalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "all")
+		Look(id, lookalias, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "greet":
-		Greet(id, params, players, rooms, npcs, mud)
+		greetalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "npcs")
+		Greet(id, greetalias, players, rooms, npcs, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "playtime":
@@ -131,7 +134,8 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		DisplayPrompt(id, players, mud)
 		
 	elif command == "drop":
-		Drop(id, params, players, rooms, cursor, conn, mud)
+		dropalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "inventory")
+		Drop(id, dropalias, players, rooms, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 		
 	elif (command == "inventory") or (command == "inv"):
@@ -139,15 +143,18 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		DisplayPrompt(id, players, mud)
 		
 	elif (command == "equip") or (command == "wear"):
-		Equip(id, params, players, gameitems, cursor, conn, mud)
+		equipalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "inventory")
+		Equip(id, equipalias, players, gameitems, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 		
 	elif (command == "unequip") or (command == "remove"):
-		Unequip(id, params, players, gameitems, cursor, conn, mud)
+		unequipalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "wearing")
+		Unequip(id, unequipalias, players, gameitems, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "unlock":
-		Unlock(id, params, players, rooms, cursor, conn, mud)
+		unlockalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "roomitems")
+		Unlock(id, unlockalias, players, rooms, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	# BANK
@@ -156,20 +163,24 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		DisplayPrompt(id, players, mud)
 
 	elif command == "deposit":
-		Deposit(id, params, players, rooms, cursor, conn, mud)
+		depositalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "inventory")
+		Deposit(id, depositalias, players, rooms, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "withdraw":
-		Withdraw(id, params, players, rooms, cursor, conn, mud)
+		withdrawalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "bank")
+		Withdraw(id, withdrawalias, players, rooms, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	# COMBAT
 	elif command == "fight":
-		Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud)
+		fightalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "monster")
+		Fight(id, fightalias, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif (command == "settarget") or (command == "st"):
-		SetTarget(id, params, players, beastiary, monsterInstances, mud)
+		targetalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "monster")
+		SetTarget(id, targetalias, players, beastiary, monsterInstances, mud)
 		DisplayPrompt(id, players, mud)
 
 	# MOVEMENT

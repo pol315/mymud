@@ -1,13 +1,15 @@
 from classes.utilities	import AdvertiseToRoom
+from classes.utilities	import ParseAlias
 
 def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 	
 	if params:		
 		if " from " not in params.lower(): 	# the player is taking an item directly from the ground of the current room
-			if params.lower() in rooms[players[id].room].items:		# the item has to be in the room			
-					rooms[players[id].room].items.remove(params.lower())
-					players[id].inventory.append(params.lower())
-					AdvertiseToRoom(id, "{} picks up a {} from the ground.".format(players[id].name, params.lower()), "You pick up a {} from the ground.".format(params.lower()), players, mud)
+			takealias = ParseAlias(id, params.lower(), players, rooms, None, "items")
+			if takealias in rooms[players[id].room].items:		# the item has to be in the room			
+					rooms[players[id].room].items.remove(takealias)
+					players[id].inventory.append(takealias)
+					AdvertiseToRoom(id, "{} picks up a {} from the ground.".format(players[id].name, takealias), "You pick up a {} from the ground.".format(takealias), players, mud)
 					
 					cursor.execute("UPDATE player SET inventory = %s WHERE username = %s;", (players[id].inventory, players[id].name))
 					if cursor.rowcount == 1:
@@ -23,16 +25,19 @@ def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 		else: 						# the player is taking an item from a container that exists in the current room
 			container = params.lower().split(" from ")[1]
 			item = params.lower().split(" from ")[0]
+
+			itemalias = ParseAlias(id, item, players, rooms, None, "containeritems")
+			containeralias = ParseAlias(id, container, players, rooms, None, "roomitems")
 			
-			if container in rooms[players[id].room].roomitems:
-				if rooms[players[id].room].roomitems[container].container:
-					if item in rooms[players[id].room].roomitems[container].items:
-						if item in gameitems:
-							if rooms[players[id].room].roomitems[container].infinite is False:
-								rooms[players[id].room].roomitems[container].items.remove(item)
+			if containeralias in rooms[players[id].room].roomitems:
+				if rooms[players[id].room].roomitems[containeralias].container:
+					if itemalias in rooms[players[id].room].roomitems[containeralias].items:
+						if itemalias in gameitems:
+							if rooms[players[id].room].roomitems[containeralias].infinite is False:
+								rooms[players[id].room].roomitems[containeralias].items.remove(itemalias)
 								
-							players[id].inventory.append(item)
-							AdvertiseToRoom(id, "{} takes a {} from the {}.".format(players[id].name, item, container), "You take a {} from the {}.".format(item, container), players, mud)				
+							players[id].inventory.append(itemalias)
+							AdvertiseToRoom(id, "{} takes a {} from the {}.".format(players[id].name, itemalias, containeralias), "You take a {} from the {}.".format(itemalias, containeralias), players, mud)				
 							
 							cursor.execute("UPDATE player SET inventory = %s WHERE username = %s;", (players[id].inventory, players[id].name))
 							if cursor.rowcount == 1:
@@ -42,16 +47,16 @@ def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 								mud.terminate_connection(id)
 								
 						else:
-							mud.send_message(id, "\"{}\" does not exist here.".format(item))
+							mud.send_message(id, "\"{}\" does not exist here.".format(itemalias))
 					
 					else:
-						mud.send_message(id, "\"{}\" is not in the container.".format(item))
+						mud.send_message(id, "\"{}\" is not in the container.".format(itemalias))
 					
 				else:
-					mud.send_message(id, "\"{}\" is not a container.".format(container))
+					mud.send_message(id, "\"{}\" is not a container.".format(containeralias))
 					
 			else:
-				mud.send_message(id, "You don't see \"{}\" here.".format(container))
+				mud.send_message(id, "You don't see \"{}\" here.".format(containeralias))
 			
 	else:
 		mud.send_message(id, "Take what?")

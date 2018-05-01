@@ -17,6 +17,94 @@ def MergeDicts(x, y):
 	z.update(y)
 	return z
 
+def ParseAlias(id, alias, players, rooms, monsterInstances, atype="all"):
+	
+	if alias:
+
+		fullname = alias
+
+		# gather all items in the room that may be aliased (items, npcs, monsters, roomitems)
+		alist = list()
+
+		if (atype == "bank"):
+			if players[id].bank:
+				for it in players[id].bank:
+					alist.append(it)
+
+		if (atype == "inventory") or (atype == "all"):
+			if players[id].inventory:
+				for it in players[id].inventory:
+					alist.append(it)
+
+		if (atype == "monster") or (atype == "all"):
+			for it in monsterInstances:
+				if monsterInstances[it].room == players[id].room:
+					alist.append(monsterInstances[it].name)
+
+		if (atype == "wearing") or (atype == "all"):
+			if players[id].weapon1:
+				alist.append(players[id].weapon1)
+
+			if players[id].weapon2:
+				alist.append(players[id].weapon2)
+
+			if players[id].helmet:
+				alist.append(players[id].helmet)
+
+			if players[id].chest:
+				alist.append(players[id].chest)
+
+			if players[id].legs:
+				alist.append(players[id].legs)
+
+			if players[id].gloves:
+				alist.append(players[id].gloves)
+
+			if players[id].boots:
+				alist.append(players[id].boots)
+
+			if players[id].cloak:
+				alist.append(players[id].cloak)
+
+			if players[id].ring:
+				alist.append(players[id].ring)
+
+			if players[id].necklace:
+				alist.append(players[id].necklace)
+
+		if (atype == "items") or (atype == "all"):
+			if rooms[players[id].room].items:
+				for it in rooms[players[id].room].items:
+					alist.append(it)
+
+		if (atype == "containeritems") or (atype == "all"):
+			if rooms[players[id].room].roomitems:
+				for it in rooms[players[id].room].roomitems:
+					if rooms[players[id].room].roomitems[it].items:
+						alist = alist + rooms[players[id].room].roomitems[it].items
+
+		if (atype == "roomitems") or (atype == "all"):
+			if rooms[players[id].room].roomitems:
+				for it in rooms[players[id].room].roomitems:
+					alist.append(it)
+
+		if (atype == "npcs") or (atype == "all"):
+			if rooms[players[id].room].npcs:
+				for it in rooms[players[id].room].npcs:
+					alist.append(it)
+
+		# go through the list of all possible items and match on the first one
+		for it in alist:
+			if alias in it.lower():
+				fullname = it.lower()
+				break
+
+		return fullname
+
+	else:
+		return None
+
+
 # Capitalize, and punctuate a string
 def MakeProper(message):		
 	if ((message[-1] is '.') or (message[-1] is '?') or (message[-1] is '!')):
