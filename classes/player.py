@@ -76,7 +76,8 @@ class _Player:
 	ranged = 			0
 	magicd = 			0
 	hp =				25
-	mp = 				25
+	ap = 				25
+	attack_speed = 		20
 
 	
 	def __init__(self):

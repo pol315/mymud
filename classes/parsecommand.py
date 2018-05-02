@@ -8,13 +8,13 @@ from classes.utilities		import ParseAlias
 from classes.player   		import _Player
 from classes.server 		import _Server
 
+from commands.attack		import Attack
 from commands.bank			import Bank
 from commands.deposit		import Deposit
 from commands.description	import Description
 from commands.drop			import Drop
 from commands.emote			import Emote
 from commands.equip			import Equip
-from commands.fight			import Fight
 from commands.go 			import Go
 from commands.greet			import Greet
 from commands.help 			import Help
@@ -173,9 +173,9 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		DisplayPrompt(id, players, mud)
 
 	# COMBAT
-	elif command == "fight":
+	elif (command == "attack") or (command == "a"):
 		fightalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "monster")
-		Fight(id, fightalias, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud)
+		Attack(id, fightalias, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif (command == "settarget") or (command == "st"):

@@ -1,8 +1,6 @@
 import random
 from classes.utilities	import AdvertiseToRoom
 
-BALANCE_TICKS = 20
-
 def MonsterBasicAttack(monsterID, playerID, players, monsterInstances, ticks, mud):
 	monsterInstances[monsterID].balance = False
 	monsterInstances[monsterID].fight_tick = ticks
@@ -35,7 +33,7 @@ def MonsterBasicAttack(monsterID, playerID, players, monsterInstances, ticks, mu
 
 def RegainBalance(players, monsterInstances, ticks, mud):	# regain players and monsters balances
 	for pl in players:
-		if (players[pl].balance is False) and (ticks >= (players[pl].fight_tick + BALANCE_TICKS)):
+		if (players[pl].balance is False) and (ticks >= (players[pl].fight_tick + players[pl].attack_speed)):
 			players[pl].balance = True
 			mud.send_message(pl, "You regain your balance.", mud._BOLD, mud._CYAN)
 			mud.send_message(pl, "")

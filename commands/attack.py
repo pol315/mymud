@@ -6,7 +6,7 @@ import random
 from classes.combat		import DamageMonster
 from classes.utilities	import AdvertiseToRoom
 
-def Fight(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud):
+def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud):
 
 	monsterToFight = None
 

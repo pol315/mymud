@@ -132,19 +132,19 @@ def DisplayPrompt(id, players, mud):
 
 
 	mud.send_message(id, "{}".format(players[id].hp), mud._BOLD, hpcolour, False)
-	mud.send_message(id, "/{} MP: ".format(int((players[id].endurance * 5))), mud._BOLD, mud._WHITE, False)
+	mud.send_message(id, "/{} AP: ".format(int((players[id].endurance * 5))), mud._BOLD, mud._WHITE, False)
 
-	mpcolour = mud._GREEN
-	if players[id].mp == (players[id].clarity * 5):
+	apcolour = mud._GREEN
+	if players[id].ap == (players[id].clarity * 5):
 		pass
 
-	elif players[id].mp >= ((players[id].clarity * 5) / 3):
-		mpcolour = mud._YELLOW
+	elif players[id].ap >= ((players[id].clarity * 5) / 3):
+		apcolour = mud._YELLOW
 
-	elif players[id].mp < ((players[id].clarity * 5) / 3):
-		mpcolour = mud._RED
+	elif players[id].ap < ((players[id].clarity * 5) / 3):
+		apcolour = mud._RED
 
-	mud.send_message(id, "{}".format(players[id].mp), mud._BOLD, mpcolour, False)
+	mud.send_message(id, "{}".format(players[id].ap), mud._BOLD, apcolour, False)
 	mud.send_message(id, "/{} > ".format(int((players[id].clarity * 5))), mud._BOLD, mud._WHITE, False)
 
 # place the player in the room they logged out at, or the starting area if no saved room	
