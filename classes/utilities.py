@@ -520,7 +520,7 @@ def CalculateTotalStats(id, players, gameitems, cursor, conn, mud):
 def CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn, mud):
 	for pl in players:
 		if players[pl].hp <= 0:
-			mud.send_message(pl, "You have died. Your inventory and what you were wearing have been dropped where you died.")
+			AdvertiseToRoom(pl, "{} has died.".format(players[pl].name), "You have died. Your inventory and what you were wearing have been dropped where you died.", players, mud)
 			mud.send_message(pl, "You have respawned at the Hall of Beginnings.")
 
 			rooms[players[pl].room].items = rooms[players[pl].room].items + players[pl].inventory
