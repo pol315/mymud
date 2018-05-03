@@ -13,7 +13,7 @@ def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, t
 	if params:
 		monsterToFight = params.lower()
 
-	elif players[id].combat_target:
+	elif (players[id].combat_target) and (players[id].combat_target in monsterInstances):
 		monsterToFight = monsterInstances[players[id].combat_target].name
 
 	if monsterToFight:
@@ -75,6 +75,9 @@ def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, t
 
 		else:
 			mud.send_message(id, "You don't see that monster here.")
+
+	elif (players[id].combat_target):
+		mud.send_message(id, "Your target isn't in the area.")
 
 	else:
 		mud.send_message(id, "You must specify a monster as a parameter or set a combat target using SETTARGET first.")
