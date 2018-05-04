@@ -15,6 +15,7 @@ from commands.description	import Description
 from commands.drop			import Drop
 from commands.emote			import Emote
 from commands.equip			import Equip
+from commands.give 			import Give
 from commands.go 			import Go
 from commands.greet			import Greet
 from commands.help 			import Help
@@ -155,6 +156,10 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 	elif command == "unlock":
 		unlockalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "roomitems")
 		Unlock(id, unlockalias, players, rooms, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
+
+	elif command == "give":
+		Give(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstances, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	# BANK
