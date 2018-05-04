@@ -582,6 +582,12 @@ def CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn
 				if players[pl].name in monsterInstances[monster].combat_target:
 					monsterInstances[monster].combat_target.remove(players[pl].name)
 
+def TeleportPlayer(id, destination, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud):
+	players[id].room = destination
+	AdvertiseToRoom(id, "{} arrives in the area, via mystical means.".format(players[id].name), "You arrive at your destination.", players, mud)
+	Look(id, None, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
+
+
 	
 
 

@@ -1,0 +1,14 @@
+{
+    "Antiqua - Main Plaza": {
+        "description": "You arrive in a large plaza, contained by surrounding houses and shops. Cobbled pathways line the ground and a towering, multi-tiered fountain sits in the middle. A number of stalls surround the plaza, ready for merchants to lay out their wares. A waysign stands next to the fountain, directing travellers around the city.",
+		"roomitems": {
+			"fountain": {
+				"description": "Water flows from the top at a steady rate, pooling and falling from tier to tier. Rusted coins lay at the bottom of the fountain, representing the hopes and whims of the citizens of Antiqua."
+			},
+			"waysign": {
+				"description": "The waysign reads:\r\nNorth: Docks District\r\nWest: Market District\r\nEast: Residential District\r\nSouth: City Entrance"
+			}
+		},
+        "exits": {"east": "Antiqua - Pathway to Residences", "west": "Antiqua - Pathway to Markets", "north": "Antiqua - Pathway to Docks", "south": "Antiqua - City Gates"}
+	}
+}

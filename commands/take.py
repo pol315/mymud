@@ -29,7 +29,7 @@ def Take(id, params, players, rooms, gameitems, cursor, conn, mud):
 			itemalias = ParseAlias(id, item, players, rooms, None, "containeritems")
 			containeralias = ParseAlias(id, container, players, rooms, None, "roomitems")
 			
-			if containeralias in rooms[players[id].room].roomitems:
+			if (containeralias) and (rooms[players[id].room].roomitems) and (containeralias in rooms[players[id].room].roomitems):
 				if rooms[players[id].room].roomitems[containeralias].container:
 					if itemalias in rooms[players[id].room].roomitems[containeralias].items:
 						if itemalias in gameitems:
