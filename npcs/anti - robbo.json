@@ -1,0 +1,9 @@
+{
+	"robbo the fisherman": {
+        "description": "An ancient sea-salty geblit, occasionally jumping to see over the counter.",
+		"response": "Friend! Please purchase my fishing wares! You can make a huge profit fishing, and you can make me a huge profit by buying my stuff!",
+		"items": {
+			"wooden fishing pole": 50
+		}
+    }
+}

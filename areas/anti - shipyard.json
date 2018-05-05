@@ -1,0 +1,7 @@
+{
+    "Antiqua - Shipyard": {
+		"description": "A large hanger of sorts where ships are built and set out to sail. If you've a ship license and supplies, you could build a ship here.",
+		"roomtype": "shipyard",		
+        "exits": {"west": "Antiqua - Fishing Way"}
+	}
+}

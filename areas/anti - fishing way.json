@@ -1,0 +1,6 @@
+{
+    "Antiqua - Fishing Way": {
+        "description": "The smell of fish and alcohol hits you instantly as you step on this area of the dock. There is a fishing dock to the north and a building to the south with a sign that reads \"The Salty Saucepan\".",	
+        "exits": {"east": "Antiqua - Shipyard", "west": "Antiqua - Dock Amenities", "north": "Antiqua - Fishing Dock", "south": "Antiqua - The Salty Saucepan"}
+	}
+}

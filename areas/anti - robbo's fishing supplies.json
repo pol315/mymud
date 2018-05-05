@@ -1,0 +1,7 @@
+{
+    "Antiqua - Robbo's Fishing Supplies": {
+		"description": "You step into a tiny hut filled to the brim with bait, rods and all the fishing supplies you could want. A shrivelled geblit stands behind a counter at the north end, with his head barely peeking over.",
+		"npcs":["robbo the fisherman"],
+        "exits": {"south": "Antiqua - Dock Amenities"}
+	}
+}

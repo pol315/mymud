@@ -1,0 +1,7 @@
+{
+    "Antiqua - Fishing Dock": {
+		"description": "The dock stretches out a good ways north into the sea. Lining the sides of the dock are various netting and ropes. You are freely able to fish here.",
+		"roomtype": "fishing",		
+        "exits": {"south": "Antiqua - Fishing Way"}
+	}
+}

@@ -1,0 +1,7 @@
+{
+    "Antiqua - The Salty Saucepan": {
+		"description": "Barmaids mill around the tables serving hungry and thirsty patrons. A thick marduk woman stands behind the bar, wiping it off with a rag. She nods to you as you walk in and beckons you over to the bar.",		
+		"npcs": ["ayastia", "deldrum the drunk", "sailor ralto"],
+        "exits": {"north": "Antiqua - Fishing Way"}
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"ayastia": {
+        "description": "A thick, tall marduk woman wearing a half buttoned blouse and a lengthy skirt. She seems to be the owner here.",
+		"response": "Drinks make the world go 'round. You're welcome to stay here as long as you like if you're thirsty.",
+		"items": {
+			"antiquan ale": 50, "rosewood rum": 150, "seasalt vodka": 200, "perch and chips": 65
+		}
+    }
+}

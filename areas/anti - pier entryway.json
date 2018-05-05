@@ -1,0 +1,6 @@
+{
+    "Antiqua - Pier Entryway": {
+        "description": "The cobbled road is overlapped with wood from the docks to the north. A wooden entryway stands here with a sign overhead that reads \"Antiqua Dock District\".",		
+        "exits": {"south": "Antiqua - Road to Docks", "north": "Antiqua - Docks"}
+	}
+}

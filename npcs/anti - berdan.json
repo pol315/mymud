@@ -1,0 +1,9 @@
+{
+	"berdan": {
+        "description": "A middle aged man with a wispy bowl cut and small rimmed glasses. He is writing in the ledger with incredible speed.",
+		"response": "If you'd like to be a ship owner, you need to have a ship license. You can buy one here but it isn't cheap. Once you have a license, you'll need to procure a ship, either by building one or buying one. You'll also need one license per owned ship. Please ask me about my goods if you'd like to buy one.",
+		"items": {
+			"ship license": 200000
+		}
+    }
+}

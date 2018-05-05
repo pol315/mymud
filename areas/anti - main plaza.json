@@ -9,6 +9,6 @@
 				"description": "The waysign reads:\r\nNorth: Docks District\r\nWest: Market District\r\nEast: Residential District\r\nSouth: City Entrance\r\nNortheast: Antiqua Chapel\r\nNorthwest: Antiqua Castle"
 			}
 		},
-        "exits": {"east": "Antiqua - Pathway to Residences", "west": "Antiqua - Pathway to Markets", "north": "Antiqua - Pathway to Docks", "south": "Antiqua - Path to Plaza", "northeast": "Antiqua - Chapel", "northwest": "Antiqua - Road to Castle"}
+        "exits": {"east": "Antiqua - Pathway to Residences", "west": "Antiqua - Pathway to Markets", "north": "Antiqua - Road to Docks", "south": "Antiqua - Path to Plaza", "northeast": "Antiqua - Chapel", "northwest": "Antiqua - Road to Castle"}
 	}
 }

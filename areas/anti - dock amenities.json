@@ -1,0 +1,6 @@
+{
+    "Antiqua - Dock Amenities": {
+        "description": "You continue on the east-west path and see a building to the south with a sign that reads \"Ship Licensing\". To the north, a wooden hut stands shantied on stilts, with a plank leading from the dock into the hut. The hut's sign reads \"Robbo's Fishing Supplies\".",		
+        "exits": {"east": "Antiqua - Fishing Way", "west": "Antiqua - Docks", "north": "Antiqua - Robbo's Fishing Supplies", "south": "Antiqua - Ship Licensing"}
+	}
+}

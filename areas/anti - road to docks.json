@@ -1,0 +1,6 @@
+{
+    "Antiqua - Road to Docks": {
+        "description": "To the north you can faintly see the road turn into a wooden dock. The ocean breeze blows in from the north. To the south you can see the plaza and it's marvellous fountain.",		
+        "exits": {"south": "Antiqua - Main Plaza", "north": "Antiqua - Pier Entryway"}
+	}
+}

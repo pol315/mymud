@@ -1,0 +1,7 @@
+{
+    "Antiqua - Ship Licensing": {
+		"description": "A singular room with walls lined with nautical themed trinkets. A man sits at a desk, writing in a thick ledger.",
+		"npcs":["berdan"],
+        "exits": {"north": "Antiqua - Dock Amenities"}
+	}
+}
