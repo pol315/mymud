@@ -1,0 +1,8 @@
+{
+    "Antiqua - Castle Gardens": {
+		"description": "A luscious garden is spread out before you, with rows and rows of different plants. A small hedge maze is in the center of the area. You can see a plot in the garden that is untended, but looks ready to be used. The royal gardener is taking a break from work, leaning on his rake, next to the untended plot.",
+		"roomtype": "farmplot",
+		"npcs": ["ronaldo the gardener"],		
+        "exits": {"east": "Antiqua - Castle Courtyard"}
+	}
+}

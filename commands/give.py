@@ -20,7 +20,7 @@ def Give(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstance
 				if (itemalias == "beginners ticket") and (targetalias == "glorifa"):
 					gstring = "Glorifa says \"Congratulations {}, with the passing of this ticket you've graduated from the Beginner's Academy and will now be transported to the world of MyMud. Remember to ask your fellow adventurer or use the HELP command if you become lost.\"".format(players[id].name)
 					AdvertiseToRoom(id, gstring, gstring, players, mud)
-					TeleportPlayer(id, "Antiqua - Main Plaza", players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
+					TeleportPlayer(id, "Antiqua - Main Plaza", players, rooms, gameitems, npcs, beastiary, monsterInstances, cursor, conn, mud)
 					given = True
 
 				else:

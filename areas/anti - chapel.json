@@ -1,0 +1,13 @@
+{
+    "Antiqua - Chapel": {
+		"description": "Light streaks through the stained glass windows and scatters itself across the pews and altar that lies at the front of the chapel. A priest is standing by the altar cleaning up after a recent ceremony.",
+		"roomtype": "church",
+		"roomitems": {
+			"altar": {
+				"description": "A pristine marble alter, lined with gold trim. Religious trinkets lie on top, ready for use in various ceremonies. The priest sees you examing the altar and makes a motion, encouraging you to pray."
+			}
+		},
+		"npcs": ["priest albert"],
+        "exits": {"southwest": "Antiqua - Main Plaza"}
+	}
+}

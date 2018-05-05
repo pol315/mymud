@@ -582,8 +582,17 @@ def CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn
 				if players[pl].name in monsterInstances[monster].combat_target:
 					monsterInstances[monster].combat_target.remove(players[pl].name)
 
-def TeleportPlayer(id, destination, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud):
+def TeleportPlayer(id, destination, players, rooms, gameitems, npcs, beastiary, monsterInstances, cursor, conn, mud):
+	AdvertiseToRoom(id, "{} leaves the area, via mystical means.".format(players[id].name), None, players, mud)
 	players[id].room = destination
+
+	cursor.execute("UPDATE player SET last_room = %s WHERE username = %s;", (players[id].room, players[id].name))
+	if cursor.rowcount == 1:
+		conn.commit()	
+	else:
+		mud.send_message(id, "\r\nDidn't work my dude. See ya later.")
+		mud.terminate_connection(id)
+		
 	AdvertiseToRoom(id, "{} arrives in the area, via mystical means.".format(players[id].name), "You arrive at your destination.", players, mud)
 	Look(id, None, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 

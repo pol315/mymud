@@ -1,0 +1,6 @@
+{
+    "Antiqua - Castle Foyer": {
+		"description": "A massive foyer opens up in front of you, carpeted with plush red linen. Two big swinging wood doors, studded with metal bracing, lead north to the castle throneroom. Several other corridors lead around the castle but they are all barred by castle guards.",
+        "exits": {"south": "Antiqua - Castle Courtyard", "north": "Antiqua - Castle Throneroom"}
+	}
+}

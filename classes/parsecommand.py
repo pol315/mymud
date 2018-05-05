@@ -190,7 +190,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 
 	# MOVEMENT
 	elif command == "go":
-		Go(id, params, rooms, players, cursor, conn, mud)
+		Go(id, params, rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif (command == "north") or (command == "south") or (command == "east") or (command == "west") or (command == "northwest") or (command == "northeast") or (command == "southwest") or (command == "southeast") or (command == "up") or (command == "down"):
@@ -198,43 +198,43 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		DisplayPrompt(id, players, mud)
 
 	elif command == "n":
-		Go(id, "north", rooms, players, cursor, conn, mud)
+		Go(id, "north", rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "s":
-		Go(id, "south", rooms, players, cursor, conn, mud)
+		Go(id, "south", rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "w":
-		Go(id, "west", rooms, players, cursor, conn, mud)
+		Go(id, "west", rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "e":
-		Go(id, "east", rooms, players, cursor, conn, mud)
+		Go(id, "east", rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "nw":
-		Go(id, "northwest", rooms, players, cursor, conn, mud)
+		Go(id, "northwest", rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "ne":
-		Go(id, "northeast", rooms, players, cursor, conn, mud)
+		Go(id, "northeast", rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "sw":
-		Go(id, "southwest", rooms, players, cursor, conn, mud)
+		Go(id, "southwest", rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "se":
-		Go(id, "southeast", rooms, players, cursor, conn, mud)
+		Go(id, "southeast", rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "u":
-		Go(id, "up", rooms, players, cursor, conn, mud)
+		Go(id, "up", rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "d":
-		Go(id, "down", rooms, players, cursor, conn, mud)
+		Go(id, "down", rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	# ADMIN COMMANDS

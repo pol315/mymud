@@ -1,0 +1,7 @@
+{
+    "Antiqua - Castle Throneroom": {
+		"description": "Stone steps lead up to the throne where the Antiquan king sits, speaking with his advisor. Windows surround the room letting in natural light, but they are fitted with metal bars to prevent intrusion.",
+		"npcs":["king arwin westchester"],
+        "exits": {"south": "Antiqua - Castle Foyer"}
+	}
+}

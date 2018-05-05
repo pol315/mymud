@@ -1,0 +1,6 @@
+{
+    "Antiqua - Road to Castle": {
+        "description": "A series of winding steps start in the road and continue to the north, leading up to the castle courtyard.",
+        "exits": {"north": "Antiqua - Castle Courtyard", "southeast": "Antiqua - Main Plaza"}
+	}
+}

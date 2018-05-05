@@ -1,4 +1,6 @@
-def Go(id, params, rooms, players, cursor, conn, mud):
+from commands.look	import Look
+
+def Go(id, params, rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud):
 	ex = params.lower()																				# store the exit name
 	rm = rooms[players[id].room]																	# store the player's current room
 				
@@ -10,7 +12,7 @@ def Go(id, params, rooms, players, cursor, conn, mud):
 		players[id].room = rm.exits[ex]														# update the player's current room to the one the exit leads to
 		rm = rooms[players[id].room]
 		
-		cursor.execute("UPDATE player SET last_room = %s WHERE username = %s;", (players[id].room.replace('\'', '\'\''), players[id].name))
+		cursor.execute("UPDATE player SET last_room = %s WHERE username = %s;", (players[id].room, players[id].name))
 		if cursor.rowcount == 1:
 			conn.commit()	
 		else:
@@ -27,7 +29,7 @@ def Go(id, params, rooms, players, cursor, conn, mud):
 					mud.send_message(pid, "{} arrived from the {}".format(players[id].name, ex))	    # send them a message telling them that the player entered the room
 
 		# send the player a message telling them where they are now
-		mud.send_message(id, "You have entered: {}".format(players[id].room))
+		Look(id, None, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 
 				
 	else:																							# the specified exit wasn't found in the current room

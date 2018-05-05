@@ -1,0 +1,11 @@
+{
+    "Antiqua - Castle Courtyard": {
+		"description": "Stairs lead up to a barred gate, followed by a vast courtyard. Stone monuments dot the area and a central path leads north to the castle, and splits west to the castle gardens.",
+		"roomitems": {
+			"statue": {
+				"description": "Among the monuments is a large statue, positioned to the left of the castle entryway. The statue looks like a handsome, middle aged man, donned with a crown and pointing a sword into the sky. An engraved plaque on the base reads \"Antiqua's founder and first king of many, Filliam Westchester. Long live our beautiful city.\""
+			}
+		},
+        "exits": {"north": "Antiqua - Castle Foyer", "west": "Antiqua - Castle Gardens", "south": "Antiqua - Road to Castle"}
+	}
+}
