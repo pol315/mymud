@@ -1,0 +1,7 @@
+{
+    "Antiqua - Mayor's Office": {
+        "description": "A quaint office area. Boxes of scrolls line the walls leaving barely enough room for a desk. Behind the desk is a man working on a document and rubbing his thick mustache.",
+		"npcs": ["rupert, mayor of antiqua"],
+        "exits": {"west": "Antiqua - Path to Plaza"}
+	}
+}

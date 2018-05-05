@@ -1,0 +1,16 @@
+{
+    "Antiqua - Armory": {
+		"description": "Racks line the walls filled with armor and weapons to supply the city guards. An anvil lies in the center of the room and a blazing hot forge is set up in the corner. A man is at the anvil, pounding molten metal into the shape of a halberd head.",
+		"roomtype": "blacksmith",
+		"roomitems": {
+			"anvil": {
+				"description": "If you have a set of blacksmithing tools and the supplies, you could smith weapons and armor here."
+			},
+			"forge": {
+				"description": "Peering through the hazy heat, you can see a tall forge, with a chimney out the roof. Bellows sit to the side to pump air into the forge to keep it burning."
+			}
+		},
+		"npcs": ["horace, antiquan blacksmith"],
+        "exits": {"east": "Antiqua - Path to Plaza"}
+	}
+}

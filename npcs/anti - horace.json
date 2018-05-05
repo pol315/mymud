@@ -1,0 +1,9 @@
+{
+	"horace, antiquan blacksmith": {
+        "description": "A rough, scarred man. He is focused intently on his work, but he sends you a quick glance as you look over at him.",
+		"response": "If you're looking for armor or weapons, I can't sell them to you here, these are for city guards only. If you're looking to smith however, I'd be more than happy to let you use the facilities here and I can sell you the tools to get you started.",
+		"items": {
+			"blacksmith's hammer": 15
+		}
+    }
+}

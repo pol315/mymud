@@ -1,0 +1,7 @@
+{
+    "Antiqua - City Gates": {
+        "description": "You stand in large entryway of the city of Antiqua. Guards stand by, weapons at the ready, scanning south for anything approaching the gates. You can see a cobbled road heading north into the city.",
+		"npcs": ["desmond - antiquan guard", "doshmire - antiquan guard"],
+        "exits": {"north": "Antiqua - Path to Plaza"}
+	}
+}

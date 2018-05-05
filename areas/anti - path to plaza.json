@@ -1,0 +1,6 @@
+{
+    "Antiqua - Path to Plaza": {
+        "description": "A cobbled street leads north to the main plaza. To the south, the large city gates of Antiqua stand tall. Building entryways lie to the east and west.",		
+        "exits": {"east": "Antiqua - Mayor's Office", "west": "Antiqua - Armory", "north": "Antiqua - Main Plaza", "south": "Antiqua - City Gates"}
+	}
+}
