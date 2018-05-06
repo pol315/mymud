@@ -1,0 +1,7 @@
+{
+    "Antiqua - Neighbourhood Entrance": {
+		"description": "A double-wide metal gate stands open to the east, leading to a huge housing district. A sign on the gate reads \"Welcome to Antiqua's district of adventurer housing! If you know the person you wish to visit, please ring their bell before entering.\"",
+		"roomtype": "housing",
+		"exits": {"west": "Antiqua - Residential Avenue", "north": "Antiqua - Housing Agent"}
+	}
+}

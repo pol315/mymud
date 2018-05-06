@@ -1,0 +1,6 @@
+{
+    "Antiqua - Welland Residence": {
+        "description": "DESCRIPTION PLACEHOLDER",
+		"exits": {"south": "Antiqua - Residential Laneway"}
+	}
+}

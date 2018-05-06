@@ -1,0 +1,6 @@
+{
+    "Antiqua - Wistham Residence": {
+        "description": "DESCRIPTION PLACEHOLDER",
+		"exits": {"north": "Antiqua - Residential Avenue"}
+	}
+}

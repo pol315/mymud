@@ -1,0 +1,6 @@
+{
+    "Antiqua - Residential Avenue": {
+        "description": "The residential avenue winds past more rows of houses, opening up to the west, upon which you can see a tall gate leading to an ever larger residential neighbourhood.",
+		"exits": {"east": "Antiqua - Neighbourhood Entrance", "west": "Antiqua - Residential Laneway", "north": "Antiqua - Carmichael Residence", "south": "Antiqua - Wistham Residence"}
+	}
+}

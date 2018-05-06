@@ -1,0 +1,7 @@
+{
+    "Antiqua - Housing Agent": {
+		"description": "A beautifully furnished house with pamphlets and papers lining the walls. A peculiar man stands at a table rifling through documents and signing papers.",
+		"npcs": ["roland, antiqua housing agent"],
+		"exits": {"south": "Antiqua - Neighbourhood Entrance"}
+	}
+}

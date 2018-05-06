@@ -1,0 +1,9 @@
+{
+	"roland, antiqua housing agent": {
+        "description": "A thin man with big glasses and a whispy mustache and beard. He's dressed in a dark suit and a red tie.",
+		"response": "If you're interested in Antiquan real estate, I'm your man! You are allowed to own a home in the city if you can afford a housing permit from me. Once you have used a housing permit, you may go to the neighbourhood entrance outside and travel to your new house!",
+		"items": {
+			"housing permit - antiqua": 600000
+		}
+    }
+}

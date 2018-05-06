@@ -1,0 +1,6 @@
+{
+    "Antiqua - Carmichael Residence": {
+        "description": "DESCRIPTION PLACEHOLDER",
+		"exits": {"south": "Antiqua - Residential Avenue"}
+	}
+}

@@ -1,0 +1,6 @@
+{
+    "Antiqua - Redborne Residence": {
+        "description": "DESCRIPTION PLACEHOLDER",
+		"exits": {"north": "Antiqua - Residential Laneway"}
+	}
+}

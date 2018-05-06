@@ -1,0 +1,6 @@
+{
+    "Antiqua - Pathway to Residences": {
+        "description": "A narrow pathway winds through city to the east, leading to the residential district. You can hear the bustle of the main plaza to the west.",
+		"exits": {"east": "Antiqua - Residential Laneway", "west": "Antiqua - Main Plaza"}
+	}
+}

@@ -1,0 +1,6 @@
+{
+    "Antiqua - Residential Laneway": {
+        "description": "The residential pathway continues with rows of houses to the north and south.",
+		"exits": {"east": "Antiqua - Residential Avenue", "west": "Antiqua - Pathway to Residences", "north": "Antiqua - Welland Residence", "south": "Antiqua - Redborne Residence"}
+	}
+}
