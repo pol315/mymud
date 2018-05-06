@@ -1,6 +1,7 @@
 {
     "Antiqua - Docks": {
-        "description": "You step out onto the docks and feel the ocean breeze waft by. Looking south you can see the path to the main plaza, and to the east leads to the shipyard and fishing amenities.",		
+        "description": "You step out onto the docks and feel the ocean breeze waft by. Looking south you can see the path to the main plaza, and to the east leads to the shipyard and fishing amenities.",
+        "monsters": ["seagull", "seagull"],		
         "exits": {"south": "Antiqua - Pier Entryway", "east": "Antiqua - Dock Amenities"}
 	}
 }

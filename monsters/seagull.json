@@ -1,0 +1,12 @@
+{
+    "seagull": {
+        "description": "A beefy white bird with thin black stripes and piercing eyes. It struts around flapping it's wings and sqwuaking like a maniac.",
+		"aggressive": "false",
+		"hp": 20,
+        "stats": { "strength": 2, "dexterity": 0, "wisdom": 0, "meleed": 1, "ranged": 1, "magicd": 1 },
+        "attack": "melee",
+        "attack_speed": 30,
+        "respawn": 300,			
+        "drops": { "sailor's ring": 5 }
+	}
+}

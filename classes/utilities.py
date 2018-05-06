@@ -1,6 +1,8 @@
 import os
 import json
 
+from copy 					import copy
+
 from commands.look			import Look
 
 from classes.room	 		import _Room
@@ -409,8 +411,8 @@ def PlaceMonstersInRooms(rooms, beastiary, monsterInstances):
 
 	for room in rooms:
 		if rooms[room].monsters:
-			for key in rooms[room].monsters:
-				currMonster = beastiary[key]
+			for item in rooms[room].monsters:
+				currMonster = copy(beastiary[item])
 				currMonster.ID = monsterIDs
 				currMonster.room = room
 				monsterInstances[monsterIDs] = currMonster

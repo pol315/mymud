@@ -242,6 +242,13 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		mud.send_message(id, "{}".format(ticks))
 		DisplayPrompt(id, players, mud)
 
+	elif command == "minstances" and players[id].name == "Doomblade":
+		for item in monsterInstances:
+			mud.send_message(id, str(item))
+			mud.send_message(id, str(monsterInstances[item]))
+
+		DisplayPrompt(id, players, mud)
+
 	# MISC
 	elif (command == "quit") or (command == "qq"):
 		Quit(id, players, cursor, conn, mud)
