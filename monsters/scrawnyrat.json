@@ -5,7 +5,8 @@
 		"hp": 20,
         "stats": { "strength": 2, "dexterity": 0, "wisdom": 0, "meleed": 1, "ranged": 1, "magicd": 1 },
         "attack": "melee",
-        "attack_speed": 30,			
+        "attack_speed": 30,
+        "respawn": 100,			
         "drops": { "silver key": 100 }
 	}
 }

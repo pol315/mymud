@@ -13,6 +13,9 @@ class _Monster:
 	magicd = 0
 	drops = None		# TODO change this to a list of _GameItem, perhaps a tuple with drop percentages
 
+	respawn = 100
+	death_tick = None
+
 	balance = True
 	combat_target = list()
 	attack_speed = 20	# number of ticks

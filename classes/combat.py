@@ -67,7 +67,7 @@ def ForgetTargets(monsterInstances, ticks):	# monsters forget their target after
 			monsterInstances[monster].combat_target = list()
 
 
-def DamageMonster(players, playerID, damage, monsterInstances, monsterID, beastiary, mud):
+def DamageMonster(players, playerID, damage, monsterInstances, deadMonsters, monsterID, beastiary, ticks, mud):
 	monsterInstances[monsterID].hp -= damage
 
 	if monsterInstances[monsterID].hp <= 0:
@@ -85,6 +85,27 @@ def DamageMonster(players, playerID, damage, monsterInstances, monsterID, beasti
 		if itemDrops:
 			mud.send_message(playerID, "You pick up the following items from your dead opponent: {}".format(", ".join(itemDrops)), mud._BOLD, mud._GREEN)
 
+		monsterInstances[monsterID].death_tick = ticks
+		monsterInstances[monsterID].combat_target = list()
+		deadMonsters[monsterID] = monsterInstances[monsterID]
 		del monsterInstances[monsterID]
+
+
+def RespawnMonsters(monsterInstances, deadMonsters, beastiary, ticks, players, mud):
+	respawns = list()
+
+	for monster in deadMonsters:
+		if (deadMonsters[monster].death_tick) and (ticks >= (deadMonsters[monster].death_tick + deadMonsters[monster].respawn)):
+			deadMonsters[monster].death_tick = None
+			deadMonsters[monster].hp = beastiary[deadMonsters[monster].name].hp
+			monsterInstances[monster] = deadMonsters[monster]
+			respawns.append(monster)
+
+			for pl in players:
+				if players[pl].room == deadMonsters[monster].room:
+					mud.send_message(pl, "{} appears in the area.".format(deadMonsters[monster].name.title())) 
+	
+	for r in respawns:
+		del deadMonsters[r]
 
 

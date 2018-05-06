@@ -40,7 +40,7 @@ import psycopg2
 import json
 import time
 
-def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary, monsterInstances, ticks, cursor, conn, mud):
+def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary, monsterInstances, deadMonsters, ticks, cursor, conn, mud):
 	
 	if (command != "") and (command != "r"):
 		players[id].last_command = command
@@ -180,7 +180,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 	# COMBAT
 	elif (command == "attack") or (command == "a"):
 		fightalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "monster")
-		Attack(id, fightalias, players, rooms, gameitems, beastiary, monsterInstances, ticks, cursor, conn, mud)
+		Attack(id, fightalias, players, rooms, gameitems, beastiary, monsterInstances, deadMonsters, ticks, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif (command == "settarget") or (command == "st"):
@@ -247,7 +247,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		Quit(id, players, cursor, conn, mud)
 		
 	elif command == "r":
-		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, npcs, beastiary, monsterInstances, ticks, cursor, conn, mud)
+		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, npcs, beastiary, monsterInstances, deadMonsters, ticks, cursor, conn, mud)
 
 	elif command == "self":
 		Self(id, params, players, mud)

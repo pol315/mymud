@@ -5,7 +5,8 @@
 		"hp": 9001,
         "stats": { "strength": 666, "dexterity": 666, "wisdom": 0, "meleed": 666, "ranged": 666, "magicd": 666 },        
         "attack": "melee",
-        "attack_speed": 10,							
+        "attack_speed": 10,
+        "respawn": 3000,							
         "drops": ""
     }
 }

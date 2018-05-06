@@ -377,6 +377,9 @@ def ParseMonsters():
 		if "drops" in monsterdict[key]:
 			currMonster.drops = monsterdict[key]["drops"]
 
+		if "respawn" in monsterdict[key]:
+			currMonster.respawn = monsterdict[key]["respawn"]
+
 		if "stats" in monsterdict[key]:
 				if "strength" in monsterdict[key]["stats"]:
 					currMonster.strength = monsterdict[key]["stats"]["strength"]

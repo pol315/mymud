@@ -7,7 +7,7 @@ from classes.combat		import DamageMonster
 from classes.utilities	import AdvertiseToRoom
 from classes.levelling	import GainExperience
 
-def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, cursor, conn, mud):
+def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, deadMonsters, ticks, cursor, conn, mud):
 
 	monsterToFight = None
 
@@ -74,7 +74,7 @@ def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, t
 				AdvertiseToRoom(id, "{} attacks the {} with their {}, doing {} damage.".format(players[id].name, monsterToFight, awith, str(damage)), "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), players, mud, mud._BOLD, mud._YELLOW)				
 				mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._BLUE)
 
-				DamageMonster(players, id, damage, monsterInstances, monsterID, beastiary, mud)			
+				DamageMonster(players, id, damage, monsterInstances, deadMonsters, monsterID, beastiary, ticks, mud)			
 
 			else:
 				mud.send_message(id, "You need to regain your balance first!")

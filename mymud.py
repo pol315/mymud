@@ -14,6 +14,7 @@ from classes.authentication import ValidateName
 from classes.combat			import ForgetTargets
 from classes.combat			import RegainBalance
 from classes.combat			import MonsterAttacks
+from classes.combat			import RespawnMonsters
 from classes.parsecommand	import ParseCommand
 from classes.utilities		import PlacePlayerInGame
 from classes.utilities		import ParseRooms
@@ -53,6 +54,7 @@ gameitems = ParseGameItems()
 npcs = ParseNPCs()
 beastiary = ParseMonsters()
 monsterInstances = {}
+deadMonsters = {}
 PlaceMonstersInRooms(rooms, beastiary, monsterInstances)
 players = {}												# stores the players in the game
 ticks = 0													# stores how many ticks have gone by since server start
@@ -71,6 +73,7 @@ while True:													# main game loop. We loop forever (i.e. until the progra
 	MonsterAttacks(players, monsterInstances, ticks, mud)	# if a monster is ready to attack and has a target
 	CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn, mud)	# RIP
 	ForgetTargets(monsterInstances, ticks)					# if a player dies or is away for a set period of time, monsters forget them as a target
+	RespawnMonsters(monsterInstances, deadMonsters, beastiary, ticks, players, mud)
 
 	for id in mud.get_new_players():						# go through any newly connected players
 
@@ -99,6 +102,6 @@ while True:													# main game loop. We loop forever (i.e. until the progra
 		if id not in players:								# if for any reason the player isn't in the player map, skip them and move on to the next one
 			continue
 		
-		ParseCommand(id, command.lower(), params.strip(), players, rooms, gameitems, npcs, beastiary, monsterInstances, ticks, cursor, conn, mud)
+		ParseCommand(id, command.lower(), params.strip(), players, rooms, gameitems, npcs, beastiary, monsterInstances, deadMonsters, ticks, cursor, conn, mud)
 		
 			
