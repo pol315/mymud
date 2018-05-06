@@ -22,18 +22,18 @@ class _Player:
 	playtime = 			datetime.strptime("00:00:00", "%H:%M:%S")
 	
 	# SKILLS
-	strength = 			1												# melee damage
-	dexterity = 		1												# ranged damage
-	wisdom = 			1												# magic damage
+	strength = 			0												# melee damage
+	dexterity = 		0												# ranged damage
+	wisdom = 			0												# magic damage
 	endurance =			5												# determines HP
 	clarity = 			5												# determines MP
-	mining = 			1
-	fishing = 			1
-	foresting = 		1
-	cooking = 			1
-	blacksmithing = 	1												# plate and weapon making
-	rangership =		1												# TBD.. bow making and leatherworking
-	energycraft = 		1												# robe and magical item making
+	mining = 			0
+	fishing = 			0
+	foresting = 		0
+	cooking = 			0
+	blacksmithing =		0												# plate and weapon making
+	rangership =		0												# TBD.. bow making and leatherworking
+	energycraft = 		0												# robe and magical item making
 	strengthxp =		0												
 	dexterityxp = 		0												
 	wisdomxp = 			0												

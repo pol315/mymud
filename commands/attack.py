@@ -5,8 +5,9 @@ import random
 
 from classes.combat		import DamageMonster
 from classes.utilities	import AdvertiseToRoom
+from classes.levelling	import GainExperience
 
-def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud):
+def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, ticks, cursor, conn, mud):
 
 	monsterToFight = None
 
@@ -37,6 +38,7 @@ def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, t
 
 				attackpower = 0
 				awith = "fists"
+				atype = "strength"
 				mdefence = 0
 				combattext = ["you punch as hard as you can.", "you let loose a flurry of kicks and punches.", "you uppercut your enemy with all your force."]
 
@@ -50,11 +52,13 @@ def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, t
 						combattext = ["you lash out with your weapon with great might.", "you let loose a flurry of stabs and jabs.", "you bring down your weapon as hard as you can."]
 
 					elif gameitems[players[id].weapon1].attack == "range":
+						atype = "dexterity"
 						attackpower = players[id].totaldex
 						mdefence = beastiary[monsterToFight].ranged
 						combattext = ["you pull back on the string as hard as you can and send an arrow flying.", "you let loose an arrow with great precision.", "you grab an arrow from your quiver and deliver it with speed."]
 
 					elif gameitems[players[id].weapon1].attack == "magic":
+						atype = "wisdom"
 						attackpower = players[id].totalwis
 						mdefence = beastiary[monsterToFight].magicd
 						combattext = ["you send a group of bolts hurtling at your opponent.", "you channel as much energy as you can into your enemy.", "you let loose a great ball of energy."]
@@ -64,6 +68,8 @@ def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, t
 
 				damage = random.randint(attackpower, (attackpower * 2))		# think of rolling x number of d2s
 				damage = damage - mdefence
+
+				GainExperience(id, players, gameitems, atype, damage, cursor, conn, mud)
 
 				AdvertiseToRoom(id, "{} attacks the {} with their {}, doing {} damage.".format(players[id].name, monsterToFight, awith, str(damage)), "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), players, mud, mud._BOLD, mud._YELLOW)				
 				mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._BLUE)

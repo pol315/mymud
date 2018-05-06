@@ -38,7 +38,7 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monster
 
 	players[id].last_command = ""
 
-	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race, inventory, chest, helmet, legs, boots, gloves, cloak, necklace, ring, weapon1, weapon2, totalstr, totaldex, totalwis, meleed, ranged, magicd, gold, bank, bankgold FROM player WHERE username = %s;", (players[id].name,))
+	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race, inventory, chest, helmet, legs, boots, gloves, cloak, necklace, ring, weapon1, weapon2, totalstr, totaldex, totalwis, meleed, ranged, magicd, gold, bank, bankgold, strength_level, strength_xp, dexterity_level, dexterity_xp, wisdom_level, wisdom_xp, endurance_level, endurance_xp, clarity_level, clarity_xp FROM player WHERE username = %s;", (players[id].name,))
 	rows = cursor.fetchall()						
 	
 	if IsValidPass(command,str(rows[0][1]),str(rows[0][0])):
@@ -82,6 +82,17 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monster
 				players[id].bank = rows[0][25]
 			
 			players[id].bankgold = int(rows[0][26])
+
+			players[id].strength = int(rows[0][27])
+			players[id].strengthxp = int(rows[0][28])
+			players[id].dexterity = int(rows[0][29])
+			players[id].dexterityxp = int(rows[0][30])
+			players[id].wisdom = int(rows[0][31])
+			players[id].wisdomxp = int(rows[0][32])
+			players[id].endurance = int(rows[0][33])
+			players[id].endurancexp = int(rows[0][34])
+			players[id].clarity = int(rows[0][35])
+			players[id].clarityxp = int(rows[0][36])
 			
 			mud.send_message(id, "\r\n\r\nYou last logged in at: {}".format(players[id].last_login))
 		

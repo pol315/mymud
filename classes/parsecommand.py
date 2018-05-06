@@ -180,7 +180,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 	# COMBAT
 	elif (command == "attack") or (command == "a"):
 		fightalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "monster")
-		Attack(id, fightalias, players, rooms, gameitems, beastiary, monsterInstances, ticks, mud)
+		Attack(id, fightalias, players, rooms, gameitems, beastiary, monsterInstances, ticks, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif (command == "settarget") or (command == "st"):
