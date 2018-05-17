@@ -602,6 +602,15 @@ def TeleportPlayer(id, destination, players, rooms, gameitems, npcs, beastiary, 
 	Look(id, None, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 
 
+def RegainHPAP(players):
+	for pl in players:
+		if players[pl].hp < (players[pl].endurance * 5):
+			players[pl].hp = players[pl].hp + 1
+
+		if players[pl].ap < (players[pl].clarity * 5):
+			players[pl].ap = players[pl].ap + 1
+
+
 	
 
 

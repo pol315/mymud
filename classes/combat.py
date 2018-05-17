@@ -23,8 +23,8 @@ def MonsterBasicAttack(monsterID, playerID, players, monsterInstances, ticks, mu
 	damage = random.randint(attackpower, (attackpower * 2))		# think of rolling x number of d2s
 	damage = damage - pdefence
 	
-	if damage < 0:	# don't want monsters healing players...
-		damage = 0
+	if damage < 1:	# don't want monsters healing players... also a minimum damage of 1 so a hit attack never does 0
+		damage = 1
 
 	players[playerID].hp -= damage
 

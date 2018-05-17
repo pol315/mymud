@@ -23,6 +23,7 @@ from classes.utilities		import ParseNPCs
 from classes.utilities		import ParseMonsters
 from classes.utilities		import PlaceMonstersInRooms
 from classes.utilities		import CleanUpDeadPlayers
+from classes.utilities		import RegainHPAP
 
 from classes.player   		import _Player
 from classes.server 		import _Server
@@ -72,8 +73,10 @@ while True:													# main game loop. We loop forever (i.e. until the progra
 	RegainBalance(players, monsterInstances, ticks, mud) 	# go through all players and monsters and see if they are ready to fight again
 	MonsterAttacks(players, monsterInstances, ticks, mud)	# if a monster is ready to attack and has a target
 	CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn, mud)	# RIP
-	ForgetTargets(monsterInstances, ticks)					# if a player dies or is away for a set period of time, monsters forget them as a target
-	RespawnMonsters(monsterInstances, deadMonsters, beastiary, ticks, players, mud)
+	if ticks % 300 == 0:									# check for these every minute so we don't have to iterate tons of collections every tick
+		ForgetTargets(monsterInstances, ticks)					# if a player dies or is away for a set period of time, monsters forget them as a target
+		RespawnMonsters(monsterInstances, deadMonsters, beastiary, ticks, players, mud)
+		RegainHPAP(players)
 
 	for id in mud.get_new_players():						# go through any newly connected players
 
