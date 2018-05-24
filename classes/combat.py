@@ -67,7 +67,7 @@ def ForgetTargets(monsterInstances, ticks):	# monsters forget their target after
 			monsterInstances[monster].combat_target = list()
 
 
-def DamageMonster(players, playerID, damage, monsterInstances, deadMonsters, monsterID, beastiary, ticks, mud):
+def DamageMonster(players, playerID, damage, monsterInstances, deadMonsters, monsterID, beastiary, ticks, cursor, conn, mud):
 	monsterInstances[monsterID].hp -= damage
 
 	if monsterInstances[monsterID].hp <= 0:
@@ -84,6 +84,13 @@ def DamageMonster(players, playerID, damage, monsterInstances, deadMonsters, mon
 
 		if itemDrops:
 			mud.send_message(playerID, "You pick up the following items from your dead opponent: {}".format(", ".join(itemDrops)), mud._BOLD, mud._GREEN)
+
+			cursor.execute("UPDATE player SET inventory = %s WHERE username = %s;", (players[playerID].inventory, players[playerID].name))
+			if cursor.rowcount == 1:
+				conn.commit()	
+			else:
+				mud.send_message(id, "\r\nDidn't work my dude. See ya later.")
+				mud.terminate_connection(id)
 
 		monsterInstances[monsterID].death_tick = ticks
 		monsterInstances[monsterID].combat_target = list()

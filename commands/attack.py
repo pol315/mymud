@@ -74,7 +74,7 @@ def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, d
 				AdvertiseToRoom(id, "{} attacks the {} with their {}, doing {} damage.".format(players[id].name, monsterToFight, awith, str(damage)), "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), players, mud, mud._BOLD, mud._YELLOW)				
 				mud.send_message(id, "You deal {} damage.".format(str(damage)), mud._BOLD, mud._BLUE)
 
-				DamageMonster(players, id, damage, monsterInstances, deadMonsters, monsterID, beastiary, ticks, mud)			
+				DamageMonster(players, id, damage, monsterInstances, deadMonsters, monsterID, beastiary, ticks, cursor, conn, mud)			
 
 			else:
 				mud.send_message(id, "You need to regain your balance first!")
