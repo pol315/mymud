@@ -416,6 +416,7 @@ def PlaceMonstersInRooms(rooms, beastiary, monsterInstances):
 				currMonster.ID = monsterIDs
 				currMonster.room = room
 				monsterInstances[monsterIDs] = currMonster
+				currMonster.combat_target = list()
 				monsterIDs += 1
 
 # when a players stats change, recalculate and save to DB

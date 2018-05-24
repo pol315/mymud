@@ -246,6 +246,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		for item in monsterInstances:
 			mud.send_message(id, str(item))
 			mud.send_message(id, str(monsterInstances[item]))
+			mud.send_message(id, str(monsterInstances[item].combat_target))
 
 		DisplayPrompt(id, players, mud)
 
