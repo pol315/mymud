@@ -75,6 +75,7 @@ def ForgetTargets(monsterInstances, ticks):	# monsters forget their target after
 
 
 def DamageMonster(players, playerID, damage, monsterInstances, deadMonsters, monsterID, beastiary, ticks, cursor, conn, mud):
+
 	monsterInstances[monsterID].hp -= damage
 
 	if monsterInstances[monsterID].hp <= 0:

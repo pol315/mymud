@@ -69,6 +69,9 @@ def Attack(id, params, players, rooms, gameitems, beastiary, monsterInstances, d
 				damage = random.randint(attackpower, (attackpower * 2))		# think of rolling x number of d2s
 				damage = damage - mdefence
 
+				if damage > monsterInstances[monsterID].hp:
+					damage = monsterInstances[monsterID].hp
+
 				GainExperience(id, players, gameitems, atype, damage, cursor, conn, mud)
 
 				AdvertiseToRoom(id, "{} attacks the {} with their {}, doing {} damage.".format(players[id].name, monsterToFight, awith, str(damage)), "With your {}, {}".format(awith, random.sample(combattext, 1)[0]), players, mud, mud._BOLD, mud._YELLOW)				
