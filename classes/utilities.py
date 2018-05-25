@@ -603,13 +603,21 @@ def TeleportPlayer(id, destination, players, rooms, gameitems, npcs, beastiary, 
 	Look(id, None, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 
 
-def RegainHPAP(players):
+def RegainHPAP(players, cursor, conn):
 	for pl in players:
 		if players[pl].hp < (players[pl].endurance * 5):
 			players[pl].hp = players[pl].hp + 1
 
+			cursor.execute("UPDATE player SET hp = %s WHERE username = %s;", (players[pl].hp, players[pl].name))
+			if cursor.rowcount == 1:
+				conn.commit()				
+
 		if players[pl].ap < (players[pl].clarity * 5):
 			players[pl].ap = players[pl].ap + 1
+
+			cursor.execute("UPDATE player SET ap = %s WHERE username = %s;", (players[pl].ap, players[pl].name))
+			if cursor.rowcount == 1:
+				conn.commit()	
 
 
 	

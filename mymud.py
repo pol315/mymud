@@ -71,12 +71,12 @@ while True:													# main game loop. We loop forever (i.e. until the progra
 	mud.update()											# 'update' must be called in the loop to keep the game running and give us up-to-date information
 
 	RegainBalance(players, monsterInstances, ticks, mud) 	# go through all players and monsters and see if they are ready to fight again
-	MonsterAttacks(players, monsterInstances, ticks, mud)	# if a monster is ready to attack and has a target
+	MonsterAttacks(players, monsterInstances, ticks, cursor, conn, mud)	# if a monster is ready to attack and has a target
 	CleanUpDeadPlayers(players, gameitems, rooms, monsterInstances, cursor, conn, mud)	# RIP
 	if ticks % 300 == 0:									# check for these every minute so we don't have to iterate tons of collections every tick
 		ForgetTargets(monsterInstances, ticks)					# if a player dies or is away for a set period of time, monsters forget them as a target
 		RespawnMonsters(monsterInstances, deadMonsters, beastiary, ticks, players, mud)
-		RegainHPAP(players)
+		RegainHPAP(players, cursor, conn)
 
 	for id in mud.get_new_players():						# go through any newly connected players
 

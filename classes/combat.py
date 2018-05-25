@@ -1,7 +1,7 @@
 import random
 from classes.utilities	import AdvertiseToRoom
 
-def MonsterBasicAttack(monsterID, playerID, players, monsterInstances, ticks, mud):
+def MonsterBasicAttack(monsterID, playerID, players, monsterInstances, ticks, cursor, conn, mud):
 	monsterInstances[monsterID].balance = False
 	monsterInstances[monsterID].fight_tick = ticks
 
@@ -28,6 +28,13 @@ def MonsterBasicAttack(monsterID, playerID, players, monsterInstances, ticks, mu
 
 	players[playerID].hp -= damage
 
+	cursor.execute("UPDATE player SET hp = %s WHERE username = %s;", (players[playerID].hp, players[playerID].name))
+	if cursor.rowcount == 1:
+		conn.commit()	
+	else:
+		mud.send_message(id, "\r\nDidn't work my dude. See ya later.")
+		mud.terminate_connection(id)
+
 	AdvertiseToRoom(playerID, "{} attacks {} and deals {} damage.".format(monsterInstances[monsterID].name.title(), players[playerID].name, str(damage)), "{} attacks you and deals {} damage.".format(monsterInstances[monsterID].name.title(), str(damage)), players, mud, mud._BOLD, mud._RED)
 
 
@@ -43,7 +50,7 @@ def RegainBalance(players, monsterInstances, ticks, mud):	# regain players and m
 			monsterInstances[monster].balance = True	
 
 
-def MonsterAttacks(players, monsterInstances, ticks, mud): # if a monster has a combat target and balance, and the target is in the same room, attack
+def MonsterAttacks(players, monsterInstances, ticks, cursor, conn, mud): # if a monster has a combat target and balance, and the target is in the same room, attack
 	for monster in monsterInstances:
 		if monsterInstances[monster].combat_target and monsterInstances[monster].balance:
 			target = None
@@ -54,7 +61,7 @@ def MonsterAttacks(players, monsterInstances, ticks, mud): # if a monster has a 
 					if (players[pl].name == tg) and (players[pl].room == monsterInstances[monster].room):
 						target = monsterInstances[monster].combat_target
 						attacked = True
-						MonsterBasicAttack(monster, pl, players, monsterInstances, ticks, mud)
+						MonsterBasicAttack(monster, pl, players, monsterInstances, ticks, cursor, conn, mud)
 						break
 
 				if attacked:
