@@ -194,7 +194,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		DisplayPrompt(id, players, mud)
 
 	elif (command == "north") or (command == "south") or (command == "east") or (command == "west") or (command == "northwest") or (command == "northeast") or (command == "southwest") or (command == "southeast") or (command == "up") or (command == "down"):
-		Go(id, command, rooms, players, cursor, conn, mud)
+		Go(id, command, rooms, gameitems, npcs, beastiary, monsterInstances, players, cursor, conn, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "n":
