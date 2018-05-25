@@ -266,7 +266,8 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		DisplayPrompt(id, players, mud)
 
 	elif command == "":
-		DisplayPrompt(id, players, mud)
+		if players[id].authenticated:
+			DisplayPrompt(id, players, mud)
 
 	else:																		# unknown command
 		mud.send_message(id, "Unknown command: '{}'".format(command.upper()))
