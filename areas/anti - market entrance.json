@@ -1,0 +1,6 @@
+{
+    "Antiqua - Market Entrance": {
+        "description": "You stand at the entrance to the marketplace. The marketplace is a large square plaza, with shops at each corner. In the center of the plaza, to your west, are several stalls with vendors eager to sell goods.",
+		"exits": {"east": "Antiqua - Pathway to Markets", "west": "Antiqua - Market Plaza", "south": "Antiqua - Armory Shop", "north": "Antiqua - Trade Shop"}
+	}
+}

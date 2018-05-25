@@ -1,0 +1,9 @@
+{
+	"dartan": {
+        "description": "A young man with short blonde hair, garbed in Antiquan guard gear. He seems to be employed by the city to sell the goods here.",
+		"response": "Welcome to the public armory! Just let me know if you want to take a look at anything.",
+		"items": {
+			"iron sword": 55
+		}
+    }
+}

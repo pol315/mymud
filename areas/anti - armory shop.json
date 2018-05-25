@@ -1,0 +1,7 @@
+{
+    "Antiqua - Armory Shop": {
+		"description": "The walls of the shop are lined with various weapons and armor. There is a heavy door at the east side of the shop, that likely leads to the official city armory. It seems that the extra inventory made by the city is sold here.",
+		"npcs": ["dartan"],
+		"exits": {"north": "Antiqua - Market Entrance", "west": "Antiqua - South Market"}
+	}
+}

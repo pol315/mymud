@@ -1,0 +1,6 @@
+{
+    "Antiqua - Pathway to Markets": {
+        "description": "As you walk down the pathway you can hear the nearby hustle and bustle of the marketplace. The pathway is quite wide as lots of traffic goes back and forth through here.",
+		"exits": {"east": "Antiqua - Main Plaza", "west": "Antiqua - Market Entrance"}
+	}
+}
