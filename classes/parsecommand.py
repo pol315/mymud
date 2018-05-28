@@ -80,14 +80,62 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 
 	elif players[id].name and players[id].exist and players[id].authenticated and players[id].gender and players[id].race is None:	# The player just created an account and needs to decide race
 		if (command == "human") or (command == "marduk") or (command == "avine") or (command == "enerkin") or (command == "geblit"):
+			players[id].race = command
 			cursor.execute("UPDATE player SET race = %s WHERE username = %s;", (command, players[id].name))
 			if cursor.rowcount == 1:
 				conn.commit()
-				players[id].race = command
-				PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 			else:
 				mud.send_message(id, "Could not update race.")
 				mud.terminate_connection(id)
+
+			if (command == "human"):
+				players[id].strength = 5
+				players[id].strengthxp = 2937
+				players[id].dexterity = 5
+				players[id].dexterityxp = 2937
+				players[id].wisdom = 5
+				players[id].wisdomxp = 2937
+
+			elif (command == "marduk"):
+				players[id].strength = 10
+				players[id].strengthxp = 12590
+				players[id].dexterity = 3
+				players[id].dexterityxp = 1005
+				players[id].wisdom = 3
+				players[id].wisdomxp = 1005
+
+			elif (command == "avine"):
+				players[id].strength = 3
+				players[id].strengthxp = 1005
+				players[id].dexterity = 10
+				players[id].dexterityxp = 12590
+				players[id].wisdom = 3
+				players[id].wisdomxp = 1005
+
+			elif (command == "enerkin"):
+				players[id].strength = 3
+				players[id].strengthxp = 1005
+				players[id].dexterity = 3
+				players[id].dexterityxp = 1005
+				players[id].wisdom = 10
+				players[id].wisdomxp = 12590
+
+			elif (command == "geblit"):
+				players[id].strength = 1
+				players[id].strengthxp = 100
+				players[id].dexterity = 1
+				players[id].dexterityxp = 100
+				players[id].wisdom = 1
+				players[id].wisdomxp = 100
+
+			cursor.execute("UPDATE player SET strength_level = %s, strength_xp = %s, dexterity_level = %s, dexterity_xp = %s, wisdom_level = %s, wisdom_xp = %s WHERE username = %s;", (players[id].strength, players[id].strengthxp, players[id].dexterity, players[id].dexterityxp, players[id].wisdom, players[id].wisdomxp, players[id].name))
+			if cursor.rowcount == 1:
+				conn.commit()
+			else:
+				mud.send_message(id, "Could not update race.")
+				mud.terminate_connection(id)
+
+			PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 
 		else:
 			mud.send_message(id, "Input not recognized. What race will your character be?")
