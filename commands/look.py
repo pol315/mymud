@@ -1,3 +1,27 @@
+def ReadBonus(params, gameitems):
+	bonus = []
+	if gameitems[params.lower()].strength != 0:
+		bonus.append("{} strength".format(gameitems[params.lower()].strength))
+
+	if gameitems[params.lower()].dexterity != 0:
+		bonus.append("{} dexterity".format(gameitems[params.lower()].dexterity))
+
+	if gameitems[params.lower()].wisdom != 0:
+		bonus.append("{} wisdom".format(gameitems[params.lower()].wisdom))
+
+	if gameitems[params.lower()].meleed != 0:
+		bonus.append("{} melee defence".format(gameitems[params.lower()].meleed))
+
+	if gameitems[params.lower()].ranged != 0:
+		bonus.append("{} ranged defence".format(gameitems[params.lower()].ranged))
+
+	if gameitems[params.lower()].magicd != 0:
+		bonus.append("{} magic defence".format(gameitems[params.lower()].magicd))	
+
+	bonusstr = "This item has the following bonuses: {}".format(", ".join(bonus))
+
+	return bonusstr
+
 def Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud):
 	rm = rooms[players[id].room]																						# store the player's current room
 			
@@ -46,6 +70,9 @@ def Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstance
 		elif (rm.items) and (params.lower() in rm.items):
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
 
+			if gameitems[params.lower()].__class__.__name__ == "_Weapon" or gameitems[params.lower()].__class__.__name__ == "_Armor":
+				mud.send_message(id, ReadBonus(params, gameitems))
+
 		elif (rm.npcs) and (params.lower() in npcs):
 			mud.send_message(id, "{}".format(npcs[params.lower()].description))
 
@@ -63,36 +90,47 @@ def Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstance
 			
 		elif params.lower() in players[id].inventory:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+			mud.send_message(id, ReadBonus(params, gameitems))
 
 		elif params.lower() == players[id].weapon1:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
-		
+			mud.send_message(id, ReadBonus(params, gameitems))
+
 		elif params.lower() == players[id].weapon2:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+			mud.send_message(id, ReadBonus(params, gameitems))
 		
 		elif params.lower() == players[id].helmet:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+			mud.send_message(id, ReadBonus(params, gameitems))
 		
 		elif params.lower() == players[id].chest:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+			mud.send_message(id, ReadBonus(params, gameitems))
 		
 		elif params.lower() == players[id].legs:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+			mud.send_message(id, ReadBonus(params, gameitems))
 		
 		elif params.lower() == players[id].gloves:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+			mud.send_message(id, ReadBonus(params, gameitems))
 		
 		elif params.lower() == players[id].boots:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+			mud.send_message(id, ReadBonus(params, gameitems))
 		
 		elif params.lower() == players[id].cloak:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+			mud.send_message(id, ReadBonus(params, gameitems))
 		
 		elif params.lower() == players[id].ring:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+			mud.send_message(id, ReadBonus(params, gameitems))
 		
 		elif params.lower() == players[id].necklace:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
+			mud.send_message(id, ReadBonus(params, gameitems))
 		
 		else:
 			examined = False

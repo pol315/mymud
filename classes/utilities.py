@@ -617,7 +617,7 @@ def RegainHPAP(players, cursor, conn):
 
 			cursor.execute("UPDATE player SET ap = %s WHERE username = %s;", (players[pl].ap, players[pl].name))
 			if cursor.rowcount == 1:
-				conn.commit()	
+				conn.commit()
 
 
 	
