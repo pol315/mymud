@@ -1,22 +1,22 @@
 def ReadBonus(params, gameitems):
 	bonus = []
 	if gameitems[params.lower()].strength != 0:
-		bonus.append("{} strength".format(gameitems[params.lower()].strength))
+		bonus.append("{:+} strength".format(gameitems[params.lower()].strength))
 
 	if gameitems[params.lower()].dexterity != 0:
-		bonus.append("{} dexterity".format(gameitems[params.lower()].dexterity))
+		bonus.append("{:+} dexterity".format(gameitems[params.lower()].dexterity))
 
 	if gameitems[params.lower()].wisdom != 0:
-		bonus.append("{} wisdom".format(gameitems[params.lower()].wisdom))
+		bonus.append("{:+} wisdom".format(gameitems[params.lower()].wisdom))
 
 	if gameitems[params.lower()].meleed != 0:
-		bonus.append("{} melee defence".format(gameitems[params.lower()].meleed))
+		bonus.append("{:+} melee defence".format(gameitems[params.lower()].meleed))
 
 	if gameitems[params.lower()].ranged != 0:
-		bonus.append("{} ranged defence".format(gameitems[params.lower()].ranged))
+		bonus.append("{:+} ranged defence".format(gameitems[params.lower()].ranged))
 
 	if gameitems[params.lower()].magicd != 0:
-		bonus.append("{} magic defence".format(gameitems[params.lower()].magicd))	
+		bonus.append("{:+} magic defence".format(gameitems[params.lower()].magicd))	
 
 	bonusstr = "This item has the following bonuses: {}".format(", ".join(bonus))
 
