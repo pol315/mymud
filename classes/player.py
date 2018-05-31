@@ -37,8 +37,8 @@ class _Player:
 	strengthxp =		0												
 	dexterityxp = 		0												
 	wisdomxp = 			0												
-	endurancexp =		0												
-	clarityxp =			0												
+	endurancexp =		2937												
+	clarityxp =			2937											
 	miningxp = 			0
 	fishingxp =			0
 	forestingxp = 		0

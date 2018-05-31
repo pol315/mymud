@@ -10,6 +10,7 @@ from classes.server 		import _Server
 
 from commands.attack		import Attack
 from commands.bank			import Bank
+from commands.compare		import Compare
 from commands.deposit		import Deposit
 from commands.description	import Description
 from commands.drop			import Drop
@@ -199,6 +200,11 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 	elif (command == "unequip") or (command == "remove"):
 		unequipalias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "wearing")
 		Unequip(id, unequipalias, players, gameitems, cursor, conn, mud)
+		DisplayPrompt(id, players, mud)
+
+	elif command == "compare":
+		comparealias = ParseAlias(id, params.lower(), players, rooms, monsterInstances, "all")
+		Compare(id, comparealias, players, gameitems, mud)
 		DisplayPrompt(id, players, mud)
 
 	elif command == "unlock":
