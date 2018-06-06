@@ -1,0 +1,12 @@
+{
+	"Antiqua - First Bank": {
+        "description": "A well-lit room with tall ceilings. White washed columns stand in each corner of the room. Queueing poles lead up to desks at the north end of the building where bank staff waits for patrons. A sign stands at the front of the queue with instructions for first-time visitors.",
+		"roomtype": "bank",
+		"roomitems": {
+			"visitors instructions": {
+				"description": "Welcome to the First Antiquan Bank! Please use DEPOSIT or WITHDRAW to use your account, or BANK to check the contents of your account. If you need further instruction please ask for HELP!"
+			}
+		},
+        "exits": {"east": "Antiqua - North Market", "south": "Antiqua - West Market"}
+    }
+}

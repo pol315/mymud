@@ -1,0 +1,6 @@
+{
+    "Antiqua - South Market": {
+		"description": "A wide open square with merchants coming and going. A signpost on a nearby wall points south and reads \"Combat Guilds\". Shop buildings lie to the east and west." ,
+		"exits": {"south": "Antiqua - Guild Courtyard", "west": "Antiqua - Clothing Shop", "east": "Antiqua - Armory Shop", "north": "Antiqua - Market Plaza"}
+	}
+}

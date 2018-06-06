@@ -1,0 +1,6 @@
+{
+    "Antiqua - North Market": {
+		"description": "A compact area of the market with shops lying in all directions." ,
+		"exits": {"south": "Antiqua - Market Plaza", "west": "Antiqua - First Bank", "east": "Antiqua - Trade Shop", "north": "Antiqua - Housing Office"}
+	}
+}

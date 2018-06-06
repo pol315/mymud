@@ -1,0 +1,10 @@
+{
+	"redborne": {
+        "description": "A short avine man, he is lined with silver and grey feathers. He's wearing a thin pair of glasses that sit quite far from his face on his beak.",
+		"response": "Please tell me you have goods for me! We've been running low lately on all of our stock. If you have anything to sell, I'll give you a fair price! I can also help you get started by selling you the basic tools you'll need to start gathering goods.",
+		"items": {
+			"iron pick": 20,
+			"iron hatchet": 20
+		}
+    }
+}

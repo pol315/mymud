@@ -1,0 +1,7 @@
+{
+    "Antiqua - Trade Shop": {
+		"description": "The shop is littered with all sorts of trade goods such as raw metals, wood and other common resources. A hefty wheelbarrow sits in the corner filled to the brim with rocks and ores. A short and peculiar avine man is standing on the counter at the back of the shop and looking through what seems to be a jeweler's glass at a sizeable gem.",
+		"npcs": ["redborne"],
+		"exits": {"south": "Antiqua - Market Entrance", "west": "Antiqua - North Market"}
+	}
+}
