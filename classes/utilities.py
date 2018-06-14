@@ -150,7 +150,7 @@ def DisplayPrompt(id, players, mud):
 	mud.send_message(id, "/{} > ".format(int((players[id].clarity * 5))), mud._BOLD, mud._WHITE, False)
 
 # place the player in the room they logged out at, or the starting area if no saved room	
-def PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud):
+def PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, ticks, mud):
 
 	if ((players[id].room is None) or (players[id].room is "")):
 		players[id].room = "Hall of Beginnings"
@@ -161,6 +161,7 @@ def PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterIns
 
 	mud.send_message(id, "\r\nWelcome to the game, {}. ".format(players[id].name) + "Type 'help' if you get lost. Have fun!")		# send the new player a welcome message			
 	mud.send_message(id, "")		
+	players[id].auth_tick = ticks
 	Look(id, None, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
 	DisplayPrompt(id, players, mud)
 

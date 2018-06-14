@@ -1,15 +1,14 @@
-from datetime import datetime
+import datetime
 import time
+import math
 
-def Quit(id, players, cursor, conn, mud):
+def Quit(id, players, cursor, conn, ticks, mud):
 
-	d1 = datetime.strptime(str(players[id].last_login), "%Y-%m-%d %H:%M:%S")
-	d2 = datetime.strptime(time.strftime("%Y-%m-%d %H:%M:%S"), "%Y-%m-%d %H:%M:%S")
-	preplaytime = players[id].playtime
-	sessiontime = d2 - d1
-	totaltime = preplaytime + sessiontime
+	secondsplayed = math.floor((ticks - players[id].auth_tick) / 5)
+
+	totalsecondsplayed = secondsplayed + players[id].playtime
 	
-	cursor.execute("UPDATE player SET play_time = %s WHERE username = %s;", (totaltime, players[id].name))
+	cursor.execute("UPDATE player SET play_time = %s WHERE username = %s;", (totalsecondsplayed, players[id].name))
 	if cursor.rowcount == 1:
 		conn.commit()	
 	else:

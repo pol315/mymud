@@ -19,7 +19,8 @@ class _Player:
 	pw1 = 				None
 	last_login = 		None
 	created_on =		None
-	playtime = 			datetime.strptime("00:00:00", "%H:%M:%S")
+	playtime = 			0												# seconds played
+	auth_tick =			0												# the tick at which the player logged in at
 	
 	# SKILLS
 	strength = 			0												# melee damage

@@ -51,7 +51,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		ValidateName(id, command, players, cursor, mud)
 
 	elif players[id].name is not None and players[id].exist is True and players[id].authenticated is False:							# The player exists and we are waiting for a password
-		LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monsterInstances, cursor, conn, mud)
+		LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monsterInstances, cursor, conn, ticks, mud)
 
 	elif players[id].name is not None and players[id].exist is False and players[id].authenticated is False and players[id].pw1 is None:		# The player doesn't exist and we are setting a new password
 		players[id].pw1 = command
@@ -136,7 +136,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 				mud.send_message(id, "Could not update race.")
 				mud.terminate_connection(id)
 
-			PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
+			PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, ticks, mud)
 
 		else:
 			mud.send_message(id, "Input not recognized. What race will your character be?")
@@ -172,7 +172,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 		DisplayPrompt(id, players, mud)
 
 	elif command == "playtime":
-		Playtime(id, players, mud)
+		Playtime(id, players, ticks, mud)
 		DisplayPrompt(id, players, mud)
 		
 	elif command == "skills":
@@ -306,7 +306,7 @@ def ParseCommand(id, command, params, players, rooms, gameitems, npcs, beastiary
 
 	# MISC
 	elif (command == "quit") or (command == "qq"):
-		Quit(id, players, cursor, conn, mud)
+		Quit(id, players, cursor, conn, ticks, mud)
 		
 	elif command == "r":
 		ParseCommand(id, players[id].last_command, players[id].last_params, players, rooms, gameitems, npcs, beastiary, monsterInstances, deadMonsters, ticks, cursor, conn, mud)

@@ -34,11 +34,11 @@ def ValidateName(id, command, players, cursor, mud):
 	else:
 		mud.send_message(id, "Username must start with a capital letter, consist of only letters and must be between 3 and 12 characters. Try again!")
 		
-def LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monsterInstances, cursor, conn, mud):
+def LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monsterInstances, cursor, conn, ticks, mud):
 
 	players[id].last_command = ""
 
-	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race, inventory, chest, helmet, legs, boots, gloves, cloak, necklace, ring, weapon1, weapon2, totalstr, totaldex, totalwis, meleed, ranged, magicd, gold, bank, bankgold, strength_level, strength_xp, dexterity_level, dexterity_xp, wisdom_level, wisdom_xp, endurance_level, endurance_xp, clarity_level, clarity_xp, hp, ap FROM player WHERE username = %s;", (players[id].name,))
+	cursor.execute("SELECT password, salt, last_login, last_room, description, gender, race, inventory, chest, helmet, legs, boots, gloves, cloak, necklace, ring, weapon1, weapon2, totalstr, totaldex, totalwis, meleed, ranged, magicd, gold, bank, bankgold, strength_level, strength_xp, dexterity_level, dexterity_xp, wisdom_level, wisdom_xp, endurance_level, endurance_xp, clarity_level, clarity_xp, hp, ap, play_time FROM player WHERE username = %s;", (players[id].name,))
 	rows = cursor.fetchall()						
 	
 	if IsValidPass(command,str(rows[0][1]),str(rows[0][0])):
@@ -96,6 +96,8 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monster
 
 			players[id].hp = int(rows[0][37])
 			players[id].ap = int(rows[0][38])
+
+			players[id].playtime = int(rows[0][39])
 			
 			mud.send_message(id, "\r\n\r\nYou last logged in at: {}".format(players[id].last_login))
 		
@@ -111,7 +113,7 @@ def LogPlayerIn(id, command, players, rooms, gameitems, npcs, beastiary, monster
 				mud.send_message(id, "Could not update timestamp.")
 				mud.terminate_connection(id)
 			
-			PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, mud)
+			PlacePlayerInGame(id, players, rooms, gameitems, npcs, beastiary, monsterInstances, ticks, mud)
 		
 	else:
 		mud.send_message(id, "\r\nIncorrect password.")								
