@@ -90,7 +90,9 @@ def Look(id, params, players, rooms, gameitems, npcs, beastiary, monsterInstance
 			
 		elif params.lower() in players[id].inventory:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
-			mud.send_message(id, ReadBonus(params, gameitems))
+
+			if gameitems[params.lower()].__class__.__name__ == "_Weapon" or gameitems[params.lower()].__class__.__name__ == "_Armor":
+				mud.send_message(id, ReadBonus(params, gameitems))
 
 		elif params.lower() == players[id].weapon1:
 			mud.send_message(id, "{}".format(gameitems[params.lower()].description))
